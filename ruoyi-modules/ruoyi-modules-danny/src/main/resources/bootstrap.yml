@@ -1,0 +1,13 @@
+# Tomcat
+server:
+  port: 9204
+
+# Spring
+spring: 
+  application:
+    # 应用名称
+    name: ruoyi-danny
+  profiles:
+    # 环境配置
+    active: dev
+

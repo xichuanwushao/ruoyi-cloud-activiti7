@@ -13,6 +13,7 @@
         <module>ruoyi-modules-gen</module>
         <module>ruoyi-modules-job</module>
         <module>ruoyi-modules-file</module>
+        <module>ruoyi-modules-danny</module>
     </modules>
 
     <artifactId>ruoyi-modules</artifactId>
