@@ -9,10 +9,10 @@
     <modelVersion>4.0.0</modelVersion>
 
     <modules>
-        <module>ruoyi-system</module>
-        <module>ruoyi-gen</module>
-        <module>ruoyi-job</module>
-        <module>ruoyi-file</module>
+        <module>ruoyi-modules-system</module>
+        <module>ruoyi-modules-gen</module>
+        <module>ruoyi-modules-job</module>
+        <module>ruoyi-modules-file</module>
     </modules>
 
     <artifactId>ruoyi-modules</artifactId>

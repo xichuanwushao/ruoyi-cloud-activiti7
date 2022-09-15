@@ -1,12 +1,12 @@
 # Tomcat
 server:
-  port: 9300
+  port: 9202
 
 # Spring
 spring: 
   application:
     # 应用名称
-    name: ruoyi-file
+    name: ruoyi-modules-gen
   profiles:
     # 环境配置
     active: dev
