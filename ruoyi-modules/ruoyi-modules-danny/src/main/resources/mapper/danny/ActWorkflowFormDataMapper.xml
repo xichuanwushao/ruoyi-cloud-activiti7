@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.danny.mapper.ActWorkflowFormDataMapper">
+    <resultMap type="ActWorkflowFormData" id="ActWorkflowFormDataResult">
+        <result property="id"    column="id"    />
+        <result property="businessKey"    column="business_key"    />
+        <result property="formKey"    column="form_key"    />
+        <result property="controlId"    column="control_id"    />
+        <result property="controlName"    column="control_name"    />
+        <result property="controlValue"    column="control_value"    />
+        <result property="taskNodeName"    column="task_node_name"    />
+        <result property="createName"    column="create_name"    />
+        <result property="createBy"    column="create_by"    />
+        <result property="createTime"    column="create_time"    />
+    </resultMap>
+
+    <sql id="selectActWorkflowFormDataVo">
+        select id, business_key, form_key, control_id,control_name, control_value, task_node_name, create_name,create_by, create_time from dan_act_workflow_formdata
+    </sql>
+
+
+    <select id="selectActWorkflowFormDataByBusinessKey" parameterType="string" resultMap="ActWorkflowFormDataResult">
+        <include refid="selectActWorkflowFormDataVo"/>
+        where  business_key = #{businessKey}
+    </select>
+
+    <insert id="insertActWorkflowFormDatas"  useGeneratedKeys="true" >
+        insert into dan_act_workflow_formdata (business_key,form_key,control_id,control_name,control_value,task_node_name,create_by,create_time,create_name) values
+        <foreach collection="param2" item="awfd" index="index" separator=",">
+            (#{awfd.businessKey},#{awfd.formKey},#{awfd.controlId},#{awfd.controlName}, #{awfd.controlValue},#{awfd.taskNodeName},#{param1},#{param3},#{param4})
+        </foreach>
+    </insert>
+</mapper>
+
