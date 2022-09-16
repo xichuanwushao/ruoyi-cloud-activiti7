@@ -331,7 +331,7 @@
       },
       // 状态字典翻译
       stateFormat(row, column) {
-        return this.selectDictLabel(this.stateOptions, row.state)
+        return this.sselectDictLabelV2(this.stateOptions, row.state)
       },
 
       // 取消按钮

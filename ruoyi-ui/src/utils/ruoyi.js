@@ -68,7 +68,7 @@ export function addDateRange(params, dateRange, propName) {
   return search;
 }
 
-// 回显数据字典 
+// 回显数据字典
 export function selectDictLabel(datas, value) {
   if (value === undefined) {
     return "";
@@ -84,6 +84,21 @@ export function selectDictLabel(datas, value) {
     actions.push(value);
   }
   return actions.join('');
+}
+
+// 回显数据字典（字符串数组）
+export function sselectDictLabelV2(datas, value, separator) {
+  var actions = [];
+  var currentSeparator = undefined === separator ? "," : separator;
+  var temp = value.split(currentSeparator);
+  Object.keys(value.split(currentSeparator)).some((val) => {
+    Object.keys(datas).some((key) => {
+      if (datas[key].dictValue == ('' + temp[val])) {
+        actions.push(datas[key].dictLabel + currentSeparator);
+      }
+    })
+  })
+  return actions.join('').substring(0, actions.join('').length - 1);
 }
 
 // 回显数据字典（字符串数组）
