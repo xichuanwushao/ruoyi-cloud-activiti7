@@ -15,18 +15,4 @@ spring:
         shared-configs:
           - application-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension}
         namespace: 0b13d7f7-cde5-4796-a6a1-0500fd1ba009
-    sentinel:
-      # 取消控制台懒加载
-      eager: true
-      transport:
-        # 控制台地址
-        dashboard: 192.168.170.136:8718
-      # nacos配置持久化
-      datasource:
-        ds1:
-          nacos:
-            server-addr: 192.168.170.136:8848
-            dataId: sentinel-engineeringdepot-cloud-gateway
-            groupId: DEFAULT_GROUP
-            data-type: json
-            rule-type: flow
+
