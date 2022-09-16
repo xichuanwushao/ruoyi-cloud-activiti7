@@ -5,6 +5,7 @@ const user = {
   state: {
     token: getToken(),
     name: '',
+    nickname: '',
     avatar: '',
     roles: [],
     permissions: []
@@ -19,6 +20,9 @@ const user = {
     },
     SET_NAME: (state, name) => {
       state.name = name
+    },
+    SET_NAME_NICKNAME: (state, nickname) => {
+      state.nickname = nickname
     },
     SET_AVATAR: (state, avatar) => {
       state.avatar = avatar
@@ -65,6 +69,7 @@ const user = {
             commit('SET_ROLES', ['ROLE_DEFAULT'])
           }
           commit('SET_NAME', user.userName)
+          commit('SET_NAME_NICKNAME', user.nickName)
           commit('SET_AVATAR', avatar)
           resolve(res)
         }).catch(error => {
@@ -85,7 +90,7 @@ const user = {
         })
       })
     },
-    
+
     // 退出系统
     LogOut({ commit, state }) {
       return new Promise((resolve, reject) => {
