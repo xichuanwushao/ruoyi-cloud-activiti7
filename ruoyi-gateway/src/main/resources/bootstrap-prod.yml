@@ -1,0 +1,20 @@
+# Spring
+spring:
+  cloud:
+    nacos:
+      discovery:
+        # 服务注册地址
+        server-addr: 82.157.143.174:8848
+        namespace: 36a6cffb-6ec5-4ed8-a357-f4170e2ab131
+        # 指定外网IP
+        ip: 152.136.153.155
+      config:
+        # 配置中心地址
+        server-addr: 82.157.143.174:8848
+        # 配置文件格式
+        file-extension: yml
+        # 共享配置
+        shared-configs:
+          - application-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension}
+        namespace: 36a6cffb-6ec5-4ed8-a357-f4170e2ab131
+
