@@ -22,16 +22,16 @@
 ## 演示图
 <table>
     <tr>
-        <td><img src="https://gitee.com/avatarwx/ruoyi-cloud-activiti7/blob/master/temp/his_list2.png"/></td>
-        <td><img src="https://gitee.com/avatarwx/ruoyi-cloud-activiti7/blob/master/temp/oa_list.png"/></td>
+        <td><img src="https://image-1304556315.cos.ap-beijing.myqcloud.com/his_list2.png"/></td>
+        <td><img src="https://image-1304556315.cos.ap-beijing.myqcloud.com/oa_list.png"/></td>
     </tr>
     <tr>
-        <td><img src="https://gitee.com/avatarwx/ruoyi-cloud-activiti7/blob/master/temp/task_list2.png"/></td>
-        <td><img src="https://gitee.com/avatarwx/ruoyi-cloud-activiti7/blob/master/temp/task_approvel.png"/></td>
+        <td><img src="https://image-1304556315.cos.ap-beijing.myqcloud.com/task_list2.png"/></td>
+        <td><img src="https://image-1304556315.cos.ap-beijing.myqcloud.com/task_approvel.png"/></td>
     </tr>
     <tr>
-        <td><img src="https://gitee.com/avatarwx/ruoyi-cloud-activiti7/blob/master/temp/task_approvel3.png"/></td>
-        <td><img src="https://gitee.com/avatarwx/ruoyi-cloud-activiti7/blob/master/temp/his_info.png"/></td>
+        <td><img src="https://image-1304556315.cos.ap-beijing.myqcloud.com/task_approvel3.png"/></td>
+        <td><img src="https://image-1304556315.cos.ap-beijing.myqcloud.com/his_info.png"/></td>
     </tr>
 </table>
 ## 若依微服务交流群
