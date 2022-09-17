@@ -139,14 +139,14 @@
           >审批详情
           </el-button>
 
-          <el-button v-if="0==scope.row.state"
-            size="mini"
-            type="text"
-            icon="el-icon-edit"
-            @click="checkTheSchedule(scope.row)"
-            v-hasPermi="['workflow:leave:edit']"
-          >查看进度
-          </el-button>
+<!--          <el-button v-if="0==scope.row.state"-->
+<!--            size="mini"-->
+<!--            type="text"-->
+<!--            icon="el-icon-edit"-->
+<!--            @click="checkTheSchedule(scope.row)"-->
+<!--            v-hasPermi="['workflow:leave:edit']"-->
+<!--          >查看进度-->
+<!--          </el-button>-->
         </template>
       </el-table-column>
     </el-table>
