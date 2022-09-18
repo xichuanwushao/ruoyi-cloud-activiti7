@@ -1,8 +1,8 @@
 
 ## 平台简介
-* 把danny同学前后端分离的工作流项目,修改为若依微服务版本3.5.0, 众所周知,activiti的新特性必须结合Spring Security
-  来使用, 如果系统未使用Security的时候如何使用新特性呢？ 这个项目主要为了解决若依微服务未使用SpringSecrity的情况下
-  ,如何使用Activiti7的新特性。这里采用了模拟登录SpringSecrity方式进行activiti功能调用
+* 众所周知,activiti7的新特性必须结合Spring Security来使用, 如果系统未使用Security的时候如何使用新特性呢？ 
+  这个项目主要为了解决若依微服务未使用SpringSecrity的情况下 ,如何使用Activiti7的新特性。这里采用了模拟登录
+  SpringSecrity方式进行activiti功能调用,把danny同学前后端分离的工作流项目,修改为若依微服务版本3.5.0。
 #### 友情链接
 * 感谢若依大佬开源的微服务项目:https://gitee.com/y_project/RuoYi-Cloud
 * 感谢danny同学开源的工作流项目:https://gitee.com/smell2/ruoyi-vue-activiti
