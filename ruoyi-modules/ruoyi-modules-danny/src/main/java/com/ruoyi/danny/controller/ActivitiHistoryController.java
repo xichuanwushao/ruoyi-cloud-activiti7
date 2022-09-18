@@ -65,12 +65,7 @@ public class ActivitiHistoryController {
         String font = "SimSun";
         if (os.startsWith("win")) {
             font = "宋体";
-        }else{
-            font = "宋体";
         }
-        System.out.println("#####"+os);
-        System.out.println("#####"+font);
-        System.out.println("#####"+font);
         try (InputStream in = diagramGenerator.generateDiagram(bpmnModel, "jpg", activeActivityIds, activeActivityIds,
                 font, font, font,
                 processEngine.getProcessEngineConfiguration().getProcessEngineConfiguration().getClassLoader(), 1.0);
