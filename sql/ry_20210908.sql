@@ -69,6 +69,11 @@ create table sys_user (
 -- ----------------------------
 insert into sys_user values(1,  103, 'admin', '若依', '00', 'ry@163.com', '15888888888', '1', '', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '127.0.0.1', sysdate(), 'admin', sysdate(), '', null, '管理员');
 insert into sys_user values(2,  105, 'ry',    '若依', '00', 'ry@qq.com',  '15666666666', '1', '', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '127.0.0.1', sysdate(), 'admin', sysdate(), '', null, '测试员');
+INSERT INTO `sys_user` VALUES (13, 103, 'guanxing', '关兴', '00', '1@ry.com', '18600000001', '0', '', '$2a$10$NmX2GPb9EPLUYK2nBdo26ul9jmnrox0JO8lGxmcCHTJf6vfWvxmxi', '0', '0', '', NULL, 'admin', '2022-09-08 18:46:51', 'admin', '2022-09-08 19:01:55', NULL);
+INSERT INTO `sys_user` VALUES (14, 103, 'guanyu', '关羽', '00', '2@ry.com', '18600000002', '0', '', '$2a$10$X7ftf9maI1oq6KngPDKAOOrFesDj7eYaEvGNZq0kGOE0qvUH5R.IK', '0', '0', '', NULL, 'admin', '2022-09-08 18:48:26', 'admin', '2022-09-08 19:02:04', NULL);
+INSERT INTO `sys_user` VALUES (15, 100, 'zhugeliang', '诸葛亮', '00', '3@ry.com', '18600000003', '0', '', '$2a$10$NAYkAW7yRO/SXgVxG0DkTOjKOCHiDg0aYMlX/WvTKtvRyDMHhPc5u', '0', '0', '', NULL, 'admin', '2022-09-08 18:53:40', 'admin', '2022-09-08 19:02:15', NULL);
+INSERT INTO `sys_user` VALUES (16, 103, 'zhaoyun', '赵云', '00', '4@ry.com', '18600000004', '0', '', '$2a$10$WBLEDmqVlea1jPihDmSTMedQ37oYh9fEyMtEKL42eKBvlZ3MlpkP2', '0', '0', '', NULL, 'admin', '2022-09-08 18:55:00', 'admin', '2022-09-08 19:02:21', NULL);
+INSERT INTO `sys_user` VALUES (17, 100, 'zhoucang', '周仓', '00', '5@ry.com', '18600000005', '0', '', '$2a$10$X52HojG5xGjGItruNQdts..JAAsFp9RUu7dzMVOBC7zTMVIg04kSq', '0', '0', '', NULL, 'admin', '2022-09-08 18:56:23', 'admin', '2022-09-08 19:02:27', NULL);
 
 
 -- ----------------------------
@@ -257,6 +262,17 @@ insert into sys_menu values('1057', '生成删除', '115', '3', '#', '', '', 1, 
 insert into sys_menu values('1058', '导入代码', '115', '2', '#', '', '', 1, 0, 'F', '0', '0', 'tool:gen:import',            '#', 'admin', sysdate(), '', null, '');
 insert into sys_menu values('1059', '预览代码', '115', '4', '#', '', '', 1, 0, 'F', '0', '0', 'tool:gen:preview',           '#', 'admin', sysdate(), '', null, '');
 insert into sys_menu values('1060', '生成代码', '115', '5', '#', '', '', 1, 0, 'F', '0', '0', 'tool:gen:code',              '#', 'admin', sysdate(), '', null, '');
+INSERT INTO `sys_menu` VALUES (1163, '请假', 1166, 1, 'leave', 'workflow/leave/index', NULL, 1, 0, 'C', '0', '0', 'workflow:leave:list', '#', 'admin', '2020-10-28 22:30:57', 'admin', '2020-11-10 22:15:13', '请假菜单');
+INSERT INTO `sys_menu` VALUES (1164, '待办任务', 0, 6, 'task', NULL, NULL, 1, 0, 'M', '0', '0', '', 'excel', 'admin', '2020-11-04 10:53:24', 'admin', '2020-11-10 22:26:46', '');
+INSERT INTO `sys_menu` VALUES (1165, '代办任务', 1164, 1, 'task', 'activiti/task', NULL, 1, 0, 'C', '0', '0', '', '#', 'admin', '2020-11-04 10:54:28', 'admin', '2020-11-04 10:55:06', '');
+INSERT INTO `sys_menu` VALUES (1166, '我的OA', 0, 5, 'OA', NULL, NULL, 1, 0, 'M', '0', '0', '', 'guide', 'admin', '2020-11-10 22:13:34', 'admin', '2020-11-10 22:15:29', '');
+INSERT INTO `sys_menu` VALUES (1167, '历史流程', 0, 7, 'open', NULL, NULL, 1, 0, 'M', '0', '0', NULL, 'eye-open', 'admin', '2020-11-10 22:17:36', '', NULL, '');
+INSERT INTO `sys_menu` VALUES (1168, '请假历史', 1167, 1, 'leaveAll', 'workflow/leave/leaveAll', NULL, 1, 0, 'C', '0', '0', 'workflow:leave:list', '#', 'admin', '2020-10-28 22:30:57', 'admin', '2020-11-10 22:45:16', '请假菜单');
+INSERT INTO `sys_menu` VALUES (1169, '请假查询', 1163, 1, '#', '', NULL, 1, 0, 'F', '0', '0', 'workflow:leave:query', '#', 'admin', '2020-10-28 22:30:57', '', NULL, '');
+INSERT INTO `sys_menu` VALUES (1170, '请假新增', 1163, 2, '#', '', NULL, 1, 0, 'F', '0', '0', 'workflow:leave:add', '#', 'admin', '2020-10-28 22:30:57', '', NULL, '');
+INSERT INTO `sys_menu` VALUES (1171, '请假修改', 1163, 3, '#', '', NULL, 1, 0, 'F', '0', '0', 'workflow:leave:edit', '#', 'admin', '2020-10-28 22:30:57', '', NULL, '');
+INSERT INTO `sys_menu` VALUES (1172, '请假删除', 1163, 4, '#', '', NULL, 1, 0, 'F', '0', '0', 'workflow:leave:remove', '#', 'admin', '2020-10-28 22:30:57', '', NULL, '');
+INSERT INTO `sys_menu` VALUES (1173, '请假导出', 1163, 5, '#', '', NULL, 1, 0, 'F', '0', '0', 'workflow:leave:export', '#', 'admin', '2020-10-28 22:30:57', '', NULL, '');
 
 
 -- ----------------------------
