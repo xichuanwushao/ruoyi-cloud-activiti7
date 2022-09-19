@@ -7,6 +7,7 @@ import com.ruoyi.common.security.utils.SecurityUtils;
 import com.ruoyi.danny.domain.WorkflowLeave;
 import com.ruoyi.danny.service.IWorkflowLeaveService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,8 +22,15 @@ import java.util.List;
 @RestController
 @RequestMapping("/workflow/leave")
 public class WorkflowLeaveController extends BaseController {
+
     @Autowired
     private IWorkflowLeaveService workflowLeaveService;
+
+    /**
+     * bpmn流程图片地址
+     */
+    @Value("${bpmn.domain}")
+    public String domain;
 
     /**
      * 新增请假
@@ -46,6 +54,10 @@ public class WorkflowLeaveController extends BaseController {
         startPage();
         workflowLeave.setCreateBy(SecurityUtils.getUsername());
         List<WorkflowLeave> list = workflowLeaveService.selectWorkflowLeaveAndTaskNameList(workflowLeave);
+        for(WorkflowLeave workflowLeave1: list){
+            String url = domain+"/activitiHistory/searchApprovalBpmn?instanceId="+workflowLeave1.getInstanceId();
+            workflowLeave1.setBpmnUrl(url);
+        }
         return getDataTable(list);
     }
 

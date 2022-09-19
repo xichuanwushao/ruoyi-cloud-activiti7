@@ -55,6 +55,10 @@ public class WorkflowLeave extends BaseEntity
     @Excel(name = "创建人")
     private String createName;
 
+    /** bpmn流程图片地址 */
+    private String bpmnUrl;
+
+
     public void setId(String id) 
     {
         this.id = id;
@@ -144,20 +148,32 @@ public class WorkflowLeave extends BaseEntity
         this.taskName = taskName;
     }
 
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
+    public String getBpmnUrl() {
+        return bpmnUrl;
+    }
+
+    public void setBpmnUrl(String bpmnUrl) {
+        this.bpmnUrl = bpmnUrl;
+    }
+
     @Override
     public String toString() {
-        return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)
-            .append("id", getId())
-            .append("type", getType())
-            .append("title", getTitle())
-            .append("reason", getReason())
-            .append("leaveStartTime", getLeaveStartTime())
-            .append("leaveEndTime", getLeaveEndTime())
-            .append("instanceId", getInstanceId())
-            .append("state", getState())
-            .append("createBy", getCreateBy())
-            .append("createTime", getCreateTime())
-            .append("updateTime", getUpdateTime())
-            .toString();
+        return "WorkflowLeave{" +
+                "id='" + id + '\'' +
+                ", type='" + type + '\'' +
+                ", title='" + title + '\'' +
+                ", reason='" + reason + '\'' +
+                ", leaveStartTime=" + leaveStartTime +
+                ", leaveEndTime=" + leaveEndTime +
+                ", instanceId='" + instanceId + '\'' +
+                ", taskName='" + taskName + '\'' +
+                ", state='" + state + '\'' +
+                ", createName='" + createName + '\'' +
+                ", bpmnUrl='" + bpmnUrl + '\'' +
+                "} " + super.toString();
     }
 }
