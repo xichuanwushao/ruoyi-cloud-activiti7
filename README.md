@@ -35,5 +35,6 @@
         <td><img src="https://image-1304556315.cos.ap-beijing.myqcloud.com/his_info.png"/></td>
     </tr>
 </table>
+
 ## ruoyi-cloud-activiti7交流群
-* QQ群：852160973
+* 帮忙star一下吧 免验证加QQ群：852160973
