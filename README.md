@@ -37,4 +37,4 @@
 </table>
 
 ## ruoyi-cloud-activiti7交流群
-* 帮忙star一下吧 免验证加QQ群：852160973
+* 欢迎star项目 免验证加QQ交流群：852160973

@@ -139,14 +139,14 @@
           >审批详情
           </el-button>
 
-<!--          <el-button v-if="0==scope.row.state"-->
-<!--            size="mini"-->
-<!--            type="text"-->
-<!--            icon="el-icon-edit"-->
-<!--            @click="checkTheSchedule(scope.row)"-->
-<!--            v-hasPermi="['workflow:leave:edit']"-->
-<!--          >查看进度-->
-<!--          </el-button>-->
+          <el-button v-if="0==scope.row.state"
+            size="mini"
+            type="text"
+            icon="el-icon-edit"
+            @click="checkTheSchedule(scope.row)"
+            v-hasPermi="['workflow:leave:edit']"
+          >查看进度
+          </el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -404,14 +404,8 @@
       },
       /** 进度查看 */
       checkTheSchedule(row) {
-        getDefinitionsByInstanceId(row.instanceId).then(response => {
-          let data = response.data
-          // this.url = '/bpmnjs/index.html?type=lookBpmn&deploymentFileUUID='+data.deploymentID+'&deploymentName='+ encodeURI(data.resourceName);
-          this.modelerUrl = '/bpmnjs/index.html?type=lookBpmn&instanceId=' + row.instanceId + '&deploymentFileUUID=' + data.deploymentID + '&deploymentName=' + encodeURI(data.resourceName);
+          this.modelerUrl = row.bpmnUrl;
           this.modelVisible = true
-        })
-
-
       },
       /** 提交按钮 */
       submitForm() {
