@@ -34,6 +34,10 @@
         <td><img src="https://image-1304556315.cos.ap-beijing.myqcloud.com/task_approvel3.png"/></td>
         <td><img src="https://image-1304556315.cos.ap-beijing.myqcloud.com/his_info.png"/></td>
     </tr>
+    <tr>
+        <td><img src="https://image-1304556315.cos.ap-beijing.myqcloud.com/oa_pic1.png"/></td>
+        <td><img src="https://image-1304556315.cos.ap-beijing.myqcloud.com/oa_pic02.png"/></td>
+    </tr>
 </table>
 
 ## ruoyi-cloud-activiti7交流群
