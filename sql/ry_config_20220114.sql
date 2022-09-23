@@ -194,6 +194,10 @@ CREATE TABLE `tenant_info` (
   KEY `idx_tenant_id` (`tenant_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='tenant_info';
 
+INSERT INTO `tenant_info` VALUES (3, '1', '36a6cffb-6ec5-4ed8-a357-f4170e2ab131', 'ruoyi-cloud-activiti7', 'ruoyi-cloud-activiti7', 'nacos', 1663316162824, 1663316162824);
+
+
+
 CREATE TABLE `users` (
 	`username` varchar(50) NOT NULL PRIMARY KEY,
 	`password` varchar(500) NOT NULL,
