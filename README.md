@@ -6,6 +6,11 @@
 #### 友情链接
 * 感谢若依大佬开源的微服务项目:https://gitee.com/y_project/RuoYi-Cloud
 * 感谢danny同学开源的工作流项目:https://gitee.com/smell2/ruoyi-vue-activiti
+#### 插件版本
+* RuoYi-Cloud 3.5.0
+* Nacos 2.0.2
+* Node.js 14.0.0
+* npm 6.14.4
 ## 内置功能
 * 1.  我的OA：上传请假申请。
 * 2.  待办任务：领导进行审批。
