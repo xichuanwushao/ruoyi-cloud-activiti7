@@ -1,6 +1,6 @@
-DROP DATABASE IF EXISTS `ry-config`;
+DROP DATABASE IF EXISTS `nacos-config`;
 
-CREATE DATABASE  `ry-config` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+CREATE DATABASE  `nacos-config` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 /*
  Navicat Premium Data Transfer
 
@@ -8,7 +8,7 @@ CREATE DATABASE  `ry-config` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_gener
  Source Server Type    : MySQL
  Source Server Version : 50736
  Source Host           : 82.157.143.179:3306
- Source Schema         : ry-config
+ Source Schema         : nacos-config
 
  Target Server Type    : MySQL
  Target Server Version : 50736

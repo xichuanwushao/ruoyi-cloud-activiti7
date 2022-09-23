@@ -1,3 +1,6 @@
+DROP DATABASE IF EXISTS `ruoyi-cloud-activiti7`;
+
+CREATE DATABASE  `ruoyi-cloud-activiti7` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 
 -- ----------------------------
 -- Table structure for dan_act_workflow_formdata
