@@ -365,6 +365,8 @@ INSERT INTO `sys_menu` VALUES (1, '系统管理', 0, 1, 'system', NULL, '', 1, 0
 INSERT INTO `sys_menu` VALUES (2, '系统监控', 0, 2, 'monitor', NULL, '', 1, 0, 'M', '0', '0', '', 'monitor', 'admin', '2022-04-24 19:37:30', '', NULL, '系统监控目录');
 INSERT INTO `sys_menu` VALUES (3, '系统工具', 0, 3, 'tool', NULL, '', 1, 0, 'M', '0', '0', '', 'tool', 'admin', '2022-04-24 19:37:30', '', NULL, '系统工具目录');
 INSERT INTO `sys_menu` VALUES (4, '若依官网', 0, 4, 'http://ruoyi.vip', NULL, '', 0, 0, 'M', '0', '0', '', 'guide', 'admin', '2022-04-24 19:37:30', '', NULL, '若依官网地址');
+INSERT INTO `sys_menu` VALUES (5,  '流程菜单', 0, 4, 'activiti', NULL, '',1, 0, 'M', '0', '0','activiti:modeler:list', 'cascader', 'admin', '2020-09-13 21:58:54', '', NULL, '');
+
 INSERT INTO `sys_menu` VALUES (100, '用户管理', 1, 1, 'user', 'system/user/index', '', 1, 0, 'C', '0', '0', 'system:user:list', 'user', 'admin', '2022-04-24 19:37:30', '', NULL, '用户管理菜单');
 INSERT INTO `sys_menu` VALUES (101, '角色管理', 1, 2, 'role', 'system/role/index', '', 1, 0, 'C', '0', '0', 'system:role:list', 'peoples', 'admin', '2022-04-24 19:37:30', '', NULL, '角色管理菜单');
 INSERT INTO `sys_menu` VALUES (102, '菜单管理', 1, 3, 'menu', 'system/menu/index', '', 1, 0, 'C', '0', '0', 'system:menu:list', 'tree-table', 'admin', '2022-04-24 19:37:30', '', NULL, '菜单管理菜单');
@@ -455,6 +457,7 @@ INSERT INTO `sys_menu` VALUES (1170, '请假新增', 1163, 2, '#', '', NULL, 1, 
 INSERT INTO `sys_menu` VALUES (1171, '请假修改', 1163, 3, '#', '', NULL, 1, 0, 'F', '0', '0', 'workflow:leave:edit', '#', 'admin', '2020-10-28 22:30:57', '', NULL, '');
 INSERT INTO `sys_menu` VALUES (1172, '请假删除', 1163, 4, '#', '', NULL, 1, 0, 'F', '0', '0', 'workflow:leave:remove', '#', 'admin', '2020-10-28 22:30:57', '', NULL, '');
 INSERT INTO `sys_menu` VALUES (1173, '请假导出', 1163, 5, '#', '', NULL, 1, 0, 'F', '0', '0', 'workflow:leave:export', '#', 'admin', '2020-10-28 22:30:57', '', NULL, '');
+INSERT INTO `sys_menu` VALUES (1174, '流程定义', 5,    1, 'definition', 'activiti/definition/index',NULL,  1, 0, 'C', '0', '0', 'activiti:modeler', '#', 'admin', '2020-09-14 23:09:31', '', NULL, '');
 
 -- ----------------------------
 -- Table structure for sys_notice
