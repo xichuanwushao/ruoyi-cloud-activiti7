@@ -49,4 +49,24 @@ public interface IWorkflowLeaveService
      * @return 请假集合
      */
     List<WorkflowLeave> selectWorkflowLeaveList(WorkflowLeave workflowLeave);
+
+    /**
+     * 批量删除请假
+     *
+     * @param ids 需要删除的请假ID
+     * @return 结果
+     */
+    public int deleteWorkflowLeaveByIds(String[] ids);
+
+    /**
+     * 删除请假信息
+     *
+     * @param id 请假ID
+     * @return 结果
+     */
+    public int deleteWorkflowLeaveById(String id);
+
+
+    public WorkflowLeave selectWorkflowLeaveByInstanceId(String instanceId);
+
 }

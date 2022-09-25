@@ -1,5 +1,6 @@
 package com.ruoyi.danny.controller;
 
+import com.ruoyi.common.core.utils.poi.ExcelUtil;
 import com.ruoyi.common.core.web.controller.BaseController;
 import com.ruoyi.common.core.web.domain.AjaxResult;
 import com.ruoyi.common.core.web.page.TableDataInfo;
@@ -8,6 +9,7 @@ import com.ruoyi.danny.domain.WorkflowLeave;
 import com.ruoyi.danny.service.IWorkflowLeaveService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -77,5 +79,31 @@ public class WorkflowLeaveController extends BaseController {
         startPage();
         List<WorkflowLeave> list = workflowLeaveService.selectWorkflowLeaveList(workflowLeave);
         return getDataTable(list);
+    }
+
+
+    /**
+     * 获取请假详细信息
+     */
+    @GetMapping(value = "ByInstanceId/{instanceId}")
+    public AjaxResult getInfoByInstanceId(@PathVariable("instanceId") String instanceId) {
+        return AjaxResult.success(workflowLeaveService.selectWorkflowLeaveByInstanceId(instanceId));
+    }
+
+
+    /**
+     * 修改请假
+     */
+    @PutMapping
+    public AjaxResult edit(@RequestBody WorkflowLeave workflowLeave) {
+        return toAjax(workflowLeaveService.insertWorkflowLeave(workflowLeave));
+    }
+
+    /**
+     * 删除请假
+     */
+    @DeleteMapping("/{ids}")
+    public AjaxResult remove(@PathVariable String[] ids) {
+        return toAjax(workflowLeaveService.deleteWorkflowLeaveByIds(ids));
     }
 }

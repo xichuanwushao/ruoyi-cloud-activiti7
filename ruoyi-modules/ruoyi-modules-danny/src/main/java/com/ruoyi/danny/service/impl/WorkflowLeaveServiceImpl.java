@@ -142,4 +142,34 @@ public class WorkflowLeaveServiceImpl implements IWorkflowLeaveService {
     public List<WorkflowLeave> selectWorkflowLeaveList(WorkflowLeave workflowLeave) {
         return workflowLeaveMapper.selectWorkflowLeaveListByWorkflowLeaveAndDeptId(workflowLeave,SecurityUtils.getLoginUser().getSysUser().getDeptId());
     }
+
+    /**
+     * 批量删除请假
+     *
+     * @param ids 需要删除的请假ID
+     * @return 结果
+     */
+    @Override
+    public int deleteWorkflowLeaveByIds(String[] ids) {
+        return workflowLeaveMapper.deleteWorkflowLeaveByIds(ids);
+    }
+
+    /**
+     * 删除请假信息
+     *
+     * @param id 请假ID
+     * @return 结果
+     */
+    @Override
+    public int deleteWorkflowLeaveById(String id) {
+        return workflowLeaveMapper.deleteWorkflowLeaveById(id);
+    }
+
+    @Override
+    public WorkflowLeave selectWorkflowLeaveByInstanceId(String instanceId) {
+
+        return workflowLeaveMapper.selectWorkflowLeaveByInstanceId(instanceId);
+    }
+
+
 }

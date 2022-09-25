@@ -110,4 +110,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <if test="workflowLeave.createBy != null  and workflowLeave.createBy != ''"> and create_by = #{workflowLeave.createBy}</if>
         order by create_time desc
     </select>
+
+
+    <select id="selectWorkflowLeaveByInstanceId" parameterType="String" resultMap="WorkflowLeaveResult">
+        <include refid="selectWorkflowLeaveVo"/>
+        where instance_id = #{instanceId}
+    </select>
+    <delete id="deleteWorkflowLeaveById" parameterType="String">
+        delete from workflow_leave where id = #{id}
+    </delete>
+
+
+    <delete id="deleteWorkflowLeaveByIds" parameterType="String">
+        delete from workflow_leave where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
 </mapper>

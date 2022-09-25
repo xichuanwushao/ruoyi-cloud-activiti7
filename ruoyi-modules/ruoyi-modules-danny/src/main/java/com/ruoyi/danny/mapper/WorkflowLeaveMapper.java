@@ -55,4 +55,28 @@ public interface WorkflowLeaveMapper
      */
     public List<WorkflowLeave> selectWorkflowLeaveListByWorkflowLeaveAndDeptId(@Param("workflowLeave")WorkflowLeave workflowLeave,@Param("deptId") Long deptId);
 
+    /**
+     * 查询请假
+     *
+     * @param instanceId 请假ID
+     * @return 请假
+     */
+    public WorkflowLeave selectWorkflowLeaveByInstanceId(String instanceId);
+
+
+    /**
+     * 删除请假
+     *
+     * @param id 请假ID
+     * @return 结果
+     */
+    public int deleteWorkflowLeaveById(String id);
+
+    /**
+     * 批量删除请假
+     *
+     * @param ids 需要删除的数据ID
+     * @return 结果
+     */
+    public int deleteWorkflowLeaveByIds(String[] ids);
 }
