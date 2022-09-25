@@ -43,6 +43,14 @@
         <td><img src="https://image-1304556315.cos.ap-beijing.myqcloud.com/oa_pic1.png"/></td>
         <td><img src="https://image-1304556315.cos.ap-beijing.myqcloud.com/oa_pic02.png"/></td>
     </tr>
+    <tr>
+        <td><img src="https://image-1304556315.cos.ap-beijing.myqcloud.com/dingyi-caidan.png"/></td>
+        <td><img src="https://image-1304556315.cos.ap-beijing.myqcloud.com/dingyi-shangchuan.png"/></td>
+    </tr>
+    <tr>
+        <td><img src="https://image-1304556315.cos.ap-beijing.myqcloud.com/dingyi-bushu.png"/></td>
+        <td><img src="https://image-1304556315.cos.ap-beijing.myqcloud.com/dingyi-huizhi.png"/></td>
+    </tr>
 </table>
 
 ## ruoyi-cloud-activiti7交流群
