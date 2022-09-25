@@ -75,7 +75,7 @@ const tools = {
                     "stringBPMN":xml
                 }
             $.ajax({
-                url: localStorage.getItem("VUE_APP_BASE_API")+'/processDefinition/addDeploymentByString',
+                url: localStorage.getItem("VUE_APP_BASE_API")+'/danny/processDefinition/addDeploymentByString',
                 type: 'POST',
                 dataType:"json",
                 data: param,
@@ -133,7 +133,7 @@ const tools = {
         var fm = new FormData();
         fm.append('processFile', FileUpload);
         $.ajax({
-            url: localStorage.getItem("VUE_APP_BASE_API")+'/processDefinition/upload',
+            url: localStorage.getItem("VUE_APP_BASE_API")+'/danny/processDefinition/upload',
             // url: 'http://localhost:8080/processDefinition/upload',
             type: 'POST',
             data: fm,
