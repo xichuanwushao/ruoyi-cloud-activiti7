@@ -31,7 +31,7 @@ import java.util.stream.Collectors;
 import java.util.zip.ZipInputStream;
 
 /**
- * 汇讯数码科技(深圳)有限公司
+ *
  * 创建日期:2020/10/23-9:52
  * 版本   开发者     日期
  * 1.0    Danny    2020/10/23
