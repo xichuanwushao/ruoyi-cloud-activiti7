@@ -2,12 +2,17 @@ package com.ruoyi.danny.service.impl;
 
 import com.github.pagehelper.Page;
 
+import com.ruoyi.common.core.domain.R;
 import com.ruoyi.common.core.web.page.PageDomain;
 import com.ruoyi.danny.domain.dto.DefinitionIdDTO;
 import com.ruoyi.danny.domain.dto.ProcessDefinitionDTO;
 import com.ruoyi.danny.domain.vo.ActReDeploymentVO;
 import com.ruoyi.danny.mapper.ActReDeploymentMapper;
 import com.ruoyi.danny.service.IProcessDefinitionService;
+import com.ruoyi.system.api.RemoteFileService;
+import com.ruoyi.system.api.RemoteUserService;
+import com.ruoyi.system.api.domain.SysFile;
+import com.ruoyi.system.api.model.LoginUser;
 import org.activiti.engine.HistoryService;
 import org.activiti.engine.RepositoryService;
 import org.activiti.engine.RuntimeService;
@@ -44,10 +49,15 @@ public class ProcessDefinitionServiceImpl implements IProcessDefinitionService {
 
     @Autowired
     private ActReDeploymentMapper actReDeploymentMapper;
+
     @Autowired
     private HistoryService historyService;
+
     @Autowired
     private RuntimeService runtimeService;
+
+    @Autowired
+    private RemoteFileService remoteFileService;
 
     @Override
     public Page<ProcessDefinitionDTO> selectProcessDefinitionList(ProcessDefinitionDTO processDefinition, PageDomain pageDomain) {
@@ -120,10 +130,10 @@ public class ProcessDefinitionServiceImpl implements IProcessDefinitionService {
             repositoryService.activateProcessDefinitionById(id);
         }
     }
-
     @Override
     public String upload(MultipartFile multipartFile) throws IOException {
-       return null;
+        R<SysFile> sysFileR =  remoteFileService.upload(multipartFile);
+       return sysFileR.getData().getUrl();
 //       return FileUploadUtils.upload(RuoYiConfig.getUploadPath()+"/processDefinition" , multipartFile);
     }
 

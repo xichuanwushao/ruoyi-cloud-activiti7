@@ -133,6 +133,7 @@ const tools = {
         var fm = new FormData();
         fm.append('processFile', FileUpload);
         $.ajax({
+            // url: localStorage.getItem("VUE_APP_BASE_API")+'/file/upload',
             url: localStorage.getItem("VUE_APP_BASE_API")+'/danny/processDefinition/upload',
             // url: 'http://localhost:8080/processDefinition/upload',
             type: 'POST',
