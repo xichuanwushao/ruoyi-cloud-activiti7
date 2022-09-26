@@ -1,9 +1,13 @@
 package com.ruoyi.danny.controller;
 
+import com.ruoyi.common.core.text.Convert;
 import com.ruoyi.common.core.utils.poi.ExcelUtil;
 import com.ruoyi.common.core.web.controller.BaseController;
 import com.ruoyi.common.core.web.domain.AjaxResult;
 import com.ruoyi.common.core.web.page.TableDataInfo;
+import com.ruoyi.common.log.annotation.Log;
+import com.ruoyi.common.log.enums.BusinessType;
+import com.ruoyi.common.security.annotation.RequiresPermissions;
 import com.ruoyi.common.security.utils.SecurityUtils;
 import com.ruoyi.danny.domain.WorkflowLeave;
 import com.ruoyi.danny.service.IWorkflowLeaveService;
@@ -37,6 +41,8 @@ public class WorkflowLeaveController extends BaseController {
     /**
      * 新增请假
      */
+    @RequiresPermissions("workflow:leave:add")
+    @Log(title = "请假", businessType = BusinessType.INSERT)
     @PostMapping
     public AjaxResult add(@RequestBody WorkflowLeave workflowLeave) {
         return toAjax(workflowLeaveService.insertWorkflowLeave(workflowLeave));
@@ -51,6 +57,7 @@ public class WorkflowLeaveController extends BaseController {
     /**
      * 查询请假列表
      */
+    @RequiresPermissions("workflow:leave:list")
     @GetMapping("/list")
     public TableDataInfo list(WorkflowLeave workflowLeave) {
         startPage();
@@ -66,6 +73,7 @@ public class WorkflowLeaveController extends BaseController {
     /**
      * 获取请假详细信息
      */
+    @RequiresPermissions("workflow:leave:query")
     @GetMapping(value = "/{id}")
     public AjaxResult getInfo(@PathVariable("id") String id) {
         return AjaxResult.success(workflowLeaveService.selectWorkflowLeaveById(id));
@@ -74,6 +82,7 @@ public class WorkflowLeaveController extends BaseController {
     /**
      * 查询请假列表
      */
+    @RequiresPermissions("workflow:leave:list")
     @GetMapping("/listAll")
     public TableDataInfo listAll(WorkflowLeave workflowLeave) {
         startPage();
@@ -85,6 +94,7 @@ public class WorkflowLeaveController extends BaseController {
     /**
      * 获取请假详细信息
      */
+    @RequiresPermissions("workflow:leave:query")
     @GetMapping(value = "ByInstanceId/{instanceId}")
     public AjaxResult getInfoByInstanceId(@PathVariable("instanceId") String instanceId) {
         return AjaxResult.success(workflowLeaveService.selectWorkflowLeaveByInstanceId(instanceId));
@@ -94,6 +104,8 @@ public class WorkflowLeaveController extends BaseController {
     /**
      * 修改请假
      */
+    @RequiresPermissions("workflow:leave:edit")
+    @Log(title = "请假", businessType = BusinessType.UPDATE)
     @PutMapping
     public AjaxResult edit(@RequestBody WorkflowLeave workflowLeave) {
         return toAjax(workflowLeaveService.insertWorkflowLeave(workflowLeave));
@@ -102,6 +114,8 @@ public class WorkflowLeaveController extends BaseController {
     /**
      * 删除请假
      */
+    @RequiresPermissions("workflow:leave:remove")
+    @Log(title = "请假", businessType = BusinessType.DELETE)
     @DeleteMapping("/{ids}")
     public AjaxResult remove(@PathVariable String[] ids) {
         return toAjax(workflowLeaveService.deleteWorkflowLeaveByIds(ids));
