@@ -1,10 +1,10 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : d2_82.157.143.174
+ Source Server         : d2_82.157.143.179
  Source Server Type    : MySQL
  Source Server Version : 50736
- Source Host           : 82.157.143.174:3306
+ Source Host           : 82.157.143.179:3306
  Source Schema         : ruoyi-cloud-activiti7
 
  Target Server Type    : MySQL
