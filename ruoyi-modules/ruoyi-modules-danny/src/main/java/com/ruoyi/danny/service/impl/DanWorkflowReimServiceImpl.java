@@ -1,5 +1,5 @@
 package com.ruoyi.danny.service.impl;
-
+import java.math.BigDecimal;
 import java.util.List;
 import com.ruoyi.common.core.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,6 +59,18 @@ public class DanWorkflowReimServiceImpl implements IDanWorkflowReimService
     public int insertDanWorkflowReim(DanWorkflowReim danWorkflowReim)
     {
         danWorkflowReim.setCreateTime(DateUtils.getNowDate());
+        if(danWorkflowReim.getAmount()==null){
+            danWorkflowReim.setAmount(BigDecimal.valueOf(0));
+        }
+        if(danWorkflowReim.getAnleihen()==null){
+            danWorkflowReim.setAnleihen(BigDecimal.valueOf(0));
+        }
+        if(danWorkflowReim.getBalance()==null){
+            danWorkflowReim.setBalance(BigDecimal.valueOf(0));
+        }
+        if(danWorkflowReim.getStatus()==null){
+            danWorkflowReim.setStatus(1);
+        }
         int rows = danWorkflowReimMapper.insertDanWorkflowReim(danWorkflowReim);
         insertDanWorkflowReimgoods(danWorkflowReim);
         return rows;

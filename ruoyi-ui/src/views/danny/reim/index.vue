@@ -1,32 +1,32 @@
 <template>
   <div class="app-container">
     <el-form :model="queryParams" ref="queryForm" size="small" :inline="true" v-show="showSearch" label-width="68px">
-      <el-form-item label="总金额" prop="amount">
-        <el-input
-          v-model="queryParams.amount"
-          placeholder="请输入总金额"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="借款" prop="anleihen">
-        <el-input
-          v-model="queryParams.anleihen"
-          placeholder="请输入借款"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="差额" prop="balance">
-        <el-input
-          v-model="queryParams.balance"
-          placeholder="请输入差额"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="类型：1普通报销，2差旅报销" prop="type">
-        <el-select v-model="queryParams.type" placeholder="请选择类型：1普通报销，2差旅报销" clearable>
+<!--      <el-form-item label="总金额" prop="amount">-->
+<!--        <el-input-->
+<!--          v-model="queryParams.amount"-->
+<!--          placeholder="请输入总金额"-->
+<!--          clearable-->
+<!--          @keyup.enter.native="handleQuery"-->
+<!--        />-->
+<!--      </el-form-item>-->
+<!--      <el-form-item label="借款" prop="anleihen">-->
+<!--        <el-input-->
+<!--          v-model="queryParams.anleihen"-->
+<!--          placeholder="请输入借款"-->
+<!--          clearable-->
+<!--          @keyup.enter.native="handleQuery"-->
+<!--        />-->
+<!--      </el-form-item>-->
+<!--      <el-form-item label="差额" prop="balance">-->
+<!--        <el-input-->
+<!--          v-model="queryParams.balance"-->
+<!--          placeholder="请输入差额"-->
+<!--          clearable-->
+<!--          @keyup.enter.native="handleQuery"-->
+<!--        />-->
+<!--      </el-form-item>-->
+      <el-form-item label="类型" prop="type">
+        <el-select v-model="queryParams.type" placeholder="请选择类型" clearable>
           <el-option
             v-for="dict in dict.type.workflow_reim_type"
             :key="dict.value"
@@ -35,8 +35,8 @@
           />
         </el-select>
       </el-form-item>
-      <el-form-item label="状态：1审批中，2已拒绝，3审批通过，4.已归档" prop="status">
-        <el-select v-model="queryParams.status" placeholder="请选择状态：1审批中，2已拒绝，3审批通过，4.已归档" clearable>
+      <el-form-item label="状态" prop="status">
+        <el-select v-model="queryParams.status" placeholder="请选择状态" clearable>
           <el-option
             v-for="dict in dict.type.workflow_reim_status"
             :key="dict.value"
@@ -45,17 +45,55 @@
           />
         </el-select>
       </el-form-item>
-      <el-form-item label="报销标题" prop="title">
-        <el-input
-          v-model="queryParams.title"
-          placeholder="请输入报销标题"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="开始时间">
+<!--      <el-form-item label="报销标题" prop="title">-->
+<!--        <el-input-->
+<!--          v-model="queryParams.title"-->
+<!--          placeholder="请输入报销标题"-->
+<!--          clearable-->
+<!--          @keyup.enter.native="handleQuery"-->
+<!--        />-->
+<!--      </el-form-item>-->
+<!--      <el-form-item label="开始时间">-->
+<!--        <el-date-picker-->
+<!--          v-model="daterangeLeaveStartTime"-->
+<!--          style="width: 240px"-->
+<!--          value-format="yyyy-MM-dd"-->
+<!--          type="daterange"-->
+<!--          range-separator="-"-->
+<!--          start-placeholder="开始日期"-->
+<!--          end-placeholder="结束日期"-->
+<!--        ></el-date-picker>-->
+<!--      </el-form-item>-->
+<!--      <el-form-item label="结束时间">-->
+<!--        <el-date-picker-->
+<!--          v-model="daterangeLeaveEndTime"-->
+<!--          style="width: 240px"-->
+<!--          value-format="yyyy-MM-dd"-->
+<!--          type="daterange"-->
+<!--          range-separator="-"-->
+<!--          start-placeholder="开始日期"-->
+<!--          end-placeholder="结束日期"-->
+<!--        ></el-date-picker>-->
+<!--      </el-form-item>-->
+<!--      <el-form-item label="流程实例id" prop="instanceId">-->
+<!--        <el-input-->
+<!--          v-model="queryParams.instanceId"-->
+<!--          placeholder="请输入流程实例id"-->
+<!--          clearable-->
+<!--          @keyup.enter.native="handleQuery"-->
+<!--        />-->
+<!--      </el-form-item>-->
+<!--      <el-form-item label="创建者名称" prop="createName">-->
+<!--        <el-input-->
+<!--          v-model="queryParams.createName"-->
+<!--          placeholder="请输入创建者名称"-->
+<!--          clearable-->
+<!--          @keyup.enter.native="handleQuery"-->
+<!--        />-->
+<!--      </el-form-item>-->
+      <el-form-item label="申请时间">
         <el-date-picker
-          v-model="daterangeLeaveStartTime"
+          v-model="daterangeCreateTime"
           style="width: 240px"
           value-format="yyyy-MM-dd"
           type="daterange"
@@ -63,33 +101,6 @@
           start-placeholder="开始日期"
           end-placeholder="结束日期"
         ></el-date-picker>
-      </el-form-item>
-      <el-form-item label="结束时间">
-        <el-date-picker
-          v-model="daterangeLeaveEndTime"
-          style="width: 240px"
-          value-format="yyyy-MM-dd"
-          type="daterange"
-          range-separator="-"
-          start-placeholder="开始日期"
-          end-placeholder="结束日期"
-        ></el-date-picker>
-      </el-form-item>
-      <el-form-item label="流程实例id" prop="instanceId">
-        <el-input
-          v-model="queryParams.instanceId"
-          placeholder="请输入流程实例id"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="创建者名称" prop="createName">
-        <el-input
-          v-model="queryParams.createName"
-          placeholder="请输入创建者名称"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
       </el-form-item>
       <el-form-item>
         <el-button type="primary" icon="el-icon-search" size="mini" @click="handleQuery">搜索</el-button>
@@ -145,35 +156,40 @@
 
     <el-table v-loading="loading" :data="reimList" @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" align="center" />
-      <el-table-column label="报销申请id" align="center" prop="reimId" />
-      <el-table-column label="总金额" align="center" prop="amount" />
-      <el-table-column label="借款" align="center" prop="anleihen" />
-      <el-table-column label="差额" align="center" prop="balance" />
-      <el-table-column label="类型：1普通报销，2差旅报销" align="center" prop="type">
+      <el-table-column label="序号" align="center" prop="reimId" />
+      <el-table-column label="报销类型" align="center" prop="type">
         <template slot-scope="scope">
           <dict-tag :options="dict.type.workflow_reim_type" :value="scope.row.type"/>
         </template>
       </el-table-column>
-      <el-table-column label="状态：1审批中，2已拒绝，3审批通过，4.已归档" align="center" prop="status">
+      <el-table-column label="报销金额" align="center" prop="amount" />
+      <el-table-column label="借款金额" align="center" prop="anleihen" />
+      <el-table-column label="实际金额" align="center" prop="balance" />
+      <el-table-column label="状态" align="center" prop="status">
         <template slot-scope="scope">
           <dict-tag :options="dict.type.workflow_reim_status" :value="scope.row.status"/>
         </template>
       </el-table-column>
-      <el-table-column label="报销标题" align="center" prop="title" />
-      <el-table-column label="报销原因" align="center" prop="reason" />
-      <el-table-column label="开始时间" align="center" prop="leaveStartTime" width="180">
-        <template slot-scope="scope">
-          <span>{{ parseTime(scope.row.leaveStartTime, '{y}-{m}-{d}') }}</span>
-        </template>
-      </el-table-column>
-      <el-table-column label="结束时间" align="center" prop="leaveEndTime" width="180">
-        <template slot-scope="scope">
-          <span>{{ parseTime(scope.row.leaveEndTime, '{y}-{m}-{d}') }}</span>
-        </template>
-      </el-table-column>
-      <el-table-column label="附件" align="center" prop="attachmentLink" />
-      <el-table-column label="流程实例id" align="center" prop="instanceId" />
-      <el-table-column label="创建者名称" align="center" prop="createName" />
+<!--      <el-table-column label="报销标题" align="center" prop="title" />-->
+<!--      <el-table-column label="报销原因" align="center" prop="reason" />-->
+<!--      <el-table-column label="开始时间" align="center" prop="leaveStartTime" width="180">-->
+<!--        <template slot-scope="scope">-->
+<!--          <span>{{ parseTime(scope.row.leaveStartTime, '{y}-{m}-{d}') }}</span>-->
+<!--        </template>-->
+<!--      </el-table-column>-->
+<!--      <el-table-column label="结束时间" align="center" prop="leaveEndTime" width="180">-->
+<!--        <template slot-scope="scope">-->
+<!--          <span>{{ parseTime(scope.row.leaveEndTime, '{y}-{m}-{d}') }}</span>-->
+<!--        </template>-->
+<!--      </el-table-column>-->
+<!--      <el-table-column label="附件" align="center" prop="attachmentLink" />-->
+<!--      <el-table-column label="流程实例id" align="center" prop="instanceId" />-->
+<!--      <el-table-column label="创建者名称" align="center" prop="createName" />-->
+          <el-table-column label="申请时间" align="center" prop="createTime" width="180">
+            <template slot-scope="scope">
+              <span>{{ parseTime(scope.row.createTime, '{y}-{m}-{d}') }}</span>
+            </template>
+          </el-table-column>
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
           <el-button
@@ -193,7 +209,7 @@
         </template>
       </el-table-column>
     </el-table>
-    
+
     <pagination
       v-show="total>0"
       :total="total"
@@ -205,66 +221,66 @@
     <!-- 添加或修改报销申请对话框 -->
     <el-dialog :title="title" :visible.sync="open" width="500px" append-to-body>
       <el-form ref="form" :model="form" :rules="rules" label-width="80px">
-        <el-form-item label="总金额" prop="amount">
-          <el-input v-model="form.amount" placeholder="请输入总金额" />
+        <el-form-item label="类型" prop="type">
+          <el-select v-model="form.type" placeholder="请选择类型">
+            <el-option
+            v-for="dict in dict.type.workflow_reim_type"
+            :key="dict.value"
+            :label="dict.label"
+            :value="parseInt(dict.value)"
+            ></el-option>
+          </el-select>
         </el-form-item>
-        <el-form-item label="借款" prop="anleihen">
+<!--        <el-form-item label="总金额" prop="amount">-->
+<!--          <el-input v-model="form.amount" placeholder="请输入总金额" />-->
+<!--        </el-form-item>-->
+        <el-form-item label="借款金额" prop="anleihen">
           <el-input v-model="form.anleihen" placeholder="请输入借款" />
         </el-form-item>
-        <el-form-item label="差额" prop="balance">
-          <el-input v-model="form.balance" placeholder="请输入差额" />
-        </el-form-item>
-        <el-form-item label="类型：1普通报销，2差旅报销" prop="type">
-          <el-select v-model="form.type" placeholder="请选择类型：1普通报销，2差旅报销">
-            <el-option
-              v-for="dict in dict.type.workflow_reim_type"
-              :key="dict.value"
-              :label="dict.label"
-:value="parseInt(dict.value)"
-            ></el-option>
-          </el-select>
-        </el-form-item>
-        <el-form-item label="状态：1审批中，2已拒绝，3审批通过，4.已归档" prop="status">
-          <el-select v-model="form.status" placeholder="请选择状态：1审批中，2已拒绝，3审批通过，4.已归档">
-            <el-option
-              v-for="dict in dict.type.workflow_reim_status"
-              :key="dict.value"
-              :label="dict.label"
-:value="parseInt(dict.value)"
-            ></el-option>
-          </el-select>
-        </el-form-item>
-        <el-form-item label="报销标题" prop="title">
-          <el-input v-model="form.title" placeholder="请输入报销标题" />
-        </el-form-item>
-        <el-form-item label="报销原因" prop="reason">
-          <el-input v-model="form.reason" type="textarea" placeholder="请输入内容" />
-        </el-form-item>
-        <el-form-item label="开始时间" prop="leaveStartTime">
-          <el-date-picker clearable
-            v-model="form.leaveStartTime"
-            type="date"
-            value-format="yyyy-MM-dd"
-            placeholder="请选择开始时间">
-          </el-date-picker>
-        </el-form-item>
-        <el-form-item label="结束时间" prop="leaveEndTime">
-          <el-date-picker clearable
-            v-model="form.leaveEndTime"
-            type="date"
-            value-format="yyyy-MM-dd"
-            placeholder="请选择结束时间">
-          </el-date-picker>
-        </el-form-item>
-        <el-form-item label="附件">
-          <file-upload v-model="form.attachmentLink"/>
-        </el-form-item>
-        <el-form-item label="流程实例id" prop="instanceId">
-          <el-input v-model="form.instanceId" placeholder="请输入流程实例id" />
-        </el-form-item>
-        <el-form-item label="创建者名称" prop="createName">
-          <el-input v-model="form.createName" placeholder="请输入创建者名称" />
-        </el-form-item>
+<!--        <el-form-item label="差额" prop="balance">-->
+<!--          <el-input v-model="form.balance" placeholder="请输入差额" />-->
+<!--        </el-form-item>-->
+        <!--        <el-form-item label="状态" prop="status">-->
+<!--          <el-select v-model="form.status" placeholder="请选择状态">-->
+<!--            <el-option-->
+<!--              v-for="dict in dict.type.workflow_reim_status"-->
+<!--              :key="dict.value"-->
+<!--              :label="dict.label"-->
+<!--:value="parseInt(dict.value)"-->
+<!--            ></el-option>-->
+<!--          </el-select>-->
+<!--        </el-form-item>-->
+<!--        <el-form-item label="报销标题" prop="title">-->
+<!--          <el-input v-model="form.title" placeholder="请输入报销标题" />-->
+<!--        </el-form-item>-->
+<!--        <el-form-item label="报销原因" prop="reason">-->
+<!--          <el-input v-model="form.reason" type="textarea" placeholder="请输入内容" />-->
+<!--        </el-form-item>-->
+<!--        <el-form-item label="开始时间" prop="leaveStartTime">-->
+<!--          <el-date-picker clearable-->
+<!--            v-model="form.leaveStartTime"-->
+<!--            type="date"-->
+<!--            value-format="yyyy-MM-dd"-->
+<!--            placeholder="请选择开始时间">-->
+<!--          </el-date-picker>-->
+<!--        </el-form-item>-->
+<!--        <el-form-item label="结束时间" prop="leaveEndTime">-->
+<!--          <el-date-picker clearable-->
+<!--            v-model="form.leaveEndTime"-->
+<!--            type="date"-->
+<!--            value-format="yyyy-MM-dd"-->
+<!--            placeholder="请选择结束时间">-->
+<!--          </el-date-picker>-->
+<!--        </el-form-item>-->
+<!--        <el-form-item label="附件">-->
+<!--          <file-upload v-model="form.attachmentLink"/>-->
+<!--        </el-form-item>-->
+<!--        <el-form-item label="流程实例id" prop="instanceId">-->
+<!--          <el-input v-model="form.instanceId" placeholder="请输入流程实例id" />-->
+<!--        </el-form-item>-->
+<!--        <el-form-item label="创建者名称" prop="createName">-->
+<!--          <el-input v-model="form.createName" placeholder="请输入创建者名称" />-->
+<!--        </el-form-item>-->
         <el-divider content-position="center">报销条目信息</el-divider>
         <el-row :gutter="10" class="mb8">
           <el-col :span="1.5">
@@ -297,6 +313,11 @@
           <el-table-column label="条目金额" prop="money" width="150">
             <template slot-scope="scope">
               <el-input v-model="scope.row.money" placeholder="请输入条目金额" />
+            </template>
+          </el-table-column>
+          <el-table-column label="条目描述" prop="desc" width="150">
+            <template slot-scope="scope">
+              <el-input v-model="scope.row.desc" placeholder="请输入条目描述" />
             </template>
           </el-table-column>
         </el-table>
@@ -344,11 +365,14 @@ export default {
       // 条目描述时间范围
       daterangeLeaveEndTime: [],
       // 查询参数
+      // 条目描述时间范围
+      daterangeCreateTime: [],
       queryParams: {
         pageNum: 1,
         pageSize: 10,
         amount: null,
         anleihen: null,
+        money: null,
         balance: null,
         type: null,
         status: null,
@@ -374,10 +398,13 @@ export default {
           { required: true, message: "差额不能为空", trigger: "blur" }
         ],
         type: [
-          { required: true, message: "类型：1普通报销，2差旅报销不能为空", trigger: "change" }
+          { required: true, message: "类型不能为空", trigger: "change" }
         ],
         status: [
-          { required: true, message: "状态：1审批中，2已拒绝，3审批通过，4.已归档不能为空", trigger: "change" }
+          { required: true, message: "状态不能为空", trigger: "change" }
+        ],
+        money: [
+          { required: true, message: "金额不能为空", trigger: "blur" }
         ],
       }
     };
@@ -397,6 +424,10 @@ export default {
       if (null != this.daterangeLeaveEndTime && '' != this.daterangeLeaveEndTime) {
         this.queryParams.params["beginLeaveEndTime"] = this.daterangeLeaveEndTime[0];
         this.queryParams.params["endLeaveEndTime"] = this.daterangeLeaveEndTime[1];
+      }
+      if (null != this.daterangeCreateTime && '' != this.daterangeCreateTime) {
+        this.queryParams.params["beginCreateTime"] = this.daterangeCreateTime[0];
+        this.queryParams.params["endCreateTime"] = this.daterangeCreateTime[1];
       }
       listReim(this.queryParams).then(response => {
         this.reimList = response.rows;
@@ -441,6 +472,7 @@ export default {
     resetQuery() {
       this.daterangeLeaveStartTime = [];
       this.daterangeLeaveEndTime = [];
+      this.daterangeCreateTime = [];
       this.resetForm("queryForm");
       this.handleQuery();
     },
