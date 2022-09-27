@@ -60,7 +60,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     
     <select id="selectDanWorkflowReimByReimId" parameterType="Long" resultMap="DanWorkflowReimDanWorkflowReimgoodsResult">
         select a.reim_id, a.amount, a.anleihen, a.balance, a.type, a.status, a.title, a.reason, a.leave_start_time, a.leave_end_time, a.attachment_link, a.instance_id, a.create_name, a.create_by, a.create_time, a.update_time,
- b.reimgoods_id as sub_reimgoods_id, b.reim_id as sub_reim_id, b.title as sub_title, b.type as sub_type, b.money as sub_money, b.desc as sub_desc
+ b.reimgoods_id as sub_reimgoods_id, b.reim_id as sub_reim_id, b.title as sub_title, b.type as sub_type, b.money as sub_money, b.descs as sub_desc
         from dan_workflow_reim a
         left join dan_workflow_reimgoods b on b.reim_id = a.reim_id
         where a.reim_id = #{reimId}
@@ -149,7 +149,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </delete>
 
     <insert id="batchDanWorkflowReimgoods">
-        insert into dan_workflow_reimgoods( reimgoods_id, reim_id, title, type, money, desc) values
+        insert into dan_workflow_reimgoods( reimgoods_id, reim_id, title, type, money, descs) values
 		<foreach item="item" index="index" collection="list" separator=",">
             ( #{item.reimgoodsId}, #{item.reimId}, #{item.title}, #{item.type}, #{item.money}, #{item.desc})
         </foreach>
