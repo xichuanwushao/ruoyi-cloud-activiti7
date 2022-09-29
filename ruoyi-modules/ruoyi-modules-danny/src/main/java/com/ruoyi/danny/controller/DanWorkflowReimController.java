@@ -1,8 +1,14 @@
 package com.ruoyi.danny.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.io.IOException;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
+
+import cn.hutool.json.JSONUtil;
+import com.ruoyi.common.security.utils.SecurityUtils;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,7 +35,7 @@ import com.ruoyi.common.core.web.page.TableDataInfo;
  * @date 2022-09-27
  */
 @RestController
-@RequestMapping("/reim")
+@RequestMapping("/workflow/reim")
 public class DanWorkflowReimController extends BaseController
 {
     @Autowired
@@ -101,5 +107,15 @@ public class DanWorkflowReimController extends BaseController
     public AjaxResult remove(@PathVariable Long[] reimIds)
     {
         return toAjax(danWorkflowReimService.deleteDanWorkflowReimByReimIds(reimIds));
+    }
+
+
+    @PostMapping("/searchReimById")
+    @Operation(summary = "根据ID查询报销单")
+    public AjaxResult searchReimById(Long id){
+        HashMap param= new HashMap();
+        param.put("userId", SecurityUtils.getUserId());
+        HashMap map=danWorkflowReimService.searchReimById(id);
+        return AjaxResult.success(map);
     }
 }

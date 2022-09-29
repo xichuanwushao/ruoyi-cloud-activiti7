@@ -154,4 +154,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             ( #{item.reimgoodsId}, #{item.reimId}, #{item.title}, #{item.type}, #{item.money}, #{item.desc})
         </foreach>
     </insert>
+
+    <select id="searchReimById" parameterType="HashMap" resultType="HashMap">
+        SELECT r.instance_id AS instanceId,
+        DATE_FORMAT( r.create_time, '%Y-%m-%d' ) AS `date`,
+        r.amount,
+        r.balance,
+        r.anleihen
+        FROM dan_workflow_reim r
+        WHERE r.reim_id = #{id}
+    </select>
 </mapper>

@@ -1,5 +1,6 @@
 package com.ruoyi.danny.mapper;
 
+import java.util.HashMap;
 import java.util.List;
 import com.ruoyi.danny.domain.DanWorkflowReim;
 import com.ruoyi.danny.domain.DanWorkflowReimgoods;
@@ -84,4 +85,6 @@ public interface DanWorkflowReimMapper
      * @return 结果
      */
     public int deleteDanWorkflowReimgoodsByReimId(Long reimId);
+
+    public HashMap searchReimById(HashMap param);
 }

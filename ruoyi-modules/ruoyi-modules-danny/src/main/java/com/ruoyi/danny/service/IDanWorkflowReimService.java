@@ -1,5 +1,6 @@
 package com.ruoyi.danny.service;
 
+import java.util.HashMap;
 import java.util.List;
 import com.ruoyi.danny.domain.DanWorkflowReim;
 
@@ -58,4 +59,6 @@ public interface IDanWorkflowReimService
      * @return 结果
      */
     public int deleteDanWorkflowReimByReimId(Long reimId);
+
+    public HashMap searchReimById(Long id);
 }

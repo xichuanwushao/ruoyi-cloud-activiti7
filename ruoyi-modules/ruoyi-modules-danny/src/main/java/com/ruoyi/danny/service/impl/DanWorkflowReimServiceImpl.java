@@ -1,6 +1,12 @@
 package com.ruoyi.danny.service.impl;
 import java.math.BigDecimal;
+import java.util.HashMap;
 import java.util.List;
+
+import cn.hutool.core.map.MapUtil;
+import cn.hutool.extra.qrcode.QrCodeUtil;
+import cn.hutool.extra.qrcode.QrConfig;
+import cn.hutool.json.JSONUtil;
 import com.ruoyi.common.core.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -143,4 +149,18 @@ public class DanWorkflowReimServiceImpl implements IDanWorkflowReimService
             }
         }
     }
+    @Override
+    public HashMap searchReimById(Long id) {
+        DanWorkflowReim danWorkflowReim = danWorkflowReimMapper.selectDanWorkflowReimByReimId(id);
+        HashMap map= JSONUtil.parse(danWorkflowReim).toBean(HashMap.class);
+        String instanceId= MapUtil.getStr(map,"instanceId");
+        QrConfig qrConfig=new QrConfig();
+        qrConfig.setWidth(70);
+        qrConfig.setHeight(70);
+        qrConfig.setMargin(2);
+        String qrCodeBase64= QrCodeUtil.generateAsBase64(instanceId,qrConfig,"jpg");
+        map.put("qrCodeBase64",qrCodeBase64);
+        return map;
+    }
+
 }
