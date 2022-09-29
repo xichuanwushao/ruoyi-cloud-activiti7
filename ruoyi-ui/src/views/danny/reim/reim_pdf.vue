@@ -96,25 +96,30 @@ export default {
       //   this.open = true;
       //   this.title = "修改报销申请";
       // });
-      searchReimById(id).then(response => {
-        that.dept = resp.dept;
-        that.name = resp.name;
-        that.date = resp.date;
-        that.amount = resp.amount;
-        that.balance = resp.balance;
-        that.anleihen = resp.anleihen;
+      searchReimById(id).then(resp => {
+        that.dept = resp.data.dept;
+        that.name = resp.data.name;
+        that.date = resp.data.date;
+        that.amount = resp.data.amount;
+        that.balance = resp.data.balance;
+        that.anleihen = resp.data.anleihen;
         if (that.anleihen > that.amount) {
           that.money_1 = that.anleihen - that.amount;
         } else if (that.anleihen < that.amount) {
           that.money_2 = that.amount - that.anleihen;
         }
-        let content = JSON.parse(resp.content);
+        console.info(111);
+        console.info(resp.data.danWorkflowReimgoodsList);
+        // this.$alert(resp.data.danWorkflowReimgoodsList, '管理员不能创建流程', {
+        //   confirmButtonText: '确定',
+        // });
+        let content = resp.data.danWorkflowReimgoodsList;//JSON.parse(resp.danWorkflowReimgoodsList);
         let temp = 5 - content.length;
         for (let i = 0; i < temp; i++) {
           content.push({ title: '', desc: '', type: '', money: '' });
         }
         that.content = content;
-        that.qrCodeBase64 = resp.qrCodeBase64;
+        that.qrCodeBase64 = resp.data.qrCodeBase64;
       });
 			// that.$http('/danny/workflow/reim/searchReimById', 'POST', { id: id }, true, function(resp) {
 			// 	that.dept = resp.dept;

@@ -116,6 +116,7 @@ public class DanWorkflowReimController extends BaseController
         HashMap param= new HashMap();
         param.put("userId", SecurityUtils.getUserId());
         HashMap map=danWorkflowReimService.searchReimById(reimId);
+        logger.info(map.get("danWorkflowReimgoodsList")+"");
         return AjaxResult.success(map);
     }
 }
