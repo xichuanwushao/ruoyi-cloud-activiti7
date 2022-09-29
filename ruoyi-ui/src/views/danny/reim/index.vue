@@ -192,7 +192,7 @@
           </el-table-column>
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
-          <el-button type="text" size="mini" @click="pdfHandle(scope.row.id)">报销单</el-button>
+          <el-button type="text" size="mini" @click="pdfHandle(scope.row)">报销单</el-button>
           <el-button
             size="mini"
             type="text"
@@ -493,10 +493,10 @@ export default {
       this.open = true;
       this.title = "添加报销申请";
     },
-    pdfHandle: function(id) {
+    pdfHandle: function(row) {
       this.pdfVisible = true;
       this.$nextTick(() => {
-        this.$refs.pdf.init(id);
+        this.$refs.pdf.init(row.reimId);
       });
     },
     loadDataList: function() {

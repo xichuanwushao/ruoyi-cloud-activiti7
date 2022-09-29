@@ -42,3 +42,11 @@ export function delReim(reimId) {
     method: 'delete'
   })
 }
+// 查询报销申请详细
+export function searchReimById(reimId) {
+  return request({
+    url: '/danny/workflow/reim/searchReimById/' + reimId,
+    method: 'get'
+  })
+}
+

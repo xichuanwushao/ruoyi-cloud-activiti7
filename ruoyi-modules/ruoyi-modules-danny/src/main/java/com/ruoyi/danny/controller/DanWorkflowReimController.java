@@ -110,12 +110,12 @@ public class DanWorkflowReimController extends BaseController
     }
 
 
-    @PostMapping("/searchReimById")
+    @GetMapping(value = "/searchReimById/{reimId}")
     @Operation(summary = "根据ID查询报销单")
-    public AjaxResult searchReimById(Long id){
+    public AjaxResult searchReimById(@PathVariable("reimId") Long reimId){
         HashMap param= new HashMap();
         param.put("userId", SecurityUtils.getUserId());
-        HashMap map=danWorkflowReimService.searchReimById(id);
+        HashMap map=danWorkflowReimService.searchReimById(reimId);
         return AjaxResult.success(map);
     }
 }

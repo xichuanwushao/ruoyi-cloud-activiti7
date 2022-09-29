@@ -59,6 +59,7 @@
 </template>
 
 <script>
+  import { listReim, getReim, delReim, addReim, updateReim,searchReimById } from "@/api/danny/reim";
 export default {
 	data: function() {
 		return {
@@ -89,26 +90,52 @@ export default {
 			that.money_1 = 0;
 			that.money_2 = 0;
 			that.content = [];
-			that.$http('/danny/workflow/reim/searchReimById', 'POST', { id: id }, true, function(resp) {
-				that.dept = resp.dept;
-				that.name = resp.name;
-				that.date = resp.date;
-				that.amount = resp.amount;
-				that.balance = resp.balance;
-				that.anleihen = resp.anleihen;
-				if (that.anleihen > that.amount) {
-					that.money_1 = that.anleihen - that.amount;
-				} else if (that.anleihen < that.amount) {
-					that.money_2 = that.amount - that.anleihen;
-				}
-				let content = JSON.parse(resp.content);
-				let temp = 5 - content.length;
-				for (let i = 0; i < temp; i++) {
-					content.push({ title: '', desc: '', type: '', money: '' });
-				}
-				that.content = content;
-				that.qrCodeBase64 = resp.qrCodeBase64;
-			});
+      // getReim(reimId).then(response => {
+      //   this.form = response.data;
+      //   this.danWorkflowReimgoodsList = response.data.danWorkflowReimgoodsList;
+      //   this.open = true;
+      //   this.title = "修改报销申请";
+      // });
+      searchReimById(id).then(response => {
+        that.dept = resp.dept;
+        that.name = resp.name;
+        that.date = resp.date;
+        that.amount = resp.amount;
+        that.balance = resp.balance;
+        that.anleihen = resp.anleihen;
+        if (that.anleihen > that.amount) {
+          that.money_1 = that.anleihen - that.amount;
+        } else if (that.anleihen < that.amount) {
+          that.money_2 = that.amount - that.anleihen;
+        }
+        let content = JSON.parse(resp.content);
+        let temp = 5 - content.length;
+        for (let i = 0; i < temp; i++) {
+          content.push({ title: '', desc: '', type: '', money: '' });
+        }
+        that.content = content;
+        that.qrCodeBase64 = resp.qrCodeBase64;
+      });
+			// that.$http('/danny/workflow/reim/searchReimById', 'POST', { id: id }, true, function(resp) {
+			// 	that.dept = resp.dept;
+			// 	that.name = resp.name;
+			// 	that.date = resp.date;
+			// 	that.amount = resp.amount;
+			// 	that.balance = resp.balance;
+			// 	that.anleihen = resp.anleihen;
+			// 	if (that.anleihen > that.amount) {
+			// 		that.money_1 = that.anleihen - that.amount;
+			// 	} else if (that.anleihen < that.amount) {
+			// 		that.money_2 = that.amount - that.anleihen;
+			// 	}
+			// 	let content = JSON.parse(resp.content);
+			// 	let temp = 5 - content.length;
+			// 	for (let i = 0; i < temp; i++) {
+			// 		content.push({ title: '', desc: '', type: '', money: '' });
+			// 	}
+			// 	that.content = content;
+			// 	that.qrCodeBase64 = resp.qrCodeBase64;
+			// });
 		},
 		cancel: function() {
 			this.visible = false;
