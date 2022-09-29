@@ -192,6 +192,7 @@
           </el-table-column>
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
+          <el-button type="text" size="mini" @click="pdfHandle(scope.row.id)">报销单</el-button>
           <el-button
             size="mini"
             type="text"

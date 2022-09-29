@@ -3,7 +3,7 @@ import request from '@/utils/request'
 // 查询报销申请列表
 export function listReim(query) {
   return request({
-    url: '/danny/reim/list',
+    url: '/danny/workflow/reim/list',
     method: 'get',
     params: query
   })
@@ -12,7 +12,7 @@ export function listReim(query) {
 // 查询报销申请详细
 export function getReim(reimId) {
   return request({
-    url: '/danny/reim/' + reimId,
+    url: '/danny/workflow/reim/' + reimId,
     method: 'get'
   })
 }
@@ -20,7 +20,7 @@ export function getReim(reimId) {
 // 新增报销申请
 export function addReim(data) {
   return request({
-    url: '/danny/reim',
+    url: '/danny/workflow/reim',
     method: 'post',
     data: data
   })
@@ -29,7 +29,7 @@ export function addReim(data) {
 // 修改报销申请
 export function updateReim(data) {
   return request({
-    url: '/danny/reim',
+    url: '/danny/workflow/reim',
     method: 'put',
     data: data
   })
@@ -38,7 +38,7 @@ export function updateReim(data) {
 // 删除报销申请
 export function delReim(reimId) {
   return request({
-    url: '/danny/reim/' + reimId,
+    url: '/danny/workflow/reim/' + reimId,
     method: 'delete'
   })
 }
