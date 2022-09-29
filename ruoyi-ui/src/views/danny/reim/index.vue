@@ -328,6 +328,7 @@
         <el-button @click="cancel">取 消</el-button>
       </div>
     </el-dialog>
+    <reim-pdf v-if="pdfVisible" ref="pdf" @refreshDataList="loadDataList"></reim-pdf>
   </div>
 </template>
 
@@ -368,6 +369,7 @@ export default {
       // 查询参数
       // 条目描述时间范围
       daterangeCreateTime: [],
+      pdfVisible: false,
       queryParams: {
         pageNum: 1,
         pageSize: 10,
@@ -488,6 +490,48 @@ export default {
       this.reset();
       this.open = true;
       this.title = "添加报销申请";
+    },
+    pdfHandle: function(id) {
+      this.pdfVisible = true;
+      this.$nextTick(() => {
+        this.$refs.pdf.init(id);
+      });
+    },
+    loadDataList: function() {
+      let that = this;
+      that.dataListLoading = true;
+      let data = {
+        name: that.dataForm.name,
+        deptId: that.dataForm.deptId,
+        typeId: that.dataForm.typeId,
+        status: that.dataForm.status,
+        page: that.pageIndex,
+        length: that.pageSize
+      };
+      if (that.dataForm.date != null && that.dataForm.date.length == 2) {
+        let startDate = that.dataForm.date[0];
+        let endDate = that.dataForm.date[1];
+        data.startDate = dayjs(startDate).format('YYYY-MM-DD');
+        data.endDate = dayjs(endDate).format('YYYY-MM-DD');
+      }
+      that.$http('reim/searchReimByPage', 'POST', data, true, function(resp) {
+        let page = resp.page;
+        let status = {
+          1: '待审批',
+          2: '已否决',
+          3: '已通过',
+          4: '已归档'
+        };
+        let type = { 1: '普通报销', 2: '差旅报销' };
+        for (let one of page.list) {
+          one.status = status[one.status];
+          one.type = type[one.typeId];
+          one.content = JSON.parse(one.content);
+        }
+        that.dataList = page.list;
+        that.totalCount = page.totalCount;
+        that.dataListLoading = false;
+      });
     },
     /** 修改按钮操作 */
     handleUpdate(row) {
