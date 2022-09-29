@@ -89,7 +89,7 @@ export default {
 			that.money_1 = 0;
 			that.money_2 = 0;
 			that.content = [];
-			that.$http('reim/searchReimById', 'POST', { id: id }, true, function(resp) {
+			that.$http('/danny/workflow/reim/searchReimById', 'POST', { id: id }, true, function(resp) {
 				that.dept = resp.dept;
 				that.name = resp.name;
 				that.date = resp.date;

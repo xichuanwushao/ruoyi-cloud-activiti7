@@ -334,10 +334,12 @@
 
 <script>
 import { listReim, getReim, delReim, addReim, updateReim } from "@/api/danny/reim";
-
+import dayjs from 'dayjs';
+import ReimPdf from './reim_pdf.vue';
 export default {
   name: "Reim",
   dicts: ['workflow_reim_status', 'workflow_reimgoods_type', 'workflow_reim_type'],
+  components: { ReimPdf },
   data() {
     return {
       // 遮罩层
