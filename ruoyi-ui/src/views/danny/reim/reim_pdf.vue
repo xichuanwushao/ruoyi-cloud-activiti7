@@ -1,5 +1,5 @@
 <template>
-	<el-dialog width="800px" :close-on-click-modal="false" v-model="visible" :show-close="false" center>
+	<el-dialog width="800px" :close-on-click-modal="false"  :visible.sync="visible" :show-close="false" center>
 		<div id="pdfDom">
 			<img :src="qrCodeBase64" class="qrCode" />
 			<h2 class="title">费&nbsp;&nbsp;&nbsp;用&nbsp;&nbsp;&nbsp;报&nbsp;&nbsp;&nbsp;销&nbsp;&nbsp;&nbsp;单</h2>
