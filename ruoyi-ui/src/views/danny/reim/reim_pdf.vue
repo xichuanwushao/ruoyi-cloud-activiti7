@@ -120,6 +120,11 @@ export default {
         }
         that.content = content;
         that.qrCodeBase64 = resp.data.qrCodeBase64;
+        console.info(222);
+        console.info(222+resp.data.qrCodeBase64);
+        // this.$alert(resp.data.qrCodeBase64, '管理员不能创建流程', {
+        //   confirmButtonText: '确定',
+        // });
       });
 			// that.$http('/danny/workflow/reim/searchReimById', 'POST', { id: id }, true, function(resp) {
 			// 	that.dept = resp.dept;

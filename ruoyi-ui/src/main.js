@@ -17,6 +17,7 @@ import { download } from '@/utils/request'
 import './assets/icons' // icon
 import './permission' // permission control
 import { getDicts } from "@/api/system/dict/data";
+import { getPdf } from "@/api/danny/data";
 import { getConfigKey } from "@/api/system/config";
 import { parseTime, resetForm, addDateRange, selectDictLabel, sselectDictLabelV2,selectDictLabels, handleTree } from "@/utils/ruoyi";
 // 分页组件
@@ -38,6 +39,7 @@ import VueMeta from 'vue-meta'
 // 字典数据组件
 import DictData from '@/components/DictData'
 
+
 // 全局方法挂载
 Vue.prototype.getDicts = getDicts
 Vue.prototype.getConfigKey = getConfigKey
@@ -49,7 +51,7 @@ Vue.prototype.selectDictLabels = selectDictLabels
 Vue.prototype.sselectDictLabelV2 = sselectDictLabelV2
 Vue.prototype.download = download
 Vue.prototype.handleTree = handleTree
-
+Vue.prototype.getPdf = getPdf
 // 全局组件挂载
 Vue.component('DictTag', DictTag)
 Vue.component('Pagination', Pagination)
