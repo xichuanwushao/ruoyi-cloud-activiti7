@@ -59,8 +59,8 @@
 * 欢迎star项目 免验证加QQ交流群：852160973
 ## 启动说明
 需要对以下模块进行启动 启动顺序随意
-RuoYiAuthApplication
-RuoYiSystemApplication
-RuoYiGatewayApplication
-RuoYiDannyApplication
-RuoYiFileApplication(新建流程图导入按钮使用)
+* RuoYiAuthApplication
+* RuoYiSystemApplication
+* RuoYiGatewayApplication
+* RuoYiDannyApplication( 工作流模块 )
+* RuoYiFileApplication( 文件服务 新建流程图导入按钮使用 )
