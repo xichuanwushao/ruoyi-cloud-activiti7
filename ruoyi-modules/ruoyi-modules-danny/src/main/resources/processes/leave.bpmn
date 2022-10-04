@@ -1,15 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:activiti="http://activiti.org/bpmn" id="sample-diagram" targetNamespace="http://bpmn.io/schema/bpmn" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd">
+<bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:activiti="http://activiti.org/bpmn" id="sample-diagram" targetNamespace="http://activiti.org/bpmn" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd">
   <bpmn2:process id="leave" name="请假流程-普通表单" isExecutable="true">
-    <bpmn2:documentation>请假流程演示</bpmn2:documentation>
-    <bpmn2:startEvent id="startevent1" name="Start" />
+    <bpmn2:startEvent id="startevent1" name="Start">
+      <bpmn2:outgoing>flow2</bpmn2:outgoing>
+    </bpmn2:startEvent>
     <bpmn2:userTask id="deptLeaderVerify" name="部门领导审批" activiti:formKey="deptLeaderVerify" activiti:candidateUsers="${deptLeader}">
       <bpmn2:extensionElements>
         <activiti:formProperty id="FormProperty_3qipis2--__!!radio--__!!审批意见--__!!i--__!!同意--__--不同意" type="string" />
         <activiti:formProperty id="FormProperty_0lffpcm--__!!textarea--__!!批注--__!!f__!!null" type="string" />
       </bpmn2:extensionElements>
+      <bpmn2:incoming>flow2</bpmn2:incoming>
+      <bpmn2:outgoing>flow3</bpmn2:outgoing>
     </bpmn2:userTask>
     <bpmn2:exclusiveGateway id="exclusivegateway5">
+      <bpmn2:incoming>flow3</bpmn2:incoming>
+      <bpmn2:outgoing>flow5</bpmn2:outgoing>
       <bpmn2:outgoing>Flow_0q3bbjl</bpmn2:outgoing>
     </bpmn2:exclusiveGateway>
     <bpmn2:userTask id="hrVerify" name="人事审批" activiti:formKey="hrVerify" activiti:candidateGroups="hr">
@@ -17,8 +22,11 @@
         <activiti:formProperty id="FormProperty_23u95jb--__!!radio--__!!审批意见--__!!i--__!!同意--__--不同意" type="string" />
         <activiti:formProperty id="FormProperty_3t7tfkv--__!!textarea--__!!批注--__!!f--__!!null" type="string" />
       </bpmn2:extensionElements>
+      <bpmn2:incoming>flow5</bpmn2:incoming>
+      <bpmn2:outgoing>flow6</bpmn2:outgoing>
     </bpmn2:userTask>
     <bpmn2:exclusiveGateway id="exclusivegateway6">
+      <bpmn2:incoming>flow6</bpmn2:incoming>
       <bpmn2:outgoing>Flow_0p85954</bpmn2:outgoing>
       <bpmn2:outgoing>Flow_0ji7qcv</bpmn2:outgoing>
     </bpmn2:exclusiveGateway>
@@ -43,15 +51,6 @@
       </bpmn2:extensionElements>
       <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression">${FormProperty_23u95jb==0}</bpmn2:conditionExpression>
     </bpmn2:sequenceFlow>
-    <bpmn2:sequenceFlow id="Flow_0ji7qcv" sourceRef="exclusivegateway6" targetRef="endevent1">
-      <bpmn2:extensionElements>
-        <activiti:executionListener class="com.ruoyi.danny.listener.LeaveEndStateListener" event="take">
-          <activiti:field name="state">
-            <activiti:string>2</activiti:string>
-          </activiti:field>
-        </activiti:executionListener>
-      </bpmn2:extensionElements>
-    </bpmn2:sequenceFlow>
     <bpmn2:sequenceFlow id="Flow_0q3bbjl" sourceRef="exclusivegateway5" targetRef="endevent1">
       <bpmn2:extensionElements>
         <activiti:executionListener class="com.ruoyi.danny.listener.LeaveEndStateListener" event="take">
@@ -61,65 +60,77 @@
         </activiti:executionListener>
       </bpmn2:extensionElements>
     </bpmn2:sequenceFlow>
+    <bpmn2:sequenceFlow id="Flow_0ji7qcv" sourceRef="exclusivegateway6" targetRef="endevent1">
+      <bpmn2:extensionElements>
+        <activiti:executionListener class="com.ruoyi.danny.listener.LeaveEndStateListener" event="take">
+          <activiti:field name="state">
+            <activiti:string>2</activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </bpmn2:extensionElements>
+    </bpmn2:sequenceFlow>
   </bpmn2:process>
-  <bpmndi:BPMNDiagram id="BPMNDiagram_leave">
-    <bpmndi:BPMNPlane id="BPMNPlane_leave" bpmnElement="leave">
-      <bpmndi:BPMNEdge id="Flow_0q3bbjl_di" bpmnElement="Flow_0q3bbjl">
-        <di:waypoint x="260" y="83" />
-        <di:waypoint x="260" y="140" />
-        <di:waypoint x="582" y="140" />
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process1004_leave">
+      <bpmndi:BPMNEdge id="Flow_00y3rd6_di" bpmnElement="flow2">
+        <di:waypoint x="448" y="258" />
+        <di:waypoint x="500" y="258" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_0ji7qcv_di" bpmnElement="Flow_0ji7qcv">
-        <di:waypoint x="505" y="83" />
-        <di:waypoint x="505" y="140" />
-        <di:waypoint x="582" y="140" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_0p85954_di" bpmnElement="Flow_0p85954">
-        <di:waypoint x="525" y="63" />
-        <di:waypoint x="600" y="63" />
-        <di:waypoint x="600" y="122" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="BPMNEdge_flow6" bpmnElement="flow6">
-        <di:waypoint x="453" y="63" />
-        <di:waypoint x="485" y="63" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="BPMNEdge_flow5" bpmnElement="flow5">
-        <di:waypoint x="280" y="63" />
-        <di:waypoint x="348" y="63" />
+      <bpmndi:BPMNEdge id="Flow_1x1n38o_di" bpmnElement="flow3">
+        <di:waypoint x="600" y="258" />
+        <di:waypoint x="645" y="258" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="300" y="46" width="22" height="11" />
+          <dc:Bounds x="610" y="240" width="26" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="BPMNEdge_flow3" bpmnElement="flow3">
-        <di:waypoint x="185" y="63" />
-        <di:waypoint x="240" y="63" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="BPMNEdge_flow2" bpmnElement="flow2">
-        <di:waypoint x="35" y="63" />
-        <di:waypoint x="80" y="63" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="BPMNShape_startevent1" bpmnElement="startevent1">
-        <dc:Bounds x="0" y="46" width="35" height="35" />
+      <bpmndi:BPMNEdge id="Flow_0v3g3m3_di" bpmnElement="flow5">
+        <di:waypoint x="695" y="258" />
+        <di:waypoint x="740" y="258" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="5" y="81" width="25" height="14" />
+          <dc:Bounds x="706" y="240" width="23" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0dvbwpi_di" bpmnElement="flow6">
+        <di:waypoint x="840" y="258" />
+        <di:waypoint x="885" y="258" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0lsvuxz_di" bpmnElement="Flow_0p85954">
+        <di:waypoint x="935" y="258" />
+        <di:waypoint x="1020" y="258" />
+        <di:waypoint x="1020" y="332" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1phfkrv_di" bpmnElement="Flow_0q3bbjl">
+        <di:waypoint x="670" y="283" />
+        <di:waypoint x="670" y="350" />
+        <di:waypoint x="1002" y="350" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0kxvpfp_di" bpmnElement="Flow_0ji7qcv">
+        <di:waypoint x="910" y="283" />
+        <di:waypoint x="910" y="350" />
+        <di:waypoint x="1002" y="350" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="startevent1">
+        <dc:Bounds x="412" y="240" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="418" y="283" width="25" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="BPMNShape_deptLeaderVerify" bpmnElement="deptLeaderVerify">
-        <dc:Bounds x="80" y="36" width="105" height="55" />
+      <bpmndi:BPMNShape id="Activity_0jbjz6o_di" bpmnElement="deptLeaderVerify">
+        <dc:Bounds x="500" y="218" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="BPMNShape_exclusivegateway5" bpmnElement="exclusivegateway5" isMarkerVisible="true">
-        <dc:Bounds x="240" y="43" width="40" height="40" />
+      <bpmndi:BPMNShape id="Gateway_1dii1y0_di" bpmnElement="exclusivegateway5" isMarkerVisible="true">
+        <dc:Bounds x="645" y="233" width="50" height="50" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="BPMNShape_hrVerify" bpmnElement="hrVerify">
-        <dc:Bounds x="348" y="36" width="105" height="55" />
+      <bpmndi:BPMNShape id="Activity_0mp8qwh_di" bpmnElement="hrVerify">
+        <dc:Bounds x="740" y="218" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="BPMNShape_exclusivegateway6" bpmnElement="exclusivegateway6" isMarkerVisible="true">
-        <dc:Bounds x="485" y="43" width="40" height="40" />
+      <bpmndi:BPMNShape id="Gateway_0bg2tfm_di" bpmnElement="exclusivegateway6" isMarkerVisible="true">
+        <dc:Bounds x="885" y="233" width="50" height="50" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="BPMNShape_endevent1" bpmnElement="endevent1">
-        <dc:Bounds x="582" y="122" width="35" height="35" />
+      <bpmndi:BPMNShape id="Event_1gj3r3n_di" bpmnElement="endevent1">
+        <dc:Bounds x="1002" y="332" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="590" y="157" width="20" height="14" />
+          <dc:Bounds x="1010" y="375" width="20" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>
