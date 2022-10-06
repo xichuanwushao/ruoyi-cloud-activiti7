@@ -4,7 +4,7 @@ echo [信息] 使用Jar命令运行Modules-File工程。
 echo.
 
 cd %~dp0
-cd ../ruoyi-modules/ruoyi-file/target
+cd ../ruoyi-modules/ruoyi-modules-file/target
 
 set JAVA_OPTS=-Xms512m -Xmx1024m -XX:MetaspaceSize=128m -XX:MaxMetaspaceSize=512m
 
