@@ -64,3 +64,14 @@
 * RuoYiGatewayApplication
 * RuoYiDannyApplication( 工作流模块 )
 * RuoYiFileApplication( 文件服务 新建流程图导入按钮使用 )
+## 前端代码说明
+* 前端vue2.0版本,对应ruoyi-ui,原生版本
+* 前端vue3.0版本,对应ruiyi-vite,由SDF同学进行维护（开发中）
+
+## 演示图
+<table>
+    <tr>
+        <td><img src="https://image-1304556315.cos.ap-beijing.myqcloud.com/vue301.png"/></td>
+        <td><img src="https://image-1304556315.cos.ap-beijing.myqcloud.com/vue302.png"/></td>
+    </tr>
+</table>
