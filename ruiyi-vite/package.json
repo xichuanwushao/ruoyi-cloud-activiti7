@@ -1,0 +1,49 @@
+{
+  "name": "ryvite",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "vue": "^3.2.25",
+    "vue-i18n": "^9.2.0-beta.35",
+    "vue-router": "^4.0.15",
+    "vue-cropper": "1.0.3",
+    "xlsx": "^0.18.5",
+    "xlsx-js-style": "^1.2.0",
+    "axios": "^1.0.0",
+    "bpmn-js": "^7.5.0",
+    "fuse.js": "6.5.3",  
+    "js-cookie": "3.0.1",
+    "jsencrypt": "3.2.1",
+    "bpmn-js-properties-panel": "^0.37.5",
+    "c-scrollbar": "^1.0.2",
+    "camunda-bpmn-moddle": "^4.5.0",
+    "core-js": "^3.8.3",
+    "file-saver": "^2.0.5",
+    "nprogress": "^0.2.0",
+    "pinia": "^2.0.14",
+    "pinia-plugin-persist": "^1.0.0",
+    "qs": "^6.10.5",
+    "dagre-d3": "^0.6.4",
+    "echarts": "^5.3.2",
+    "@element-plus/icons-vue": "^1.1.4",
+    "element-plus": "^2.2.17"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^2.3.4",
+    "@vue/compiler-sfc": "3.2.36",
+    "vite": "^2.9.15",
+    "unplugin-auto-import": "0.8.5",
+    "vite-plugin-compression": "0.5.1",
+    "vite-plugin-svg-icons": "2.0.1",
+    "vite-plugin-vue-setup-extend": "0.4.0",
+    "sass": "1.32.13",
+    "sass-loader": "10.1.1",
+    "less": "^4.1.2",
+    "less-loader": "^10.2.0"
+  }
+}
