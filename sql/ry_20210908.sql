@@ -65,6 +65,52 @@ CREATE TABLE `dan_workflow_leave`  (
 -- ----------------------------
 
 -- ----------------------------
+-- Table structure for dan_workflow_reim
+-- ----------------------------
+DROP TABLE IF EXISTS `dan_workflow_reim`;
+CREATE TABLE `dan_workflow_reim`  (
+                                      `reim_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '报销申请id',
+                                      `amount` decimal(10, 2) NULL DEFAULT NULL COMMENT '总金额',
+                                      `anleihen` decimal(10, 2) NULL DEFAULT NULL COMMENT '借款',
+                                      `balance` decimal(10, 2) NULL DEFAULT NULL COMMENT '差额',
+                                      `type` tinyint(4) NULL DEFAULT NULL COMMENT '类型：1普通报销，2差旅报销',
+                                      `status` tinyint(4) NULL DEFAULT NULL COMMENT '状态：1审批中，2已拒绝，3审批通过，4.已归档',
+                                      `title` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '报销标题',
+                                      `reason` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '报销原因',
+                                      `leave_start_time` date NULL DEFAULT NULL COMMENT '开始时间',
+                                      `leave_end_time` date NULL DEFAULT NULL COMMENT '结束时间',
+                                      `attachment_link` varchar(2048) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '附件',
+                                      `instance_id` varchar(36) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '流程实例id',
+                                      `create_name` varchar(36) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '创建者名称',
+                                      `create_by` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '创建者',
+                                      `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
+                                      `update_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
+                                      PRIMARY KEY (`reim_id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '报销申请' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of dan_workflow_reim
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for dan_workflow_reimgoods
+-- ----------------------------
+DROP TABLE IF EXISTS `dan_workflow_reimgoods`;
+CREATE TABLE `dan_workflow_reimgoods`  (
+                                           `reimgoods_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '报销条目id',
+                                           `reim_id` bigint(20) NOT NULL COMMENT '报销申请id',
+                                           `title` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '条目标题',
+                                           `type` tinyint(4) NULL DEFAULT NULL COMMENT '条目类型',
+                                           `money` decimal(10, 2) NULL DEFAULT NULL COMMENT '条目金额',
+                                           `descs` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '条目描述',
+                                           PRIMARY KEY (`reimgoods_id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '报销条目' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of dan_workflow_reimgoods
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for gen_table
 -- ----------------------------
 DROP TABLE IF EXISTS `gen_table`;
