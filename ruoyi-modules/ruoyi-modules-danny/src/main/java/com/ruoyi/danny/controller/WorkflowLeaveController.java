@@ -9,6 +9,7 @@ import com.ruoyi.common.log.annotation.Log;
 import com.ruoyi.common.log.enums.BusinessType;
 import com.ruoyi.common.security.annotation.RequiresPermissions;
 import com.ruoyi.common.security.utils.SecurityUtils;
+import com.ruoyi.danny.domain.DanWorkflowReim;
 import com.ruoyi.danny.domain.WorkflowLeave;
 import com.ruoyi.danny.service.IWorkflowLeaveService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 
@@ -120,4 +122,18 @@ public class WorkflowLeaveController extends BaseController {
     public AjaxResult remove(@PathVariable String[] ids) {
         return toAjax(workflowLeaveService.deleteWorkflowLeaveByIds(ids));
     }
+    /**
+     * 导出列表
+     */
+    @RequiresPermissions("workflow:leave:export")
+    @Log(title = "请假申请", businessType = BusinessType.EXPORT)
+    @GetMapping("/export")
+    public void export(HttpServletResponse response, WorkflowLeave workflowLeave)
+    {
+        List<WorkflowLeave> list = workflowLeaveService.selectWorkflowLeaveList(workflowLeave);
+        System.out.println("list = " + list + ", workflowLeave = " + workflowLeave);
+        ExcelUtil<WorkflowLeave> util = new ExcelUtil<WorkflowLeave>(WorkflowLeave.class);
+        util.exportExcel(response, list, "请假申请数据");
+    }
+
 }
