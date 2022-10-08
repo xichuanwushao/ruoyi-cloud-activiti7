@@ -127,7 +127,7 @@ public class WorkflowLeaveController extends BaseController {
      */
     @RequiresPermissions("workflow:leave:export")
     @Log(title = "请假申请", businessType = BusinessType.EXPORT)
-    @GetMapping("/export")
+    @PostMapping("/export")
     public void export(HttpServletResponse response, WorkflowLeave workflowLeave)
     {
         List<WorkflowLeave> list = workflowLeaveService.selectWorkflowLeaveList(workflowLeave);
