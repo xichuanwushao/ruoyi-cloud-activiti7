@@ -57,6 +57,7 @@ public class DanWorkflowReimController extends BaseController
     public TableDataInfo list(DanWorkflowReim danWorkflowReim)
     {
         startPage();
+        danWorkflowReim.setCreateBy(SecurityUtils.getUsername());
         List<DanWorkflowReim> list = danWorkflowReimService.selectDanWorkflowReimList(danWorkflowReim);
         for(DanWorkflowReim workflowLeave1: list){
             String url = domain+"/activitiHistory/searchApprovalBpmn?instanceId="+workflowLeave1.getInstanceId();

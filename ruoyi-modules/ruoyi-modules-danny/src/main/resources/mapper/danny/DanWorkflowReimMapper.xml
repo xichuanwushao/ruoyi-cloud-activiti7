@@ -54,7 +54,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="params.beginLeaveEndTime != null and params.beginLeaveEndTime != '' and params.endLeaveEndTime != null and params.endLeaveEndTime != ''"> and leave_end_time between #{params.beginLeaveEndTime} and #{params.endLeaveEndTime}</if>
             <if test="attachmentLink != null  and attachmentLink != ''"> and attachment_link = #{attachmentLink}</if>
             <if test="instanceId != null  and instanceId != ''"> and instance_id = #{instanceId}</if>
-            <if test="createName != null  and createName != ''"> and create_name like concat('%', #{createName}, '%')</if>
+            <if test="createName != null  and createName != ''"> and create_name = #{createName}</if>
+            <if test="createBy != null  and createBy != ''"> and create_by = #{createBy}</if>
         </where>
     </select>
     
