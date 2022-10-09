@@ -92,7 +92,7 @@ public class DanWorkflowReimServiceImpl implements IDanWorkflowReimService
         ProcessInstance processInstance = processRuntime.start(ProcessPayloadBuilder
                 .start()
                 .withProcessDefinitionKey("reim_at10_08")
-                .withName(danWorkflowReim.getTitle())
+                .withName(sysUser.getNickName()+"的报销申请")
                 .withBusinessKey(id)
                 .withVariable("deptLeader",join)
                 .build());
