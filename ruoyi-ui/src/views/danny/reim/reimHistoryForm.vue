@@ -3,20 +3,17 @@
     <div>
     <h2>申请人：{{form.createName}}</h2>
     <el-form  label-width="80px">
-      <el-form-item label="报销类型" >
-       <el-input v-model="form.anleihen"/>
+      <el-form-item label="报销金额" >
+       <el-input v-model="form.amount"/>
       </el-form-item>
-      <el-form-item label="标题">
-        <el-input v-model="form.title"/>
+      <el-form-item label="借款金额">
+        <el-input v-model="form.anleihen"/>
       </el-form-item>
-      <el-form-item label="原因" >
-        <el-input v-model="form.reason" />
+      <el-form-item label="实际金额" >
+        <el-input v-model="form.balance" />
       </el-form-item>
-      <el-form-item label="开始时间">
-        <el-input v-model="form.reimStartTime"/>
-      </el-form-item>
-      <el-form-item label="结束时间">
-        <el-input v-model="form.reimEndTime"/>
+      <el-form-item label="申请时间" >
+        <el-input v-model="form.createTime" />
       </el-form-item>
     </el-form>
     </div>
