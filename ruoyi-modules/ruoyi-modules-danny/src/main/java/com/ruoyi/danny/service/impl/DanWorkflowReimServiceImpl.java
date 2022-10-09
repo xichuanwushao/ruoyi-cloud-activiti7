@@ -8,6 +8,15 @@ import cn.hutool.extra.qrcode.QrCodeUtil;
 import cn.hutool.extra.qrcode.QrConfig;
 import cn.hutool.json.JSONUtil;
 import com.ruoyi.common.core.utils.DateUtils;
+import com.ruoyi.common.security.utils.SecurityUtils;
+import com.ruoyi.danny.service.ISysUserService;
+import com.ruoyi.danny.util.SecurityUtil;
+import com.ruoyi.danny.util.UuidUtil;
+import com.ruoyi.system.api.domain.SysUser;
+import com.ruoyi.system.api.model.LoginUser;
+import org.activiti.api.process.model.ProcessInstance;
+import org.activiti.api.process.model.builders.ProcessPayloadBuilder;
+import org.activiti.api.process.runtime.ProcessRuntime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
@@ -28,7 +37,16 @@ import com.ruoyi.danny.service.IDanWorkflowReimService;
 public class DanWorkflowReimServiceImpl implements IDanWorkflowReimService 
 {
     @Autowired
+    private SecurityUtil securityUtil;
+
+    @Autowired
     private DanWorkflowReimMapper danWorkflowReimMapper;
+
+    @Autowired
+    private ISysUserService sysUserService;
+
+    @Autowired
+    private ProcessRuntime processRuntime;
 
     /**
      * 查询报销申请
@@ -64,6 +82,25 @@ public class DanWorkflowReimServiceImpl implements IDanWorkflowReimService
     @Override
     public int insertDanWorkflowReim(DanWorkflowReim danWorkflowReim)
     {
+        LoginUser loginUser = SecurityUtils.getLoginUser();
+        SysUser sysUser = loginUser.getSysUser();
+        securityUtil.logInAs(sysUser.getUserName());
+        String id = UuidUtil.getShortUuid();
+        danWorkflowReim.setCreateTime(DateUtils.getNowDate());
+        //guanyu,zhaoyun
+        String join = StringUtils.join(sysUserService.selectUserNameByPostCodeAndDeptId("se", sysUser.getDeptId()), ",");
+        ProcessInstance processInstance = processRuntime.start(ProcessPayloadBuilder
+                .start()
+                .withProcessDefinitionKey("reim_at10_08")
+                .withName(danWorkflowReim.getTitle())
+                .withBusinessKey(id)
+                .withVariable("deptLeader",join)
+                .build());
+        danWorkflowReim.setInstanceId(processInstance.getId());
+        danWorkflowReim.setCreateName(sysUser.getNickName());
+        danWorkflowReim.setCreateBy(SecurityUtils.getUsername());
+        danWorkflowReim.setCreateTime(DateUtils.getNowDate());
+
         danWorkflowReim.setCreateTime(DateUtils.getNowDate());
         if(danWorkflowReim.getAmount()==null){
             danWorkflowReim.setAmount(BigDecimal.valueOf(0));

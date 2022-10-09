@@ -197,6 +197,14 @@
             size="mini"
             type="text"
             icon="el-icon-edit"
+            @click="historyFory(scope.row)"
+            v-hasPermi="['workflow:leave:edit']">审批详情
+          </el-button>
+
+          <el-button
+            size="mini"
+            type="text"
+            icon="el-icon-edit"
             @click="handleUpdate(scope.row)"
             v-hasPermi="['danny:reim:edit']"
           >修改</el-button>
@@ -218,7 +226,13 @@
       :limit.sync="queryParams.pageSize"
       @pagination="getList"
     />
-
+    <!-- 查看详细信息话框 -->
+    <el-dialog :title="title" :visible.sync="open2" width="500px" append-to-body>
+      <reimHistoryForm :businessKey="businessKey" v-if="open2" />
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="open2=!open2">关闭</el-button>
+      </div>
+    </el-dialog>
     <!-- 添加或修改报销申请对话框 -->
     <el-dialog :title="title" :visible.sync="open" width="500px" append-to-body>
       <el-form ref="form" :model="form" :rules="rules" label-width="80px">
@@ -336,10 +350,11 @@
 import { listReim, getReim, delReim, addReim, updateReim } from "@/api/danny/reim";
 import dayjs from 'dayjs';
 import ReimPdf from './reim_pdf.vue';
+import reimHistoryForm from "./reimHistoryForm";
 export default {
   name: "Reim",
   dicts: ['workflow_reim_status', 'workflow_reimgoods_type', 'workflow_reim_type'],
-  components: { ReimPdf },
+  components: { ReimPdf ,reimHistoryForm},
   data() {
     return {
       // 遮罩层
@@ -372,6 +387,8 @@ export default {
       // 条目描述时间范围
       daterangeCreateTime: [],
       pdfVisible: false,
+      businessKey: '',
+      open2: false,
       queryParams: {
         pageNum: 1,
         pageSize: 10,
@@ -611,7 +628,14 @@ export default {
       this.download('danny/reim/export', {
         ...this.queryParams
       }, `reim_${new Date().getTime()}.xlsx`)
-    }
+    },
+    /** 审批详情 */
+    historyFory(row) {
+      this.businessKey = row.id
+      this.open2 = true
+      this.title = '审批详情'
+
+    },
   }
 };
 </script>
