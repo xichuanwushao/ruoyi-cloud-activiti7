@@ -75,7 +75,18 @@ public class DanWorkflowReim extends BaseEntity
     /** 报销条目信息 */
     private List<DanWorkflowReimgoods> danWorkflowReimgoodsList;
 
-    public void setReimId(Long reimId) 
+    /** bpmn流程图片地址 */
+    private String bpmnUrl;
+
+    public String getBpmnUrl() {
+        return bpmnUrl;
+    }
+
+    public void setBpmnUrl(String bpmnUrl) {
+        this.bpmnUrl = bpmnUrl;
+    }
+
+    public void setReimId(Long reimId)
     {
         this.reimId = reimId;
     }

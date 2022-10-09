@@ -8,8 +8,10 @@ import javax.validation.Valid;
 
 import cn.hutool.json.JSONUtil;
 import com.ruoyi.common.security.utils.SecurityUtils;
+import com.ruoyi.danny.domain.WorkflowLeave;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -42,6 +44,12 @@ public class DanWorkflowReimController extends BaseController
     private IDanWorkflowReimService danWorkflowReimService;
 
     /**
+     * bpmn流程图片地址
+     */
+    @Value("${bpmn.domain}")
+    public String domain;
+
+    /**
      * 查询报销申请列表
      */
     @RequiresPermissions("danny:reim:list")
@@ -50,6 +58,10 @@ public class DanWorkflowReimController extends BaseController
     {
         startPage();
         List<DanWorkflowReim> list = danWorkflowReimService.selectDanWorkflowReimList(danWorkflowReim);
+        for(DanWorkflowReim workflowLeave1: list){
+            String url = domain+"/activitiHistory/searchApprovalBpmn?instanceId="+workflowLeave1.getInstanceId();
+            workflowLeave1.setBpmnUrl(url);
+        }
         return getDataTable(list);
     }
 

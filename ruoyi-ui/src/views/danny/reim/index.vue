@@ -198,9 +198,14 @@
             type="text"
             icon="el-icon-edit"
             @click="historyFory(scope.row)"
-            v-hasPermi="['workflow:leave:edit']">审批详情
+            v-hasPermi="['danny:reim:edit']">审批详情
           </el-button>
-
+          <el-button v-if="0!=scope.row.status"
+                     size="mini"
+                     type="text"
+                     icon="el-icon-edit"
+                     @click="checkTheSchedule(scope.row)" v-hasPermi="['danny:reim:edit']" >查看进度
+          </el-button>
           <el-button
             size="mini"
             type="text"
@@ -226,6 +231,17 @@
       :limit.sync="queryParams.pageSize"
       @pagination="getList"
     />
+    <!-- 进度查询 -->
+    <el-dialog
+      :visible.sync="modelVisible"
+      title="进度查询"
+      width="1680px"
+      append-to-body
+    >
+      <div style="position:relative;height: 100%;">
+        <iframe id="iframe" :src="modelerUrl" frameborder="0" width="100%" height="720px" scrolling="auto"></iframe>
+      </div>
+    </el-dialog>
     <!-- 查看详细信息话框 -->
     <el-dialog :title="title" :visible.sync="open2" width="500px" append-to-body>
       <reimHistoryForm :businessKey="businessKey" v-if="open2" />
@@ -389,6 +405,8 @@ export default {
       pdfVisible: false,
       businessKey: '',
       open2: false,
+      modelVisible: false,
+      modelerUrl: '',
       queryParams: {
         pageNum: 1,
         pageSize: 10,
@@ -636,6 +654,11 @@ export default {
       this.open2 = true
       this.title = '审批详情'
 
+    },
+    /** 进度查看 */
+    checkTheSchedule(row) {
+      this.modelerUrl = row.bpmnUrl;
+      this.modelVisible = true
     },
   }
 };
