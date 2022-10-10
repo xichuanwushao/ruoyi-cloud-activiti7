@@ -165,11 +165,23 @@
       <el-table-column label="报销金额" align="center" prop="amount" />
       <el-table-column label="借款金额" align="center" prop="anleihen" />
       <el-table-column label="实际金额" align="center" prop="balance" />
-      <el-table-column label="状态" align="center" prop="status">
+
+<!--      <el-table-column label="状态" align="center" prop="status">-->
+<!--        <template slot-scope="scope">-->
+<!--          <dict-tag :options="dict.type.workflow_reim_status" :value="scope.row.status"/>-->
+<!--        </template>-->
+<!--      </el-table-column>-->
+      <el-table-column label="状态" align="center">
         <template slot-scope="scope">
-          <dict-tag :options="dict.type.workflow_reim_status" :value="scope.row.status"/>
+          <div v-if="scope.row.status!=0">
+            <dict-tag :options="dict.type.workflow_reim_status" :value="scope.row.status"/>
+          </div>
+          <div v-else>
+            {{scope.row.taskName}}
+          </div>
         </template>
       </el-table-column>
+
 <!--      <el-table-column label="报销标题" align="center" prop="title" />-->
 <!--      <el-table-column label="报销原因" align="center" prop="reason" />-->
 <!--      <el-table-column label="开始时间" align="center" prop="leaveStartTime" width="180">-->
@@ -200,26 +212,26 @@
             @click="historyFory(scope.row)"
             v-hasPermi="['danny:reim:edit']">审批详情
           </el-button>
-          <el-button v-if="0!=scope.row.status"
+          <el-button v-if="0==scope.row.status"
                      size="mini"
                      type="text"
                      icon="el-icon-edit"
                      @click="checkTheSchedule(scope.row)" v-hasPermi="['danny:reim:edit']" >查看进度
           </el-button>
-          <el-button
-            size="mini"
-            type="text"
-            icon="el-icon-edit"
-            @click="handleUpdate(scope.row)"
-            v-hasPermi="['danny:reim:edit']"
-          >修改</el-button>
-          <el-button
-            size="mini"
-            type="text"
-            icon="el-icon-delete"
-            @click="handleDelete(scope.row)"
-            v-hasPermi="['danny:reim:remove']"
-          >删除</el-button>
+<!--          <el-button-->
+<!--            size="mini"-->
+<!--            type="text"-->
+<!--            icon="el-icon-edit"-->
+<!--            @click="handleUpdate(scope.row)"-->
+<!--            v-hasPermi="['danny:reim:edit']"-->
+<!--          >修改</el-button>-->
+<!--          <el-button-->
+<!--            size="mini"-->
+<!--            type="text"-->
+<!--            icon="el-icon-delete"-->
+<!--            @click="handleDelete(scope.row)"-->
+<!--            v-hasPermi="['danny:reim:remove']"-->
+<!--          >删除</el-button>-->
         </template>
       </el-table-column>
     </el-table>
@@ -554,10 +566,9 @@ export default {
       that.$http('reim/searchReimByPage', 'POST', data, true, function(resp) {
         let page = resp.page;
         let status = {
-          1: '待审批',
-          2: '已否决',
-          3: '已通过',
-          4: '已归档'
+          0: '待审批2',
+          1: '已通过2',
+          2: '已否决2',
         };
         let type = { 1: '普通报销', 2: '差旅报销' };
         for (let one of page.list) {

@@ -43,7 +43,7 @@
     </bpmn2:endEvent>
     <bpmn2:sequenceFlow id="Flow_09w5hex" name="同意" sourceRef="exclusivegateway6" targetRef="endevent1">
       <bpmn2:extensionElements>
-        <activiti:executionListener class="com.ruoyi.danny.listener.LeaveEndStateListener" event="take">
+        <activiti:executionListener class="com.ruoyi.danny.listener.ReimEndStateListener" event="take">
           <activiti:field name="status">
             <activiti:string>1</activiti:string>
           </activiti:field>
@@ -53,7 +53,7 @@
     </bpmn2:sequenceFlow>
     <bpmn2:sequenceFlow id="Flow_1eudtlx" sourceRef="exclusivegateway5" targetRef="endevent1">
       <bpmn2:extensionElements>
-        <activiti:executionListener class="com.ruoyi.danny.listener.LeaveEndStateListener" event="take">
+        <activiti:executionListener class="com.ruoyi.danny.listener.ReimEndStateListener" event="take">
           <activiti:field name="status">
             <activiti:string>2</activiti:string>
           </activiti:field>
@@ -62,7 +62,7 @@
     </bpmn2:sequenceFlow>
     <bpmn2:sequenceFlow id="Flow_11fw2t8" sourceRef="exclusivegateway6" targetRef="endevent1">
       <bpmn2:extensionElements>
-        <activiti:executionListener class="com.ruoyi.danny.listener.LeaveEndStateListener" event="take">
+        <activiti:executionListener class="com.ruoyi.danny.listener.ReimEndStateListener" event="take">
           <activiti:field name="status">
             <activiti:string>2</activiti:string>
           </activiti:field>

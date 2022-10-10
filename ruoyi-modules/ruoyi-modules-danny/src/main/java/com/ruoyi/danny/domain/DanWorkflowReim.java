@@ -78,6 +78,9 @@ public class DanWorkflowReim extends BaseEntity
     /** bpmn流程图片地址 */
     private String bpmnUrl;
 
+   /**用于显示审批当前走到哪里了 **/
+    private String taskName;
+
     public String getBpmnUrl() {
         return bpmnUrl;
     }
@@ -214,26 +217,33 @@ public class DanWorkflowReim extends BaseEntity
         this.danWorkflowReimgoodsList = danWorkflowReimgoodsList;
     }
 
+    public String getTaskName() {
+        return taskName;
+    }
+
+    public void setTaskName(String taskName) {
+        this.taskName = taskName;
+    }
+
     @Override
     public String toString() {
-        return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)
-            .append("reimId", getReimId())
-            .append("amount", getAmount())
-            .append("anleihen", getAnleihen())
-            .append("balance", getBalance())
-            .append("type", getType())
-            .append("status", getStatus())
-            .append("title", getTitle())
-            .append("reason", getReason())
-            .append("leaveStartTime", getLeaveStartTime())
-            .append("leaveEndTime", getLeaveEndTime())
-            .append("attachmentLink", getAttachmentLink())
-            .append("instanceId", getInstanceId())
-            .append("createName", getCreateName())
-            .append("createBy", getCreateBy())
-            .append("createTime", getCreateTime())
-            .append("updateTime", getUpdateTime())
-            .append("danWorkflowReimgoodsList", getDanWorkflowReimgoodsList())
-            .toString();
+        return "DanWorkflowReim{" +
+                "reimId=" + reimId +
+                ", amount=" + amount +
+                ", anleihen=" + anleihen +
+                ", balance=" + balance +
+                ", type=" + type +
+                ", status=" + status +
+                ", title='" + title + '\'' +
+                ", reason='" + reason + '\'' +
+                ", leaveStartTime=" + leaveStartTime +
+                ", leaveEndTime=" + leaveEndTime +
+                ", attachmentLink='" + attachmentLink + '\'' +
+                ", instanceId='" + instanceId + '\'' +
+                ", createName='" + createName + '\'' +
+                ", danWorkflowReimgoodsList=" + danWorkflowReimgoodsList +
+                ", bpmnUrl='" + bpmnUrl + '\'' +
+                ", taskName='" + taskName + '\'' +
+                "} " + super.toString();
     }
 }

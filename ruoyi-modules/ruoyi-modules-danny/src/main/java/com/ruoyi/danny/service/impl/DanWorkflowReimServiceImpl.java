@@ -9,6 +9,7 @@ import cn.hutool.extra.qrcode.QrConfig;
 import cn.hutool.json.JSONUtil;
 import com.ruoyi.common.core.utils.DateUtils;
 import com.ruoyi.common.security.utils.SecurityUtils;
+import com.ruoyi.danny.domain.WorkflowLeave;
 import com.ruoyi.danny.service.ISysUserService;
 import com.ruoyi.danny.util.SecurityUtil;
 import com.ruoyi.danny.util.UuidUtil;
@@ -17,9 +18,13 @@ import com.ruoyi.system.api.model.LoginUser;
 import org.activiti.api.process.model.ProcessInstance;
 import org.activiti.api.process.model.builders.ProcessPayloadBuilder;
 import org.activiti.api.process.runtime.ProcessRuntime;
+import org.activiti.engine.TaskService;
+import org.activiti.engine.task.Task;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
+import java.util.stream.Collectors;
+
 import com.ruoyi.common.core.utils.StringUtils;
 import org.springframework.transaction.annotation.Transactional;
 import com.ruoyi.danny.domain.DanWorkflowReimgoods;
@@ -48,6 +53,8 @@ public class DanWorkflowReimServiceImpl implements IDanWorkflowReimService
     @Autowired
     private ProcessRuntime processRuntime;
 
+    @Autowired
+    private TaskService taskService;
     /**
      * 查询报销申请
      * 
@@ -69,7 +76,24 @@ public class DanWorkflowReimServiceImpl implements IDanWorkflowReimService
     @Override
     public List<DanWorkflowReim> selectDanWorkflowReimList(DanWorkflowReim danWorkflowReim)
     {
-        return danWorkflowReimMapper.selectDanWorkflowReimList(danWorkflowReim);
+        List<DanWorkflowReim> workflowLeaves =  danWorkflowReimMapper.selectDanWorkflowReimList(danWorkflowReim);
+   /**用于显示审批当前走到哪里了 对应状态栏 **/
+        System.out.println("0909808"+workflowLeaves);
+        List<String> collect = workflowLeaves.parallelStream().map(wl -> wl.getInstanceId()).collect(Collectors.toList());
+        System.out.println("asdadad"+collect);
+        if(collect!=null&&!collect.isEmpty()) {
+            List<Task> tasks = taskService.createTaskQuery().processInstanceIdIn(collect).list();
+            workflowLeaves.forEach(
+                    wl->{
+                        Task task = tasks.parallelStream().filter(t -> t.getProcessInstanceId().equals(wl.getInstanceId())).findAny().orElse(null);
+                        if (task != null) {
+                            wl.setTaskName(task.getName());
+                        }
+                    }
+            );
+        }
+        System.out.println("1212212"+workflowLeaves);
+        return workflowLeaves;
     }
 
     /**
@@ -100,7 +124,7 @@ public class DanWorkflowReimServiceImpl implements IDanWorkflowReimService
         danWorkflowReim.setCreateName(sysUser.getNickName());
         danWorkflowReim.setCreateBy(SecurityUtils.getUsername());
         danWorkflowReim.setCreateTime(DateUtils.getNowDate());
-
+        danWorkflowReim.setStatus(0);
         danWorkflowReim.setCreateTime(DateUtils.getNowDate());
         if(danWorkflowReim.getAmount()==null){
             danWorkflowReim.setAmount(BigDecimal.valueOf(0));
