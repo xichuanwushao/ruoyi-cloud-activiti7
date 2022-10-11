@@ -534,11 +534,25 @@ export default {
       this.single = selection.length!==1
       this.multiple = !selection.length
     },
+    // /** 新增按钮操作 */
+    // handleAdd() {
+    //   this.reset();
+    //   this.open = true;
+    //   this.title = "添加报销申请";
+    // },
     /** 新增按钮操作 */
     handleAdd() {
-      this.reset();
-      this.open = true;
-      this.title = "添加报销申请";
+      this.createName = this.$store.getters.nickname
+      if (this.$store.getters.name != "admin") {
+        this.reset()
+        this.open = true
+        this.title = '添加报销申请'
+      } else {
+        this.$alert('管理员不能创建流程', '管理员不能创建流程', {
+          confirmButtonText: '确定',
+        });
+      }
+
     },
     pdfHandle: function(row) {
       this.pdfVisible = true;
