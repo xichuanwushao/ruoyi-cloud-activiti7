@@ -245,6 +245,7 @@ public class DanWorkflowReimServiceImpl implements IDanWorkflowReimService
         qrConfig.setHeight(70);
         qrConfig.setMargin(2);
         String qrCodeBase64= QrCodeUtil.generateAsBase64(instanceId,qrConfig,"jpg");
+        map.put("date",DateUtils.parseDateToStr("yyyy-MM-dd HH:mm:ss",danWorkflowReim.getCreateTime()));
         map.put("qrCodeBase64",qrCodeBase64);
         return map;
     }

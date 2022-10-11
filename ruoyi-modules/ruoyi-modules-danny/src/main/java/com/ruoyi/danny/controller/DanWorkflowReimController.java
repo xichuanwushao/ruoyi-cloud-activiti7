@@ -9,6 +9,7 @@ import javax.validation.Valid;
 import cn.hutool.json.JSONUtil;
 import com.ruoyi.common.security.utils.SecurityUtils;
 import com.ruoyi.danny.domain.WorkflowLeave;
+import com.ruoyi.system.api.domain.SysUser;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -126,9 +127,12 @@ public class DanWorkflowReimController extends BaseController
     @GetMapping(value = "/searchReimById/{reimId}")
     @Operation(summary = "根据ID查询报销单")
     public AjaxResult searchReimById(@PathVariable("reimId") String reimId){
+        SysUser sysUser = SecurityUtils.getLoginUser().getSysUser();
         HashMap param= new HashMap();
         param.put("userId", SecurityUtils.getUserId());
         HashMap map=danWorkflowReimService.searchReimById(reimId);
+        map.put("dept", sysUser.getDept().getDeptName());
+        map.put("name", sysUser.getNickName());
         logger.info(map.get("danWorkflowReimgoodsList")+"");
         return AjaxResult.success(map);
     }
