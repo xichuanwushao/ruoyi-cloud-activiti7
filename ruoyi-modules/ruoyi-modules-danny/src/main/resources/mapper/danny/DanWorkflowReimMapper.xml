@@ -59,7 +59,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         </where>
     </select>
     
-    <select id="selectDanWorkflowReimByReimId" parameterType="Long" resultMap="DanWorkflowReimDanWorkflowReimgoodsResult">
+    <select id="selectDanWorkflowReimByReimId" parameterType="String" resultMap="DanWorkflowReimDanWorkflowReimgoodsResult">
         select a.reim_id, a.amount, a.anleihen, a.balance, a.type, a.status, a.title, a.reason, a.leave_start_time, a.leave_end_time, a.attachment_link, a.instance_id, a.create_name, a.create_by, a.create_time, a.update_time,
  b.reimgoods_id as sub_reimgoods_id, b.reim_id as sub_reim_id, b.title as sub_title, b.type as sub_type, b.money as sub_money, b.descs as sub_desc
         from dan_workflow_reim a
@@ -70,6 +70,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <insert id="insertDanWorkflowReim" parameterType="DanWorkflowReim" useGeneratedKeys="true" keyProperty="reimId">
         insert into dan_workflow_reim
         <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="reimId != null">reim_id,</if>
             <if test="amount != null">amount,</if>
             <if test="anleihen != null">anleihen,</if>
             <if test="balance != null">balance,</if>
@@ -87,6 +88,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="updateTime != null">update_time,</if>
          </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="reimId != null">#{reimId},</if>
             <if test="amount != null">#{amount},</if>
             <if test="anleihen != null">#{anleihen},</if>
             <if test="balance != null">#{balance},</if>
@@ -127,7 +129,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         where reim_id = #{reimId}
     </update>
 
-    <delete id="deleteDanWorkflowReimByReimId" parameterType="Long">
+    <delete id="deleteDanWorkflowReimByReimId" parameterType="String">
         delete from dan_workflow_reim where reim_id = #{reimId}
     </delete>
 
@@ -145,7 +147,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         </foreach>
     </delete>
 
-    <delete id="deleteDanWorkflowReimgoodsByReimId" parameterType="Long">
+    <delete id="deleteDanWorkflowReimgoodsByReimId" parameterType="String">
         delete from dan_workflow_reimgoods where reim_id = #{reimId}
     </delete>
 

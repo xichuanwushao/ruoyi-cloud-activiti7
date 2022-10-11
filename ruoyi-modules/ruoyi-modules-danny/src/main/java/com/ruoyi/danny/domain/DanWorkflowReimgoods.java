@@ -21,7 +21,7 @@ public class DanWorkflowReimgoods extends BaseEntity
 
     /** 报销申请id */
     @Excel(name = "报销申请id")
-    private Long reimId;
+    private String reimId;
 
     /** 条目标题 */
     @Excel(name = "条目标题")
@@ -48,16 +48,16 @@ public class DanWorkflowReimgoods extends BaseEntity
     {
         return reimgoodsId;
     }
-    public void setReimId(Long reimId) 
-    {
+
+    public String getReimId() {
+        return reimId;
+    }
+
+    public void setReimId(String reimId) {
         this.reimId = reimId;
     }
 
-    public Long getReimId() 
-    {
-        return reimId;
-    }
-    public void setTitle(String title) 
+    public void setTitle(String title)
     {
         this.title = title;
     }

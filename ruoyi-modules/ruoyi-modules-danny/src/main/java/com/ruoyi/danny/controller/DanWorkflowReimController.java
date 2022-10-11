@@ -84,7 +84,7 @@ public class DanWorkflowReimController extends BaseController
      */
     @RequiresPermissions("danny:reim:query")
     @GetMapping(value = "/{reimId}")
-    public AjaxResult getInfo(@PathVariable("reimId") Long reimId)
+    public AjaxResult getInfo(@PathVariable("reimId") String reimId)
     {
         return AjaxResult.success(danWorkflowReimService.selectDanWorkflowReimByReimId(reimId));
     }
@@ -117,7 +117,7 @@ public class DanWorkflowReimController extends BaseController
     @RequiresPermissions("danny:reim:remove")
     @Log(title = "报销申请", businessType = BusinessType.DELETE)
 	@DeleteMapping("/{reimIds}")
-    public AjaxResult remove(@PathVariable Long[] reimIds)
+    public AjaxResult remove(@PathVariable String[] reimIds)
     {
         return toAjax(danWorkflowReimService.deleteDanWorkflowReimByReimIds(reimIds));
     }
@@ -125,7 +125,7 @@ public class DanWorkflowReimController extends BaseController
 
     @GetMapping(value = "/searchReimById/{reimId}")
     @Operation(summary = "根据ID查询报销单")
-    public AjaxResult searchReimById(@PathVariable("reimId") Long reimId){
+    public AjaxResult searchReimById(@PathVariable("reimId") String reimId){
         HashMap param= new HashMap();
         param.put("userId", SecurityUtils.getUserId());
         HashMap map=danWorkflowReimService.searchReimById(reimId);

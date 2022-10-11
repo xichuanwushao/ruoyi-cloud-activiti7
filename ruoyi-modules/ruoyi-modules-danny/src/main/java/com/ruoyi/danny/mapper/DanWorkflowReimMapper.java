@@ -19,7 +19,7 @@ public interface DanWorkflowReimMapper
      * @param reimId 报销申请主键
      * @return 报销申请
      */
-    public DanWorkflowReim selectDanWorkflowReimByReimId(Long reimId);
+    public DanWorkflowReim selectDanWorkflowReimByReimId(String reimId);
 
     /**
      * 查询报销申请列表
@@ -51,7 +51,7 @@ public interface DanWorkflowReimMapper
      * @param reimId 报销申请主键
      * @return 结果
      */
-    public int deleteDanWorkflowReimByReimId(Long reimId);
+    public int deleteDanWorkflowReimByReimId(String reimId);
 
     /**
      * 批量删除报销申请
@@ -59,7 +59,7 @@ public interface DanWorkflowReimMapper
      * @param reimIds 需要删除的数据主键集合
      * @return 结果
      */
-    public int deleteDanWorkflowReimByReimIds(Long[] reimIds);
+    public int deleteDanWorkflowReimByReimIds(String [] reimIds);
 
     /**
      * 批量删除报销条目
@@ -67,7 +67,7 @@ public interface DanWorkflowReimMapper
      * @param reimIds 需要删除的数据主键集合
      * @return 结果
      */
-    public int deleteDanWorkflowReimgoodsByReimIds(Long[] reimIds);
+    public int deleteDanWorkflowReimgoodsByReimIds(String [] reimIds);
     
     /**
      * 批量新增报销条目
@@ -84,7 +84,7 @@ public interface DanWorkflowReimMapper
      * @param reimId 报销申请ID
      * @return 结果
      */
-    public int deleteDanWorkflowReimgoodsByReimId(Long reimId);
+    public int deleteDanWorkflowReimgoodsByReimId(String reimId);
 
     public HashMap searchReimById(HashMap param);
 }

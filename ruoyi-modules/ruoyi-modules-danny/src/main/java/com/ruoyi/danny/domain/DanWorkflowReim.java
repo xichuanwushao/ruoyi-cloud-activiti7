@@ -20,7 +20,7 @@ public class DanWorkflowReim extends BaseEntity
     private static final long serialVersionUID = 1L;
 
     /** 报销申请id */
-    private Long reimId;
+    private String reimId;
 
     /** 总金额 */
     @Excel(name = "总金额")
@@ -89,16 +89,15 @@ public class DanWorkflowReim extends BaseEntity
         this.bpmnUrl = bpmnUrl;
     }
 
-    public void setReimId(Long reimId)
-    {
+    public String getReimId() {
+        return reimId;
+    }
+
+    public void setReimId(String reimId) {
         this.reimId = reimId;
     }
 
-    public Long getReimId() 
-    {
-        return reimId;
-    }
-    public void setAmount(BigDecimal amount) 
+    public void setAmount(BigDecimal amount)
     {
         this.amount = amount;
     }

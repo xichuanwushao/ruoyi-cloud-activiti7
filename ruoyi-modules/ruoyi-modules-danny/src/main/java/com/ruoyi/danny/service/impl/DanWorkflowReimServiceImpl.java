@@ -62,7 +62,7 @@ public class DanWorkflowReimServiceImpl implements IDanWorkflowReimService
      * @return 报销申请
      */
     @Override
-    public DanWorkflowReim selectDanWorkflowReimByReimId(Long reimId)
+    public DanWorkflowReim selectDanWorkflowReimByReimId(String reimId)
     {
         return danWorkflowReimMapper.selectDanWorkflowReimByReimId(reimId);
     }
@@ -120,6 +120,7 @@ public class DanWorkflowReimServiceImpl implements IDanWorkflowReimService
                 .withBusinessKey(id)
                 .withVariable("deptLeader",join)
                 .build());
+        danWorkflowReim.setReimId(id);
         danWorkflowReim.setInstanceId(processInstance.getId());
         danWorkflowReim.setCreateName(sysUser.getNickName());
         danWorkflowReim.setCreateBy(SecurityUtils.getUsername());
@@ -167,7 +168,7 @@ public class DanWorkflowReimServiceImpl implements IDanWorkflowReimService
      */
     @Transactional
     @Override
-    public int deleteDanWorkflowReimByReimIds(Long[] reimIds)
+    public int deleteDanWorkflowReimByReimIds(String[] reimIds)
     {
         danWorkflowReimMapper.deleteDanWorkflowReimgoodsByReimIds(reimIds);
         return danWorkflowReimMapper.deleteDanWorkflowReimByReimIds(reimIds);
@@ -181,7 +182,7 @@ public class DanWorkflowReimServiceImpl implements IDanWorkflowReimService
      */
     @Transactional
     @Override
-    public int deleteDanWorkflowReimByReimId(Long reimId)
+    public int deleteDanWorkflowReimByReimId(String reimId)
     {
         danWorkflowReimMapper.deleteDanWorkflowReimgoodsByReimId(reimId);
         return danWorkflowReimMapper.deleteDanWorkflowReimByReimId(reimId);
@@ -195,7 +196,7 @@ public class DanWorkflowReimServiceImpl implements IDanWorkflowReimService
     public void insertDanWorkflowReimgoods(DanWorkflowReim danWorkflowReim)
     {
         List<DanWorkflowReimgoods> danWorkflowReimgoodsList = danWorkflowReim.getDanWorkflowReimgoodsList();
-        Long reimId = danWorkflowReim.getReimId();
+        String reimId = danWorkflowReim.getReimId();
         if (StringUtils.isNotNull(danWorkflowReimgoodsList))
         {
             List<DanWorkflowReimgoods> list = new ArrayList<DanWorkflowReimgoods>();
@@ -211,7 +212,7 @@ public class DanWorkflowReimServiceImpl implements IDanWorkflowReimService
         }
     }
     @Override
-    public HashMap searchReimById(Long id) {
+    public HashMap searchReimById(String id) {
         DanWorkflowReim danWorkflowReim = danWorkflowReimMapper.selectDanWorkflowReimByReimId(id);
         HashMap map= JSONUtil.parse(danWorkflowReim).toBean(HashMap.class);
         String instanceId= MapUtil.getStr(map,"instanceId");

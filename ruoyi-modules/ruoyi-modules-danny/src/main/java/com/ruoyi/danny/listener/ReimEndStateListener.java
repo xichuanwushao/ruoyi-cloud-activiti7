@@ -16,7 +16,7 @@ public class ReimEndStateListener implements ExecutionListener {
     @Override
     public void notify(DelegateExecution delegateExecution) {
         DanWorkflowReim workflowLeave = new DanWorkflowReim();
-        workflowLeave.setReimId(Long.parseLong(delegateExecution.getProcessInstanceBusinessKey()));
+        workflowLeave.setReimId(delegateExecution.getProcessInstanceBusinessKey());
         workflowLeave.setStatus(Integer.parseInt(status.getValue(delegateExecution).toString()));
         SpringUtils.getBean(IDanWorkflowReimService.class).updateDanWorkflowReim(workflowLeave);
     }
