@@ -127,15 +127,23 @@ public class DanWorkflowReimServiceImpl implements IDanWorkflowReimService
         danWorkflowReim.setCreateTime(DateUtils.getNowDate());
         danWorkflowReim.setStatus(0);
         danWorkflowReim.setCreateTime(DateUtils.getNowDate());
-        if(danWorkflowReim.getAmount()==null){
-            danWorkflowReim.setAmount(BigDecimal.valueOf(0));
+
+        List<DanWorkflowReimgoods> danWorkflowReimgoods = danWorkflowReim.getDanWorkflowReimgoodsList();
+        BigDecimal amount = new BigDecimal(0);
+        BigDecimal balance = new BigDecimal(0);
+        BigDecimal anleihen = new BigDecimal(0);
+        for(DanWorkflowReimgoods reimgood : danWorkflowReimgoods){
+            amount = amount.add(reimgood.getMoney());
         }
         if(danWorkflowReim.getAnleihen()==null){
-            danWorkflowReim.setAnleihen(BigDecimal.valueOf(0));
+            danWorkflowReim.setAnleihen(anleihen);
         }
-        if(danWorkflowReim.getBalance()==null){
-            danWorkflowReim.setBalance(BigDecimal.valueOf(0));
-        }
+        balance =amount.subtract(danWorkflowReim.getAnleihen());
+
+        danWorkflowReim.setAmount(amount);
+        danWorkflowReim.setAnleihen(danWorkflowReim.getAnleihen());
+        danWorkflowReim.setBalance(balance);
+
         if(danWorkflowReim.getStatus()==null){
             danWorkflowReim.setStatus(1);
         }
@@ -156,6 +164,22 @@ public class DanWorkflowReimServiceImpl implements IDanWorkflowReimService
     {
         danWorkflowReim.setUpdateTime(DateUtils.getNowDate());
         danWorkflowReimMapper.deleteDanWorkflowReimgoodsByReimId(danWorkflowReim.getReimId());
+
+        List<DanWorkflowReimgoods> danWorkflowReimgoods = danWorkflowReim.getDanWorkflowReimgoodsList();
+        BigDecimal amount = new BigDecimal(0);
+        BigDecimal balance = new BigDecimal(0);
+        BigDecimal anleihen = new BigDecimal(0);
+        for(DanWorkflowReimgoods reimgood : danWorkflowReimgoods){
+            amount = amount.add(reimgood.getMoney());
+        }
+        if(danWorkflowReim.getAnleihen()==null){
+            danWorkflowReim.setAnleihen(anleihen);
+        }
+        balance =amount.subtract(danWorkflowReim.getAnleihen());
+
+        danWorkflowReim.setAmount(amount);
+        danWorkflowReim.setAnleihen(danWorkflowReim.getAnleihen());
+        danWorkflowReim.setBalance(balance);
         insertDanWorkflowReimgoods(danWorkflowReim);
         return danWorkflowReimMapper.updateDanWorkflowReim(danWorkflowReim);
     }
