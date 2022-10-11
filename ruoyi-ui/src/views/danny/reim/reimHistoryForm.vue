@@ -15,6 +15,12 @@
       <el-form-item label="申请时间" >
         <el-input v-model="form.createTime" />
       </el-form-item>
+      <el-form-item label="查看附件" >
+<!--        <el-input v-model="form.attachmentLink" />-->
+        <template slot-scope="scope">
+          <a @click="preView(form.attachmentLink)" target="_blank" class="buttonText" style="color: #00afff;text-decoration:underline">附件</a>
+        </template>
+      </el-form-item>
     </el-form>
     </div>
     <div  v-for="(historyData, index) in fromData"
@@ -62,6 +68,21 @@
         historyFromData(this.businessKey).then(response => {
           this.fromData = response.data
         })
+      },
+
+      /**文档预览**/
+      preView(filePath){
+        console.info(filePath);
+        if (null == filePath || '' == filePath) {
+          this.$alert('申请人没有上传附件哦', '消息提示', {
+            confirmButtonText: '确定',
+          });
+        }else {
+          // let originUrl = 'http://127.0.0.1:80/ruoyi-admin/';   //要预览文件的访问地址'
+          window.open(filePath);
+        }
+        // const bb = originUrl  + aa;
+        // window.open('http://127.0.0.1:8012/onlinePreview?url='+encodeURIComponent(Base64.encode(bb)));
       },
     }
 

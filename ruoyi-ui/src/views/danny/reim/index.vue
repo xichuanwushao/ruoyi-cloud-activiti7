@@ -195,6 +195,13 @@
 <!--        </template>-->
 <!--      </el-table-column>-->
 <!--      <el-table-column label="附件" align="center" prop="attachmentLink" />-->
+
+      <el-table-column label="附件" align="center" prop="attachmentLink">
+        <template slot-scope="scope">
+          <a @click="preView(scope.row.attachmentLink)" target="_blank" class="buttonText" style="color: #00afff;text-decoration:underline">附件</a>
+        </template>
+      </el-table-column>
+
 <!--      <el-table-column label="流程实例id" align="center" prop="instanceId" />-->
 <!--      <el-table-column label="创建者名称" align="center" prop="createName" />-->
           <el-table-column label="申请时间" align="center" prop="createTime" width="180">
@@ -218,13 +225,13 @@
                      icon="el-icon-edit"
                      @click="checkTheSchedule(scope.row)" v-hasPermi="['danny:reim:edit']" >查看进度
           </el-button>
-<!--          <el-button-->
-<!--            size="mini"-->
-<!--            type="text"-->
-<!--            icon="el-icon-edit"-->
-<!--            @click="handleUpdate(scope.row)"-->
-<!--            v-hasPermi="['danny:reim:edit']"-->
-<!--          >修改</el-button>-->
+          <el-button
+            size="mini"
+            type="text"
+            icon="el-icon-edit"
+            @click="handleUpdate(scope.row)"
+            v-hasPermi="['danny:reim:edit']"
+          >修改</el-button>
 <!--          <el-button-->
 <!--            size="mini"-->
 <!--            type="text"-->
@@ -315,9 +322,9 @@
 <!--            placeholder="请选择结束时间">-->
 <!--          </el-date-picker>-->
 <!--        </el-form-item>-->
-<!--        <el-form-item label="附件">-->
-<!--          <file-upload v-model="form.attachmentLink"/>-->
-<!--        </el-form-item>-->
+        <el-form-item label="附件">
+          <file-upload v-model="form.attachmentLink"/>
+        </el-form-item>
 <!--        <el-form-item label="流程实例id" prop="instanceId">-->
 <!--          <el-input v-model="form.instanceId" placeholder="请输入流程实例id" />-->
 <!--        </el-form-item>-->
@@ -684,6 +691,20 @@ export default {
     checkTheSchedule(row) {
       this.modelerUrl = row.bpmnUrl;
       this.modelVisible = true
+    },
+    /**文档预览**/
+    preView(filePath){
+      console.info(filePath);
+      if (null == filePath || '' == filePath) {
+        this.$alert('请上传附件后预览', '消息提示', {
+          confirmButtonText: '确定',
+        });
+      }else {
+        // let originUrl = 'http://127.0.0.1:80/ruoyi-admin/';   //要预览文件的访问地址'
+        window.open(filePath);
+      }
+      // const bb = originUrl  + aa;
+      // window.open('http://127.0.0.1:8012/onlinePreview?url='+encodeURIComponent(Base64.encode(bb)));
     },
   }
 };
