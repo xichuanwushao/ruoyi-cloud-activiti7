@@ -18,6 +18,7 @@ import com.ruoyi.system.api.model.LoginUser;
 import org.activiti.api.process.model.ProcessInstance;
 import org.activiti.api.process.model.builders.ProcessPayloadBuilder;
 import org.activiti.api.process.runtime.ProcessRuntime;
+import org.activiti.engine.RuntimeService;
 import org.activiti.engine.TaskService;
 import org.activiti.engine.task.Task;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +32,7 @@ import com.ruoyi.danny.domain.DanWorkflowReimgoods;
 import com.ruoyi.danny.mapper.DanWorkflowReimMapper;
 import com.ruoyi.danny.domain.DanWorkflowReim;
 import com.ruoyi.danny.service.IDanWorkflowReimService;
-
+import org.activiti.api.model.shared.model.VariableInstance;
 /**
  * 报销申请Service业务层处理
  * 
@@ -55,6 +56,10 @@ public class DanWorkflowReimServiceImpl implements IDanWorkflowReimService
 
     @Autowired
     private TaskService taskService;
+
+    @Autowired
+    private RuntimeService runtimeService;
+
     /**
      * 查询报销申请
      * 
@@ -181,6 +186,31 @@ public class DanWorkflowReimServiceImpl implements IDanWorkflowReimService
         danWorkflowReim.setAnleihen(danWorkflowReim.getAnleihen());
         danWorkflowReim.setBalance(balance);
         insertDanWorkflowReimgoods(danWorkflowReim);
+
+        /**
+         * 给流程实例加入变量 这里附件的地址
+         * **/
+        if(danWorkflowReim.getAttachmentLink()!=null){
+            LoginUser loginUser = SecurityUtils.getLoginUser();
+            SysUser sysUser = loginUser.getSysUser();
+            securityUtil.logInAs(sysUser.getUserName());
+            List<VariableInstance> list = processRuntime.variables(ProcessPayloadBuilder
+                    .variables()
+                    .withProcessInstanceId(danWorkflowReim.getInstanceId())
+                    .build()
+            );
+            boolean attachmentLinkflag = false;
+            for(VariableInstance vi : list){
+                System.out.println("getProcessInstanceId：" + vi.getProcessInstanceId());
+                if("attachmentLink".equals(vi.getName())){
+                    attachmentLinkflag=true;
+                }
+            }
+            if(!attachmentLinkflag){
+                runtimeService.setVariable(danWorkflowReim.getInstanceId(),"attachmentLink",danWorkflowReim.getAttachmentLink());
+            }
+        }
+
         return danWorkflowReimMapper.updateDanWorkflowReim(danWorkflowReim);
     }
 

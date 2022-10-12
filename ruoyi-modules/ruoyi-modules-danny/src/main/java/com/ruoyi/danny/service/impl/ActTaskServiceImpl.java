@@ -13,6 +13,8 @@ import com.ruoyi.danny.service.IActWorkflowFormDataService;
 import com.ruoyi.danny.util.SecurityUtil;
 import com.ruoyi.system.api.domain.SysUser;
 import com.ruoyi.system.api.model.LoginUser;
+import org.activiti.api.process.model.builders.ProcessPayloadBuilder;
+import org.activiti.api.process.runtime.ProcessRuntime;
 import org.activiti.api.runtime.shared.query.Pageable;
 import org.activiti.api.task.model.Task;
 import org.activiti.api.task.model.builders.TaskPayloadBuilder;
@@ -30,7 +32,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
-
+import org.activiti.api.model.shared.model.VariableInstance;
 @Service
 public class ActTaskServiceImpl implements IActTaskService {
 
@@ -48,6 +50,9 @@ public class ActTaskServiceImpl implements IActTaskService {
 
     @Autowired
     private IActWorkflowFormDataService actWorkflowFormDataService;
+
+    @Autowired
+    private ProcessRuntime processRuntime;
 
     @Override
     public Page<ActTaskDTO> selectProcessDefinitionList(PageDomain pageDomain) {
@@ -68,7 +73,25 @@ public class ActTaskServiceImpl implements IActTaskService {
             list.addAll(actTaskDTOS);
 
         }
-        return list;
+        /****
+         * 获取流程实例中的变量 并返回 这里取出变量中附件的地址
+         */
+        Page<ActTaskDTO> listAfter = new Page<ActTaskDTO>();
+        for(ActTaskDTO actTaskDTO : list){
+            List<VariableInstance> variableInstanceList =  processRuntime.variables(ProcessPayloadBuilder
+                    .variables()
+                    .withProcessInstanceId(actTaskDTO.getInstanceId())
+                    .build()
+            );
+            for(VariableInstance vi : variableInstanceList){
+                if("attachmentLink".equals(vi.getName())){
+                    actTaskDTO.setAttachmentLink(vi.getValue());
+                }
+            }
+            listAfter.add(actTaskDTO);
+        }
+
+        return listAfter;
     }
 
 

@@ -21,8 +21,10 @@ public class ActTaskDTO
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createdDate;
     private String instanceName;
+    private String instanceId;
     private String definitionKey;
     private String businessKey;
+    private String attachmentLink;
 
     public ActTaskDTO() {
     }
@@ -33,8 +35,17 @@ public class ActTaskDTO
         this.status = task.getStatus().toString();
         this.createdDate = task.getCreatedDate();
         this.instanceName = processInstance.getName();
+        this.instanceId = processInstance.getProcessInstanceId();
         this.definitionKey=processInstance.getProcessDefinitionKey();
         this.businessKey=processInstance.getBusinessKey();
+    }
+
+    public String getAttachmentLink() {
+        return attachmentLink;
+    }
+
+    public void setAttachmentLink(String attachmentLink) {
+        this.attachmentLink = attachmentLink;
     }
 
     public String getId() {
@@ -91,5 +102,13 @@ public class ActTaskDTO
 
     public void setBusinessKey(String businessKey) {
         this.businessKey = businessKey;
+    }
+
+    public String getInstanceId() {
+        return instanceId;
+    }
+
+    public void setInstanceId(String instanceId) {
+        this.instanceId = instanceId;
     }
 }
