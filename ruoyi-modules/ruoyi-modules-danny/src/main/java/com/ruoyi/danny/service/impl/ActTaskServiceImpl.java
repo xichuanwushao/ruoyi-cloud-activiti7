@@ -84,10 +84,10 @@ public class ActTaskServiceImpl implements IActTaskService {
                     .build()
             );
             for(VariableInstance vi : variableInstanceList){
-                if("attachmentLink".equals(vi.getName())){
+                if("attachmentLink".equals(vi.getName())) { //获取附件
                     actTaskDTO.setAttachmentLink(vi.getValue());
                 }
-                if("assignee".equals(vi.getName())){
+                if("assignee".equals(vi.getName())){        //获取申请人
                     actTaskDTO.setAssignee(vi.getValue());
                 }
             }
