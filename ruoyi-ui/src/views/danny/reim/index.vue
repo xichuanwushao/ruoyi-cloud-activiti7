@@ -225,7 +225,7 @@
                      icon="el-icon-edit"
                      @click="checkTheSchedule(scope.row)" v-hasPermi="['danny:reim:edit']" >查看进度
           </el-button>
-          <el-button
+          <el-button v-if="0==scope.row.status"
             size="mini"
             type="text"
             icon="el-icon-edit"
