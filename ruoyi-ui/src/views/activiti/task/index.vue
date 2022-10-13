@@ -8,7 +8,7 @@
       <el-table-column label="任务节点名称" align="center" prop="name"/>
       <el-table-column label="任务状态" align="center" prop="status"/>
       <el-table-column label="附件" align="center" prop="attachmentLink">
-        <template slot-scope="scope">
+        <template slot-scope="scope"  v-if="scope.row.attachmentLink!=null">
           <a @click="preView(scope.row.attachmentLink)" target="_blank" class="buttonText" style="color: #00afff;text-decoration:underline">附件</a>
         </template>
       </el-table-column>
