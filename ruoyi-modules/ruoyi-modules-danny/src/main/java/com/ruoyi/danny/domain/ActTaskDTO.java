@@ -25,6 +25,7 @@ public class ActTaskDTO
     private String definitionKey;
     private String businessKey;
     private String attachmentLink;
+    private String assignee;
 
     public ActTaskDTO() {
     }
@@ -40,6 +41,7 @@ public class ActTaskDTO
         this.businessKey=processInstance.getBusinessKey();
     }
 
+
     public String getAttachmentLink() {
         return attachmentLink;
     }
@@ -47,6 +49,7 @@ public class ActTaskDTO
     public void setAttachmentLink(String attachmentLink) {
         this.attachmentLink = attachmentLink;
     }
+
 
     public String getId() {
         return id;
@@ -110,5 +113,13 @@ public class ActTaskDTO
 
     public void setInstanceId(String instanceId) {
         this.instanceId = instanceId;
+    }
+
+    public String getAssignee() {
+        return assignee;
+    }
+
+    public void setAssignee(String assignee) {
+        this.assignee = assignee;
     }
 }

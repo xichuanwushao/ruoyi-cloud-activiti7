@@ -87,6 +87,9 @@ public class ActTaskServiceImpl implements IActTaskService {
                 if("attachmentLink".equals(vi.getName())){
                     actTaskDTO.setAttachmentLink(vi.getValue());
                 }
+                if("assignee".equals(vi.getName())){
+                    actTaskDTO.setAssignee(vi.getValue());
+                }
             }
             listAfter.add(actTaskDTO);
         }

@@ -124,6 +124,7 @@ public class DanWorkflowReimServiceImpl implements IDanWorkflowReimService
                 .withName(sysUser.getNickName()+"的报销申请")
                 .withBusinessKey(id)
                 .withVariable("deptLeader",join)
+                .withVariable("assignee",sysUser.getNickName())
                 .build());
         danWorkflowReim.setReimId(id);
         danWorkflowReim.setInstanceId(processInstance.getId());
