@@ -169,28 +169,30 @@ public class DanWorkflowReimServiceImpl implements IDanWorkflowReimService
     {
         danWorkflowReim.setUpdateTime(DateUtils.getNowDate());
         danWorkflowReimMapper.deleteDanWorkflowReimgoodsByReimId(danWorkflowReim.getReimId());
+        //
+        if(danWorkflowReim.getReimId()==null){ //避免ReimEndStateListener的notify调用执行
+            List<DanWorkflowReimgoods> danWorkflowReimgoods = danWorkflowReim.getDanWorkflowReimgoodsList();
+            BigDecimal amount = new BigDecimal(0);
+            BigDecimal balance = new BigDecimal(0);
+            BigDecimal anleihen = new BigDecimal(0);
+            for(DanWorkflowReimgoods reimgood : danWorkflowReimgoods){
+                amount = amount.add(reimgood.getMoney());
+            }
+            if(danWorkflowReim.getAnleihen()==null){
+                danWorkflowReim.setAnleihen(anleihen);
+            }
+            balance =amount.subtract(danWorkflowReim.getAnleihen());
 
-        List<DanWorkflowReimgoods> danWorkflowReimgoods = danWorkflowReim.getDanWorkflowReimgoodsList();
-        BigDecimal amount = new BigDecimal(0);
-        BigDecimal balance = new BigDecimal(0);
-        BigDecimal anleihen = new BigDecimal(0);
-        for(DanWorkflowReimgoods reimgood : danWorkflowReimgoods){
-            amount = amount.add(reimgood.getMoney());
+            danWorkflowReim.setAmount(amount);
+            danWorkflowReim.setAnleihen(danWorkflowReim.getAnleihen());
+            danWorkflowReim.setBalance(balance);
         }
-        if(danWorkflowReim.getAnleihen()==null){
-            danWorkflowReim.setAnleihen(anleihen);
-        }
-        balance =amount.subtract(danWorkflowReim.getAnleihen());
-
-        danWorkflowReim.setAmount(amount);
-        danWorkflowReim.setAnleihen(danWorkflowReim.getAnleihen());
-        danWorkflowReim.setBalance(balance);
         insertDanWorkflowReimgoods(danWorkflowReim);
 
         /**
          * 给流程实例加入变量 这里附件的地址
          * **/
-        if(danWorkflowReim.getAttachmentLink()!=null){
+        if(danWorkflowReim.getAttachmentLink()!=null ){
             LoginUser loginUser = SecurityUtils.getLoginUser();
             SysUser sysUser = loginUser.getSysUser();
             securityUtil.logInAs(sysUser.getUserName());

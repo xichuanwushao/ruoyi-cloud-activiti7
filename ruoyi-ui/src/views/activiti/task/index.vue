@@ -7,6 +7,11 @@
       <el-table-column label="流程名称" align="center" prop="instanceName"/>
       <el-table-column label="任务节点名称" align="center" prop="name"/>
       <el-table-column label="任务状态" align="center" prop="status"/>
+      <el-table-column label="附件" align="center" prop="attachmentLink">
+        <template slot-scope="scope">
+          <a @click="preView(scope.row.attachmentLink)" target="_blank" class="buttonText" style="color: #00afff;text-decoration:underline">附件</a>
+        </template>
+      </el-table-column>
       <el-table-column label="办理人" align="center" prop="assignee"/>
       <el-table-column label="创建时间" align="center" prop="createdDate"/>
 
@@ -182,6 +187,20 @@
           this.open = false;
           this.getList();
         });
+      },
+      /**文档预览**/
+      preView(filePath){
+        console.info(filePath);
+        if (null == filePath || '' == filePath) {
+          this.$alert('申请人没有上传哦', '消息提示', {
+            confirmButtonText: '确定',
+          });
+        }else {
+          // let originUrl = 'http://127.0.0.1:80/ruoyi-admin/';   //要预览文件的访问地址'
+          window.open(filePath);
+        }
+        // const bb = originUrl  + aa;
+        // window.open('http://127.0.0.1:8012/onlinePreview?url='+encodeURIComponent(Base64.encode(bb)));
       },
     }
   };
