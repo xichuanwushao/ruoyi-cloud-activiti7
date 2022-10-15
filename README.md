@@ -1,8 +1,8 @@
 
 ## 平台简介
-* 众所周知,activiti7的新特性必须结合Spring Security来使用, 如果系统未使用Security的时候如何使用新特性呢？ 
-  这个项目主要为了解决若依微服务未使用SpringSecrity的情况下 ,如何使用Activiti7的新特性。这里采用了模拟登录
-  SpringSecrity方式进行activiti功能调用,把danny同学前后端分离的工作流项目,修改为若依微服务版本3.5.0。
+*基RuoYi-cloud3.5.0 + activiti7 的工作流管理 ~
+
+记得右上角点个 star 持续关注更新哟~~
 ## 内置功能
 * 1.  我的OA：报销申请,编写报销单，下载pdf报销单,上传附件(下载后签字)。
 * 2.  待办任务：查看pdf报销单,领导进行审批。
@@ -84,3 +84,7 @@
 * Nacos 2.0.2
 * Node.js 14.0.0
 * npm 6.14.4
+#### 问题难点
+* 众所周知,activiti7的新特性必须结合Spring Security来使用, 如果系统未使用Security的时候如何使用新特性呢？
+  这个项目主要为了解决若依微服务未使用SpringSecrity的情况下 ,如何使用Activiti7的新特性。这里采用了模拟登录
+  SpringSecrity方式进行activiti功能调用,把danny同学前后端分离的工作流项目,修改为若依微服务版本3.5.0。
