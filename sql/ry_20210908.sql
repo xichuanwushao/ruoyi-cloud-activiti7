@@ -69,7 +69,7 @@ CREATE TABLE `dan_workflow_leave`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `dan_workflow_reim`;
 CREATE TABLE `dan_workflow_reim`  (
-                                      `reim_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '报销申请id',
+                                      `reim_id` varchar(36) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '报销申请id',
                                       `amount` decimal(10, 2) NULL DEFAULT NULL COMMENT '总金额',
                                       `anleihen` decimal(10, 2) NULL DEFAULT NULL COMMENT '借款',
                                       `balance` decimal(10, 2) NULL DEFAULT NULL COMMENT '差额',
@@ -86,7 +86,7 @@ CREATE TABLE `dan_workflow_reim`  (
                                       `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
                                       `update_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
                                       PRIMARY KEY (`reim_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '报销申请' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '报销申请' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of dan_workflow_reim
@@ -98,7 +98,7 @@ CREATE TABLE `dan_workflow_reim`  (
 DROP TABLE IF EXISTS `dan_workflow_reimgoods`;
 CREATE TABLE `dan_workflow_reimgoods`  (
                                            `reimgoods_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '报销条目id',
-                                           `reim_id` bigint(20) NOT NULL COMMENT '报销申请id',
+                                           `reim_id` varchar(36) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '报销申请id',
                                            `title` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '条目标题',
                                            `type` tinyint(4) NULL DEFAULT NULL COMMENT '条目类型',
                                            `money` decimal(10, 2) NULL DEFAULT NULL COMMENT '条目金额',
@@ -258,7 +258,7 @@ CREATE TABLE `sys_dict_data`  (
                                   `update_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
                                   `remark` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '备注',
                                   PRIMARY KEY (`dict_code`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 127 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '字典数据表' ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 144 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '字典数据表' ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of sys_dict_data
@@ -297,6 +297,22 @@ INSERT INTO `sys_dict_data` VALUES (123, 3, '失败', '2', 'activiti_flow_type',
 INSERT INTO `sys_dict_data` VALUES (124, 1, '年假', '年假', 'activiti_leave_type', NULL, 'default', 'N', '0', 'admin', '2022-09-15 17:56:43', '', NULL, NULL);
 INSERT INTO `sys_dict_data` VALUES (125, 2, '病假', '病假', 'activiti_leave_type', NULL, 'default', 'N', '0', 'admin', '2022-09-15 17:57:01', '', NULL, NULL);
 INSERT INTO `sys_dict_data` VALUES (126, 3, '事假', '事假', 'activiti_leave_type', NULL, 'default', 'N', '0', 'admin', '2022-09-15 17:57:11', '', NULL, NULL);
+INSERT INTO `sys_dict_data` VALUES (127, 1, '普通报销', '1', 'workflow_reim_type', NULL, 'default', 'N', '0', 'admin', '2022-09-27 19:50:19', 'admin', '2022-09-27 19:51:50', '普通报销');
+INSERT INTO `sys_dict_data` VALUES (128, 2, '差旅报销', '2', 'workflow_reim_type', NULL, 'default', 'N', '0', 'admin', '2022-09-27 19:50:45', 'admin', '2022-09-27 19:51:55', '差旅报销');
+INSERT INTO `sys_dict_data` VALUES (129, 1, '审批中', '0', 'workflow_reim_status', NULL, 'default', 'N', '0', 'admin', '2022-09-27 19:52:16', 'guanxing', '2022-10-10 20:09:01', NULL);
+INSERT INTO `sys_dict_data` VALUES (130, 2, '已拒绝', '2', 'workflow_reim_status', NULL, 'default', 'N', '0', 'admin', '2022-09-27 19:52:27', '', NULL, NULL);
+INSERT INTO `sys_dict_data` VALUES (131, 3, '审批通过', '1', 'workflow_reim_status', NULL, 'default', 'N', '0', 'admin', '2022-09-27 19:53:00', 'guanxing', '2022-10-10 20:14:14', NULL);
+INSERT INTO `sys_dict_data` VALUES (133, 1, '办公用品', '1', 'workflow_reimgoods_type', NULL, 'default', 'N', '0', 'admin', '2022-09-27 19:55:08', '', NULL, NULL);
+INSERT INTO `sys_dict_data` VALUES (134, 2, '招待费', '2', 'workflow_reimgoods_type', NULL, 'default', 'N', '0', 'admin', '2022-09-27 19:55:20', '', NULL, NULL);
+INSERT INTO `sys_dict_data` VALUES (135, 3, '采购费', '3', 'workflow_reimgoods_type', NULL, 'default', 'N', '0', 'admin', '2022-09-27 19:55:32', '', NULL, NULL);
+INSERT INTO `sys_dict_data` VALUES (136, 4, '劳务费', '4', 'workflow_reimgoods_type', NULL, 'default', 'N', '0', 'admin', '2022-09-27 19:55:45', '', NULL, NULL);
+INSERT INTO `sys_dict_data` VALUES (137, 5, '培训费', '5', 'workflow_reimgoods_type', NULL, 'default', 'N', '0', 'admin', '2022-09-27 19:55:58', '', NULL, NULL);
+INSERT INTO `sys_dict_data` VALUES (138, 6, '维修费', '6', 'workflow_reimgoods_type', NULL, 'default', 'N', '0', 'admin', '2022-09-27 19:56:12', '', NULL, NULL);
+INSERT INTO `sys_dict_data` VALUES (139, 7, '办公费', '7', 'workflow_reimgoods_type', NULL, 'default', 'N', '0', 'admin', '2022-09-27 19:56:42', 'admin', '2022-09-27 19:57:05', NULL);
+INSERT INTO `sys_dict_data` VALUES (140, 8, '其他', '8', 'workflow_reimgoods_type', NULL, 'default', 'N', '0', 'admin', '2022-09-27 19:56:58', '', NULL, NULL);
+INSERT INTO `sys_dict_data` VALUES (141, 1, '进行中', '0', 'emos_reim_status', NULL, 'default', 'N', '0', 'guanxing', '2022-10-10 20:06:58', '', NULL, NULL);
+INSERT INTO `sys_dict_data` VALUES (142, 2, '成功', '1', 'emos_reim_status', NULL, 'default', 'N', '0', 'guanxing', '2022-10-10 20:07:19', '', NULL, NULL);
+INSERT INTO `sys_dict_data` VALUES (143, 3, '失败', '2', 'emos_reim_status', NULL, 'default', 'N', '0', 'guanxing', '2022-10-10 20:07:48', '', NULL, NULL);
 
 -- ----------------------------
 -- Table structure for sys_dict_type
@@ -314,7 +330,7 @@ CREATE TABLE `sys_dict_type`  (
                                   `remark` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '备注',
                                   PRIMARY KEY (`dict_id`) USING BTREE,
                                   UNIQUE INDEX `dict_type`(`dict_type`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 48 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '字典类型表' ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 51 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '字典类型表' ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of sys_dict_type
@@ -331,6 +347,9 @@ INSERT INTO `sys_dict_type` VALUES (9, '操作类型', 'sys_oper_type', '0', 'ad
 INSERT INTO `sys_dict_type` VALUES (10, '系统状态', 'sys_common_status', '0', 'admin', '2022-04-24 19:37:30', '', NULL, '登录状态列表');
 INSERT INTO `sys_dict_type` VALUES (46, 'OA状态', 'activiti_flow_type', '0', 'admin', '2022-09-15 17:54:04', 'admin', '2022-09-15 17:54:35', 'OA流程状态');
 INSERT INTO `sys_dict_type` VALUES (47, '请假类型', 'activiti_leave_type', '0', 'admin', '2022-09-15 17:56:20', '', NULL, '请假类型');
+INSERT INTO `sys_dict_type` VALUES (48, '报销类型', 'workflow_reim_type', '0', 'admin', '2022-09-27 17:58:42', 'admin', '2022-09-27 18:01:39', '报销类型');
+INSERT INTO `sys_dict_type` VALUES (49, '报销状态', 'workflow_reim_status', '0', 'admin', '2022-09-27 18:01:30', '', NULL, '报销状态');
+INSERT INTO `sys_dict_type` VALUES (50, '报销条目类型', 'workflow_reimgoods_type', '0', 'admin', '2022-09-27 18:27:10', 'admin', '2022-09-27 18:27:50', '报销条目类型');
 
 -- ----------------------------
 -- Table structure for sys_job
@@ -392,7 +411,7 @@ CREATE TABLE `sys_logininfor`  (
                                    `msg` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '提示信息',
                                    `access_time` datetime(0) NULL DEFAULT NULL COMMENT '访问时间',
                                    PRIMARY KEY (`info_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1001 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '系统访问记录' ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 1688 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '系统访问记录' ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of sys_logininfor
@@ -524,6 +543,12 @@ INSERT INTO `sys_menu` VALUES (1171, '请假修改', 1163, 3, '#', '', NULL, 1, 
 INSERT INTO `sys_menu` VALUES (1172, '请假删除', 1163, 4, '#', '', NULL, 1, 0, 'F', '0', '0', 'workflow:leave:remove', '#', 'admin', '2020-10-28 22:30:57', '', NULL, '');
 INSERT INTO `sys_menu` VALUES (1173, '请假导出', 1163, 5, '#', '', NULL, 1, 0, 'F', '0', '0', 'workflow:leave:export', '#', 'admin', '2020-10-28 22:30:57', '', NULL, '');
 INSERT INTO `sys_menu` VALUES (1174, '流程定义', 5, 1, 'definition', 'activiti/definition/index', NULL, 1, 0, 'C', '0', '0', 'activiti:modeler', '#', 'admin', '2020-09-14 23:09:31', '', NULL, '');
+INSERT INTO `sys_menu` VALUES (1176, '报销申请', 1166, 1, 'reim', 'danny/reim/index', NULL, 1, 0, 'C', '0', '0', 'danny:reim:list', '#', 'admin', '2022-09-27 18:44:09', '', NULL, '报销申请菜单');
+INSERT INTO `sys_menu` VALUES (1177, '报销申请查询', 1176, 1, '#', '', NULL, 1, 0, 'F', '0', '0', 'danny:reim:query', '#', 'admin', '2022-09-27 18:44:09', '', NULL, '');
+INSERT INTO `sys_menu` VALUES (1178, '报销申请新增', 1176, 2, '#', '', NULL, 1, 0, 'F', '0', '0', 'danny:reim:add', '#', 'admin', '2022-09-27 18:44:09', '', NULL, '');
+INSERT INTO `sys_menu` VALUES (1179, '报销申请修改', 1176, 3, '#', '', NULL, 1, 0, 'F', '0', '0', 'danny:reim:edit', '#', 'admin', '2022-09-27 18:44:09', '', NULL, '');
+INSERT INTO `sys_menu` VALUES (1180, '报销申请删除', 1176, 4, '#', '', NULL, 1, 0, 'F', '0', '0', 'danny:reim:remove', '#', 'admin', '2022-09-27 18:44:09', '', NULL, '');
+INSERT INTO `sys_menu` VALUES (1181, '报销申请导出', 1176, 5, '#', '', NULL, 1, 0, 'F', '0', '0', 'danny:reim:export', '#', 'admin', '2022-09-27 18:44:09', '', NULL, '');
 
 -- ----------------------------
 -- Table structure for sys_notice
@@ -602,6 +627,7 @@ INSERT INTO `sys_post` VALUES (1, 'ceo', '董事长', 1, '0', 'admin', '2022-04-
 INSERT INTO `sys_post` VALUES (2, 'se', '部门经理', 2, '0', 'admin', '2022-04-24 19:37:30', 'admin', '2022-09-08 18:48:54', '');
 INSERT INTO `sys_post` VALUES (3, 'hr', '人力资源', 3, '0', 'admin', '2022-04-24 19:37:30', '', NULL, '');
 INSERT INTO `sys_post` VALUES (4, 'user', '普通员工', 4, '0', 'admin', '2022-04-24 19:37:30', '', NULL, '');
+INSERT INTO `sys_post` VALUES (5, 'cfo', '财务', 5, '0', 'admin', '2022-10-10 00:40:15', '', NULL, NULL);
 
 -- ----------------------------
 -- Table structure for sys_role
@@ -673,6 +699,12 @@ INSERT INTO `sys_role_menu` VALUES (2, 1170);
 INSERT INTO `sys_role_menu` VALUES (2, 1171);
 INSERT INTO `sys_role_menu` VALUES (2, 1172);
 INSERT INTO `sys_role_menu` VALUES (2, 1173);
+INSERT INTO `sys_role_menu` VALUES (2, 1176);
+INSERT INTO `sys_role_menu` VALUES (2, 1177);
+INSERT INTO `sys_role_menu` VALUES (2, 1178);
+INSERT INTO `sys_role_menu` VALUES (2, 1179);
+INSERT INTO `sys_role_menu` VALUES (2, 1180);
+INSERT INTO `sys_role_menu` VALUES (2, 1181);
 INSERT INTO `sys_role_menu` VALUES (3, 2);
 INSERT INTO `sys_role_menu` VALUES (3, 3);
 INSERT INTO `sys_role_menu` VALUES (3, 109);
@@ -792,6 +824,7 @@ INSERT INTO `sys_user_post` VALUES (2, 2);
 INSERT INTO `sys_user_post` VALUES (13, 4);
 INSERT INTO `sys_user_post` VALUES (14, 2);
 INSERT INTO `sys_user_post` VALUES (15, 3);
+INSERT INTO `sys_user_post` VALUES (15, 5);
 INSERT INTO `sys_user_post` VALUES (16, 2);
 INSERT INTO `sys_user_post` VALUES (17, 4);
 INSERT INTO `sys_user_post` VALUES (18, 4);
