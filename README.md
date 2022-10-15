@@ -12,10 +12,15 @@
 * Node.js 14.0.0
 * npm 6.14.4
 ## 内置功能
+* 1.  我的OA：报销申请,编写报销单，下载pdf报销单,上传附件(下载后签字)。
+* 2.  待办任务：查看pdf报销单,领导进行审批。
+* 3.  历史流程：查看pdf报销单,财务审批和历史流程查看。
+  
 * 1.  我的OA：上传请假申请。
 * 2.  待办任务：领导进行审批。
 * 3.  历史流程：HR审批和历史流程查看。
-* 4.  流程定义：可以在线设计和上传部署查看导出流程。
+  
+* 1.  流程定义：可以在线设计和上传部署查看导出流程。
 ## 在线体验
 * http://152.136.153.155:9091/
 * 测试账号
@@ -30,10 +35,14 @@
 ## 前端代码说明
 * 前端vue2.0版本,对应ruoyi-ui,原生版本
 * 前端vue3.0版本,对应ruiyi-vite,由SDF同学进行维护（开发中）
-## vue2.0版本演示图
+## vue2.0版本演示图（已完成开发 ruoyi-ui）
 <table>
     <tr>
-        <td><img src="https://image-1304556315.cos.ap-beijing.myqcloud.com/his_list2.png"/></td>
+        <td><img src="https://image-1304556315.cos.ap-beijing.myqcloud.com/baoxiao01.png"/></td>
+        <td><img src="https://image-1304556315.cos.ap-beijing.myqcloud.com/baoxiao-02.png"/></td>
+    </tr>
+    <tr>
+        <td><img src="https://image-1304556315.cos.ap-beijing.myqcloud.com/baoxiao03.png"/></td>
         <td><img src="https://image-1304556315.cos.ap-beijing.myqcloud.com/oa_list.png"/></td>
     </tr>
     <tr>
@@ -58,7 +67,7 @@
     </tr>
 </table>
 
-## vue3.0版本演示图
+## vue3.0版本演示图（未完成开发 ruiyi-vite）
 <table>
     <tr>
         <td><img src="https://image-1304556315.cos.ap-beijing.myqcloud.com/vue301.png"/></td>
