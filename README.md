@@ -24,10 +24,7 @@
 * 部门领导2：zhaoyun / 123456
 * 人事：zhugeliang / 123456
 * (机器资源小,流程绘制导入按钮不支持线上体验)
-## 前端代码说明
-* 前端vue2.0版本,对应ruoyi-ui,原生版本
-* 前端vue3.0版本,对应ruiyi-vite,由SDF同学进行维护（开发中）
-## vue2.0版本演示图（已完成开发 ruoyi-ui）
+## vue2版本演示图（运行ruoyi-ui项目 若依微服务原生版本）
 <table>
     <tr>
         <td><img src="https://image-1304556315.cos.ap-beijing.myqcloud.com/baoxiao01.png"/></td>
@@ -59,7 +56,7 @@
     </tr>
 </table>
 
-## vue3.0版本演示图（未完成开发 ruiyi-vite）
+## vue3版本演示图（还在开发中 运行ruiyi-vite项目 由SDF同学进行维护）
 <table>
     <tr>
         <td><img src="https://image-1304556315.cos.ap-beijing.myqcloud.com/vue301.png"/></td>
@@ -67,7 +64,7 @@
     </tr>
 </table>
 
-## 交流群
+## QQ交流群
 * 欢迎star项目 免验证加QQ交流群：852160973
 ## 启动说明
 需要对以下模块进行启动 启动顺序随意
