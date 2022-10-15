@@ -3,14 +3,6 @@
 * 众所周知,activiti7的新特性必须结合Spring Security来使用, 如果系统未使用Security的时候如何使用新特性呢？ 
   这个项目主要为了解决若依微服务未使用SpringSecrity的情况下 ,如何使用Activiti7的新特性。这里采用了模拟登录
   SpringSecrity方式进行activiti功能调用,把danny同学前后端分离的工作流项目,修改为若依微服务版本3.5.0。
-#### 友情链接
-* 感谢若依大佬开源的微服务项目:https://gitee.com/y_project/RuoYi-Cloud
-* 感谢danny同学开源的工作流项目:https://gitee.com/smell2/ruoyi-vue-activiti
-#### 插件版本
-* RuoYi-Cloud 3.5.0
-* Nacos 2.0.2
-* Node.js 14.0.0
-* npm 6.14.4
 ## 内置功能
 * 1.  我的OA：报销申请,编写报销单，下载pdf报销单,上传附件(下载后签字)。
 * 2.  待办任务：查看pdf报销单,领导进行审批。
@@ -84,4 +76,11 @@
 * RuoYiGatewayApplication
 * RuoYiDannyApplication( 工作流模块 )
 * RuoYiFileApplication( 文件服务 新建流程图导入按钮使用 )
-
+#### 友情链接
+* 感谢若依大佬开源的微服务项目:https://gitee.com/y_project/RuoYi-Cloud
+* 感谢danny同学开源的工作流项目:https://gitee.com/smell2/ruoyi-vue-activiti
+#### 插件版本
+* RuoYi-Cloud 3.5.0
+* Nacos 2.0.2
+* Node.js 14.0.0
+* npm 6.14.4
