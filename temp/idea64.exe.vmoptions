@@ -1,6 +1,6 @@
 -server
--Xms6g
--Xmx12g
+-Xms2048m
+-Xmx2048m
 -XX:ReservedCodeCacheSize=2048m
 -XX:+UseCompressedOops
 -XX:+UseConcMarkSweepGC
@@ -14,3 +14,5 @@
 -Djdk.attach.allowAttachSelf=true
 -Dkotlinx.coroutines.debug=off
 -Djdk.module.illegalAccess.silent=true
+
+
