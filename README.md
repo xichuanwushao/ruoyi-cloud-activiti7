@@ -92,4 +92,6 @@
   即可 
 * 详细操作见
 * https://gitee.com/avatarwx/ruoyi-cloud-activiti7/wikis/postman
-  
+#### 常见问题及报错解决
+* 常见问题及报错解决见
+* https://gitee.com/avatarwx/ruoyi-cloud-activiti7/wikis/Home
