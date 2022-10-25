@@ -86,3 +86,10 @@
 * 众所周知,activiti7的新特性必须结合Spring Security来使用, 如果系统未使用Security的时候如何使用新特性呢？
   这个项目主要为了解决若依微服务未使用SpringSecrity的情况下 ,如何使用Activiti7的新特性。这里采用了模拟登录
   SpringSecrity方式进行activiti功能调用,把danny同学前后端分离的工作流项目,修改为若依微服务版本3.5.0。
+#### 接口文档及调试
+* 为了方遍大家调试 楼主已经整理出了流程定义审批查看主要的接口
+  调试使用postman进行,打开postman,点击导入，选择ruoyi-cloud-activiti7.postman_collection2.0.json文件
+  即可 
+* 详细操作见
+* https://gitee.com/avatarwx/ruoyi-cloud-activiti7/wikis/postman
+  
