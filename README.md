@@ -76,7 +76,6 @@
 #### 友情链接
 * 感谢若依大佬开源的微服务项目:https://gitee.com/y_project/RuoYi-Cloud
 * 感谢danny同学开源的工作流项目:https://gitee.com/smell2/ruoyi-vue-activiti
-* 感谢慕课网神思者老师的实战课程:https://coding.imooc.com/class/530.html
 #### 插件版本
 * RuoYi-Cloud 3.5.0
 * Nacos 2.0.2
