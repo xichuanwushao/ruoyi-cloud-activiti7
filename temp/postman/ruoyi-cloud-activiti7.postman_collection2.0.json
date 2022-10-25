@@ -1,0 +1,1120 @@
+{
+	"info": {
+		"_postman_id": "ad77c59c-757b-4f0a-a367-c606e514623a",
+		"name": "ruoyi-cloud-activiti7",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "20401289"
+	},
+	"item": [
+		{
+			"name": "请假申请",
+			"item": [
+				{
+					"name": "我的OA",
+					"item": [
+						{
+							"name": "关兴",
+							"item": [
+								{
+									"name": "/workflow/leave/list",
+									"request": {
+										"auth": {
+											"type": "oauth2",
+											"oauth2": {
+												"addTokenTo": "header",
+												"grant_type": "authorization_code",
+												"tokenType": ""
+											}
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://127.0.0.1:8087/danny/workflow/leave/list?pageNum=1&pageSize=10",
+											"protocol": "http",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8087",
+											"path": [
+												"danny",
+												"workflow",
+												"leave",
+												"list"
+											],
+											"query": [
+												{
+													"key": "pageNum",
+													"value": "1"
+												},
+												{
+													"key": "pageSize",
+													"value": "10"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "/workflow/leave--新增",
+									"protocolProfileBehavior": {
+										"disabledSystemHeaders": {
+											"content-type": true
+										}
+									},
+									"request": {
+										"auth": {
+											"type": "oauth2",
+											"oauth2": {
+												"addTokenTo": "header",
+												"grant_type": "authorization_code",
+												"tokenType": ""
+											}
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"id\": null,\r\n  \"type\": \"年假\",\r\n  \"title\": \"榨菜1573\",\r\n  \"reason\": \"你大爷\",\r\n  \"leaveStartTime\": \"2022-09-14\",\r\n  \"leaveEndTime\": \"2022-09-14\",\r\n  \"instanceId\": null,\r\n  \"state\": null,\r\n  \"createBy\": null,\r\n  \"createTime\": null,\r\n  \"updateTime\": null\r\n}"
+										},
+										"url": "http://127.0.0.1:8087/danny/workflow/leave"
+									},
+									"response": []
+								},
+								{
+									"name": "/workflow/leave/{ID}",
+									"request": {
+										"auth": {
+											"type": "oauth2",
+											"oauth2": {
+												"addTokenTo": "header",
+												"grant_type": "authorization_code",
+												"tokenType": ""
+											}
+										},
+										"method": "GET",
+										"header": [],
+										"url": "http://127.0.0.1:8087/danny/workflow/leave/FNflh2tY"
+									},
+									"response": []
+								},
+								{
+									"name": "/historyFromData/ByInstanceId/{ID}",
+									"request": {
+										"auth": {
+											"type": "oauth2",
+											"oauth2": {
+												"addTokenTo": "header",
+												"grant_type": "authorization_code",
+												"tokenType": ""
+											}
+										},
+										"method": "GET",
+										"header": [],
+										"url": "http://127.0.0.1:8087/danny/historyFromData/ByInstanceId/zekPrFfl"
+									},
+									"response": []
+								},
+								{
+									"name": "/获取bpmn图形",
+									"request": {
+										"auth": {
+											"type": "oauth2",
+											"oauth2": {
+												"tokenType": "",
+												"addTokenTo": "header",
+												"grant_type": "authorization_code"
+											}
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "image/jpg",
+												"type": "text",
+												"disabled": true
+											}
+										],
+										"url": {
+											"raw": "http://127.0.0.1:8087/danny/activitiHistory/searchApprovalBpmn?instanceId=c33748fd-340e-11ed-baad-0068ebdb6dea",
+											"protocol": "http",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8087",
+											"path": [
+												"danny",
+												"activitiHistory",
+												"searchApprovalBpmn"
+											],
+											"query": [
+												{
+													"key": "instanceId",
+													"value": "c33748fd-340e-11ed-baad-0068ebdb6dea"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "/删除实例",
+									"request": {
+										"auth": {
+											"type": "oauth2",
+											"oauth2": {
+												"addTokenTo": "header",
+												"grant_type": "authorization_code",
+												"tokenType": ""
+											}
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "image/jpg",
+												"type": "text",
+												"disabled": true
+											}
+										],
+										"url": {
+											"raw": "http://localhost/dev-api/activitiHistory/deleteDeployment?instanceId=ba8ffc0e-2cbe-11ed-98f5-0068ebdb6dea",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"path": [
+												"dev-api",
+												"activitiHistory",
+												"deleteDeployment"
+											],
+											"query": [
+												{
+													"key": "instanceId",
+													"value": "ba8ffc0e-2cbe-11ed-98f5-0068ebdb6dea"
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "代办任务",
+					"item": [
+						{
+							"name": "关羽,诸葛亮",
+							"item": [
+								{
+									"name": "/task/list",
+									"request": {
+										"auth": {
+											"type": "oauth2",
+											"oauth2": {
+												"addTokenTo": "header",
+												"grant_type": "authorization_code",
+												"tokenType": ""
+											}
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://127.0.0.1:8087/danny/task/list?pageNum=1&pageSize=10",
+											"protocol": "http",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8087",
+											"path": [
+												"danny",
+												"task",
+												"list"
+											],
+											"query": [
+												{
+													"key": "pageNum",
+													"value": "1"
+												},
+												{
+													"key": "pageSize",
+													"value": "10"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "/task/formDataShow/{taskID}--弹框审",
+									"request": {
+										"auth": {
+											"type": "oauth2",
+											"oauth2": {
+												"addTokenTo": "header",
+												"grant_type": "authorization_code",
+												"tokenType": ""
+											}
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "",
+												"value": "",
+												"type": "text"
+											}
+										],
+										"url": "http://127.0.0.1:8087/danny/task/formDataShow/0110dc58-3283-11ed-947b-0068ebdb6dea"
+									},
+									"response": []
+								},
+								{
+									"name": "/workflow/leave/{ID}---弹框审",
+									"request": {
+										"auth": {
+											"type": "oauth2",
+											"oauth2": {
+												"addTokenTo": "header",
+												"grant_type": "authorization_code",
+												"tokenType": ""
+											}
+										},
+										"method": "GET",
+										"header": [],
+										"url": "http://127.0.0.1:8087/danny/workflow/leave/leRrCQjK"
+									},
+									"response": []
+								},
+								{
+									"name": "/historyFromData/ByInstanceId/{ID}---弹框审",
+									"request": {
+										"auth": {
+											"type": "oauth2",
+											"oauth2": {
+												"addTokenTo": "header",
+												"grant_type": "authorization_code",
+												"tokenType": ""
+											}
+										},
+										"method": "GET",
+										"header": [],
+										"url": "http://127.0.0.1:8087/danny/historyFromData/ByInstanceId/leRrCQjK"
+									},
+									"response": []
+								},
+								{
+									"name": "/task/formDataSave/{taskID}--同意",
+									"protocolProfileBehavior": {
+										"disabledSystemHeaders": {
+											"content-type": true
+										}
+									},
+									"request": {
+										"auth": {
+											"type": "oauth2",
+											"oauth2": {
+												"addTokenTo": "header",
+												"grant_type": "authorization_code",
+												"tokenType": ""
+											}
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "[\r\n    {\r\n        \"controlDefault\": \"同意--__--不同意\",\r\n        \"controlId\": \"FormProperty_3qipis2\",\r\n        \"controlIsParam\": \"i\",\r\n        \"controlLable\": \"审批意见\",\r\n        \"controlType\": \"radio\",\r\n        \"controlValue\": 1\r\n    },\r\n    {\r\n        \"controlId\": \"FormProperty_0lffpcm\",\r\n        \"controlIsParam\": \"f__!!null\",\r\n        \"controlLable\": \"批注\",\r\n        \"controlType\": \"textarea\",\r\n        \"controlValue\": \"123123\"\r\n    }\r\n]"
+										},
+										"url": "http://127.0.0.1:8087/danny/task/formDataSave/d27dd675-3400-11ed-8535-0068ebdb6dea"
+									},
+									"response": []
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "历史流程",
+					"item": [
+						{
+							"name": "关羽,诸葛亮",
+							"item": [
+								{
+									"name": "/leave/listAll",
+									"request": {
+										"auth": {
+											"type": "oauth2",
+											"oauth2": {
+												"addTokenTo": "header",
+												"grant_type": "authorization_code",
+												"tokenType": ""
+											}
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost/dev-api/workflow/leave/listAll?pageNum=1&pageSize=10",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"path": [
+												"dev-api",
+												"workflow",
+												"leave",
+												"listAll"
+											],
+											"query": [
+												{
+													"key": "pageNum",
+													"value": "1"
+												},
+												{
+													"key": "pageSize",
+													"value": "10"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "/type/activiti_leave_type--枚举",
+									"request": {
+										"auth": {
+											"type": "oauth2",
+											"oauth2": {
+												"addTokenTo": "header",
+												"grant_type": "authorization_code",
+												"tokenType": ""
+											}
+										},
+										"method": "GET",
+										"header": [],
+										"url": "http://localhost/dev-api/system/dict/data/type/activiti_leave_type"
+									},
+									"response": []
+								},
+								{
+									"name": "/data/type/activiti_flow_type--枚举",
+									"request": {
+										"auth": {
+											"type": "oauth2",
+											"oauth2": {
+												"addTokenTo": "header",
+												"grant_type": "authorization_code",
+												"tokenType": ""
+											}
+										},
+										"method": "GET",
+										"header": [],
+										"url": "http://localhost/dev-api/system/dict/data/type/activiti_flow_type"
+									},
+									"response": []
+								},
+								{
+									"name": "/workflow/leave/{ID}--详情",
+									"request": {
+										"auth": {
+											"type": "oauth2",
+											"oauth2": {
+												"addTokenTo": "header",
+												"grant_type": "authorization_code",
+												"tokenType": ""
+											}
+										},
+										"method": "GET",
+										"header": [],
+										"url": "http://localhost/dev-api/workflow/leave/12ef17eb-29c7-4f37-aad6-aeebdaf2af18"
+									},
+									"response": []
+								},
+								{
+									"name": "/historyFromData/ByInstanceId/{ID}--详情",
+									"request": {
+										"auth": {
+											"type": "oauth2",
+											"oauth2": {
+												"addTokenTo": "header",
+												"grant_type": "authorization_code",
+												"tokenType": ""
+											}
+										},
+										"method": "GET",
+										"header": [],
+										"url": "http://localhost/dev-api/historyFromData/ByInstanceId/12ef17eb-29c7-4f37-aad6-aeebdaf2af18"
+									},
+									"response": []
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "报销审批",
+					"item": [
+						{
+							"name": "New Request",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": {
+										"tokenType": "",
+										"addTokenTo": "header",
+										"grant_type": "authorization_code"
+									}
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "id",
+											"value": "5",
+											"type": "text"
+										}
+									]
+								},
+								"url": "http://127.0.0.1:8087/danny/workflow/reim/searchReimById/5"
+							},
+							"response": []
+						},
+						{
+							"name": "New Request Copy",
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": {
+										"tokenType": "",
+										"addTokenTo": "header",
+										"grant_type": "authorization_code"
+									}
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "token",
+										"value": "3246c7b7-e69b-431b-847b-0b2c33f3297a",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"id\": 33\r\n}"
+								},
+								"url": "http://127.0.0.1:8090/emos-api/reim/searchReimById"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "用户登录 Copy",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": {
+								"tokenType": "",
+								"addTokenTo": "header"
+							}
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"admin\",\r\n    \"password\": \"admin123\"\r\n}"
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8087/danny/login?username=zhaoyun&password=111",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8087",
+							"path": [
+								"danny",
+								"login"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "zhaoyun"
+								},
+								{
+									"key": "password",
+									"value": "111"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "用户登录 Copy 2",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": {
+								"tokenType": "",
+								"addTokenTo": "header"
+							}
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"guanxing\",\r\n    \"password\": \"123456\"\r\n}"
+						},
+						"url": "http://127.0.0.1:9200/login"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "报销申请",
+			"item": [
+				{
+					"name": "我的OA",
+					"item": [
+						{
+							"name": "关兴",
+							"item": [
+								{
+									"name": "/workflow/leave/list",
+									"request": {
+										"auth": {
+											"type": "oauth2",
+											"oauth2": {
+												"addTokenTo": "header",
+												"grant_type": "authorization_code",
+												"tokenType": ""
+											}
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://127.0.0.1:8087/danny/workflow/reim/list?pageNum=1&pageSize=10",
+											"protocol": "http",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8087",
+											"path": [
+												"danny",
+												"workflow",
+												"reim",
+												"list"
+											],
+											"query": [
+												{
+													"key": "pageNum",
+													"value": "1"
+												},
+												{
+													"key": "pageSize",
+													"value": "10"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "/workflow/reim--新增",
+									"protocolProfileBehavior": {
+										"disabledSystemHeaders": {
+											"content-type": true
+										}
+									},
+									"request": {
+										"auth": {
+											"type": "oauth2",
+											"oauth2": {
+												"addTokenTo": "header",
+												"grant_type": "authorization_code",
+												"tokenType": ""
+											}
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"anleihen\": \"123\",\r\n    \"danWorkflowReimgoodsList\": [\r\n        {\r\n            \"desc\": \"\",\r\n            \"index\": 1,\r\n            \"money\": \"12\",\r\n            \"title\": \"12\",\r\n            \"type\": \"6\"\r\n        },\r\n        {\r\n            \"desc\": \"\",\r\n            \"index\": 2,\r\n            \"money\": \"23\",\r\n            \"title\": \"23\",\r\n            \"type\": \"5\"\r\n        }\r\n    ],\r\n    \"type\": 1\r\n}"
+										},
+										"url": "http://127.0.0.1:8087/danny/workflow/reim"
+									},
+									"response": []
+								},
+								{
+									"name": "/workflow/reim/{ID}",
+									"request": {
+										"auth": {
+											"type": "oauth2",
+											"oauth2": {
+												"addTokenTo": "header",
+												"grant_type": "authorization_code",
+												"tokenType": ""
+											}
+										},
+										"method": "GET",
+										"header": [],
+										"url": "http://127.0.0.1:8087/danny/workflow/reim/9"
+									},
+									"response": []
+								},
+								{
+									"name": "/historyFromData/ByInstanceId/{ID}",
+									"request": {
+										"auth": {
+											"type": "oauth2",
+											"oauth2": {
+												"addTokenTo": "header",
+												"grant_type": "authorization_code",
+												"tokenType": ""
+											}
+										},
+										"method": "GET",
+										"header": [],
+										"url": "http://127.0.0.1:8087/danny/historyFromData/ByInstanceId/zekPrFfl"
+									},
+									"response": []
+								},
+								{
+									"name": "/获取bpmn图形",
+									"request": {
+										"auth": {
+											"type": "oauth2",
+											"oauth2": {
+												"tokenType": "",
+												"addTokenTo": "header",
+												"grant_type": "authorization_code"
+											}
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "image/jpg",
+												"type": "text",
+												"disabled": true
+											}
+										],
+										"url": {
+											"raw": "http://127.0.0.1:8087/danny/activitiHistory/searchApprovalBpmn?instanceId=8a236ca0-46dc-11ed-928d-0068ebdb6dea",
+											"protocol": "http",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8087",
+											"path": [
+												"danny",
+												"activitiHistory",
+												"searchApprovalBpmn"
+											],
+											"query": [
+												{
+													"key": "instanceId",
+													"value": "8a236ca0-46dc-11ed-928d-0068ebdb6dea"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "/删除实例",
+									"request": {
+										"auth": {
+											"type": "oauth2",
+											"oauth2": {
+												"addTokenTo": "header",
+												"grant_type": "authorization_code",
+												"tokenType": ""
+											}
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "image/jpg",
+												"type": "text",
+												"disabled": true
+											}
+										],
+										"url": {
+											"raw": "http://localhost/dev-api/activitiHistory/deleteDeployment?instanceId=ba8ffc0e-2cbe-11ed-98f5-0068ebdb6dea",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"path": [
+												"dev-api",
+												"activitiHistory",
+												"deleteDeployment"
+											],
+											"query": [
+												{
+													"key": "instanceId",
+													"value": "ba8ffc0e-2cbe-11ed-98f5-0068ebdb6dea"
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "代办任务",
+					"item": [
+						{
+							"name": "关羽,诸葛亮",
+							"item": [
+								{
+									"name": "/task/list",
+									"request": {
+										"auth": {
+											"type": "oauth2",
+											"oauth2": {
+												"addTokenTo": "header",
+												"grant_type": "authorization_code",
+												"tokenType": ""
+											}
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://127.0.0.1:8087/danny/task/list?pageNum=1&pageSize=10",
+											"protocol": "http",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8087",
+											"path": [
+												"danny",
+												"task",
+												"list"
+											],
+											"query": [
+												{
+													"key": "pageNum",
+													"value": "1"
+												},
+												{
+													"key": "pageSize",
+													"value": "10"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "/task/formDataShow/{taskID}--弹框审",
+									"request": {
+										"auth": {
+											"type": "oauth2",
+											"oauth2": {
+												"addTokenTo": "header",
+												"grant_type": "authorization_code",
+												"tokenType": ""
+											}
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "",
+												"value": "",
+												"type": "text"
+											}
+										],
+										"url": "http://127.0.0.1:8087/danny/task/formDataShow/0110dc58-3283-11ed-947b-0068ebdb6dea"
+									},
+									"response": []
+								},
+								{
+									"name": "/workflow/leave/{ID}---弹框审",
+									"request": {
+										"auth": {
+											"type": "oauth2",
+											"oauth2": {
+												"addTokenTo": "header",
+												"grant_type": "authorization_code",
+												"tokenType": ""
+											}
+										},
+										"method": "GET",
+										"header": [],
+										"url": "http://127.0.0.1:8087/danny/workflow/leave/leRrCQjK"
+									},
+									"response": []
+								},
+								{
+									"name": "/historyFromData/ByInstanceId/{ID}---弹框审",
+									"request": {
+										"auth": {
+											"type": "oauth2",
+											"oauth2": {
+												"addTokenTo": "header",
+												"grant_type": "authorization_code",
+												"tokenType": ""
+											}
+										},
+										"method": "GET",
+										"header": [],
+										"url": "http://127.0.0.1:8087/danny/historyFromData/ByInstanceId/leRrCQjK"
+									},
+									"response": []
+								},
+								{
+									"name": "/task/formDataSave/{taskID}--同意",
+									"protocolProfileBehavior": {
+										"disabledSystemHeaders": {
+											"content-type": true
+										}
+									},
+									"request": {
+										"auth": {
+											"type": "oauth2",
+											"oauth2": {
+												"addTokenTo": "header",
+												"grant_type": "authorization_code",
+												"tokenType": ""
+											}
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "[\r\n    {\r\n        \"controlDefault\": \"同意--__--不同意\",\r\n        \"controlId\": \"FormProperty_3qipis2\",\r\n        \"controlIsParam\": \"i\",\r\n        \"controlLable\": \"审批意见\",\r\n        \"controlType\": \"radio\",\r\n        \"controlValue\": 1\r\n    },\r\n    {\r\n        \"controlId\": \"FormProperty_0lffpcm\",\r\n        \"controlIsParam\": \"f__!!null\",\r\n        \"controlLable\": \"批注\",\r\n        \"controlType\": \"textarea\",\r\n        \"controlValue\": \"123123\"\r\n    }\r\n]"
+										},
+										"url": "http://127.0.0.1:8087/danny/task/formDataSave/d27dd675-3400-11ed-8535-0068ebdb6dea"
+									},
+									"response": []
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "历史流程",
+					"item": [
+						{
+							"name": "关羽,诸葛亮",
+							"item": [
+								{
+									"name": "/leave/listAll",
+									"request": {
+										"auth": {
+											"type": "oauth2",
+											"oauth2": {
+												"addTokenTo": "header",
+												"grant_type": "authorization_code",
+												"tokenType": ""
+											}
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost/dev-api/workflow/leave/listAll?pageNum=1&pageSize=10",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"path": [
+												"dev-api",
+												"workflow",
+												"leave",
+												"listAll"
+											],
+											"query": [
+												{
+													"key": "pageNum",
+													"value": "1"
+												},
+												{
+													"key": "pageSize",
+													"value": "10"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "/type/activiti_leave_type--枚举",
+									"request": {
+										"auth": {
+											"type": "oauth2",
+											"oauth2": {
+												"addTokenTo": "header",
+												"grant_type": "authorization_code",
+												"tokenType": ""
+											}
+										},
+										"method": "GET",
+										"header": [],
+										"url": "http://localhost/dev-api/system/dict/data/type/activiti_leave_type"
+									},
+									"response": []
+								},
+								{
+									"name": "/data/type/activiti_flow_type--枚举",
+									"request": {
+										"auth": {
+											"type": "oauth2",
+											"oauth2": {
+												"addTokenTo": "header",
+												"grant_type": "authorization_code",
+												"tokenType": ""
+											}
+										},
+										"method": "GET",
+										"header": [],
+										"url": "http://localhost/dev-api/system/dict/data/type/activiti_flow_type"
+									},
+									"response": []
+								},
+								{
+									"name": "/workflow/leave/{ID}--详情",
+									"request": {
+										"auth": {
+											"type": "oauth2",
+											"oauth2": {
+												"addTokenTo": "header",
+												"grant_type": "authorization_code",
+												"tokenType": ""
+											}
+										},
+										"method": "GET",
+										"header": [],
+										"url": "http://localhost/dev-api/workflow/leave/12ef17eb-29c7-4f37-aad6-aeebdaf2af18"
+									},
+									"response": []
+								},
+								{
+									"name": "/historyFromData/ByInstanceId/{ID}--详情",
+									"request": {
+										"auth": {
+											"type": "oauth2",
+											"oauth2": {
+												"addTokenTo": "header",
+												"grant_type": "authorization_code",
+												"tokenType": ""
+											}
+										},
+										"method": "GET",
+										"header": [],
+										"url": "http://localhost/dev-api/historyFromData/ByInstanceId/12ef17eb-29c7-4f37-aad6-aeebdaf2af18"
+									},
+									"response": []
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "用户登录",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": {
+								"tokenType": "",
+								"addTokenTo": "header"
+							}
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"guanxing\",\r\n    \"password\": \"123456\"\r\n}"
+						},
+						"url": "http://127.0.0.1:9200/login"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
