@@ -66,7 +66,8 @@
 </table>
 
 ## QQ交流群
-* QQ交流群：852160973(加群请先star项目 备注格式：gitee用户名 不然验证不通过)
+* QQ交流群：852160973(加群请先star项目 不然验证不通过 备注格式：gitee用户名)
+* <img src="https://image-1304556315.cos.ap-beijing.myqcloud.com/star.png"/>
 ## 启动说明
 需要对以下模块进行启动 启动顺序随意
 * RuoYiAuthApplication
