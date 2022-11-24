@@ -3,6 +3,7 @@
 *基RuoYi-cloud3.5.0 + activiti7 的工作流管理 ~
 
 记得右上角点个 star 持续关注更新哟~~
+* <img src="https://image-1304556315.cos.ap-beijing.myqcloud.com/star.png"/>
 ## 内置功能
 * 1.  我的OA：报销申请,编写报销单，下载pdf报销单,上传附件(下载后签字)。
 * 2.  待办任务：查看pdf报销单,领导进行审批。
