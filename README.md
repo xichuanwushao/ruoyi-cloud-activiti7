@@ -68,6 +68,7 @@
 ## QQ交流群
 * QQ交流群：852160973(加群请先star项目 不然验证不通过 备注格式：gitee用户名)
 * <img src="https://image-1304556315.cos.ap-beijing.myqcloud.com/star.png"/>
+* 点击链接加入群聊【ruoyi-cloud-activiti7交流群】：https://jq.qq.com/?_wv=1027&k=gElPi0vw
 ## 启动说明
 需要对以下模块进行启动 启动顺序随意
 * RuoYiAuthApplication
